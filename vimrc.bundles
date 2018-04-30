@@ -239,6 +239,12 @@ let g:ycm_use_ultisnips_completer = 1
 let g:ycm_add_preview_to_completeopt = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
+
+autocmd FileType java map <leader>jf :YcmCompleter FixIt<cr>
+autocmd FileType java map <leader>l :YcmCompleter Format<cr>
+autocmd FileType java map <leader>jo :YcmCompleter OrganizeImports<cr>
+autocmd FileType java map <leader>jr :YcmCompleter RefactorRename
+autocmd FileType java map <leader>jt :YcmCompleter GetType<cr>
 " }}}
 
 
