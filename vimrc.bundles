@@ -3,7 +3,7 @@
 " ==========================================
 
 "------------------------------------------- begin of configs --------------------------------------------
-
+"
 " package dependence:  ctags, ag(he_silver_searcher)
 " python dependence:   pep8, pyflake
 
