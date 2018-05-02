@@ -417,9 +417,16 @@ let g:nerdtree_tabs_open_on_gui_startup=0
 " FZF {{{
 map <leader>. :Tags<cr>
 map <leader>p :FZF<CR>
-map <leader>f :Ag<CR>
+map <leader>f :Rg<CR>
 let g:fzf_buffers_jump = 1
 let g:fzf_tags_command = 'ctags -R'
+
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --hidden --fixed-strings --follow --ignore-case --no-ignore --glob "!.git/*" --color=never '.shellescape(<q-args>), 1,
+  \   <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:60%')
+  \           : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%:hidden', '?'),
+  \   <bang>0)
 " }}}
 
 " Vim Workspace Controller
