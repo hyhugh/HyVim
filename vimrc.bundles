@@ -22,6 +22,9 @@ endif
 
 call plug#begin('~/.vim/bundle')
 
+" Latex support
+Plug 'lervag/vimtex'
+
 " Go lang support
 Plug 'fatih/vim-go'
 
@@ -149,7 +152,7 @@ call plug#end()
 " ################### Configurations ######################
 
 "Chiel92/vim-autoformat {{{
-noremap <Leader>l :Autoformat<CR>
+noremap <Leader>m :Autoformat<CR>
 let g:formatters_jinja = ['htmlbeautify']
 " }}}
 
@@ -165,6 +168,7 @@ if has_key(g:plugs, 'ale')
                 \   'java': ['none'],
                 \   'c': ['none'],
                 \   'cpp': ['none'],
+                \   'tex': ['none'],
                 \}
 
     " E501 -> 120 chars
@@ -421,11 +425,11 @@ let g:fzf_buffers_jump = 1
 let g:fzf_tags_command = 'ctags -R'
 
 command! -bang -nargs=* Rg
-  \ call fzf#vim#grep(
-  \   'rg --column --line-number --no-heading --hidden --fixed-strings --follow --ignore-case --no-ignore --glob "!.git/*" --color=never '.shellescape(<q-args>), 1,
-  \   <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:60%')
-  \           : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%:hidden', '?'),
-  \   <bang>0)
+            \ call fzf#vim#grep(
+            \   'rg --column --line-number --no-heading --hidden --fixed-strings --follow --ignore-case --no-ignore --glob "!.git/*" --color=never '.shellescape(<q-args>), 1,
+            \   <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:60%')
+            \           : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%:hidden', '?'),
+            \   <bang>0)
 " }}}
 
 " Vim Workspace Controller
@@ -474,5 +478,41 @@ let g:vim_json_syntax_conceal = 0
 
 " golang support {{{
 let g:go_fmt_autosave = 0
+" }}}
+
+" vim latex{{{
+let g:vimtex_mappings_enabled = 0
+let g:vimtex_view_automatic = 1
+let g:vimtex_view_method = 'skim'
+
+map <leader>li <plug>(vimtex-info)
+map <leader>lI <plug>(vimtex-info-full) map <leader>lt <plug>(vimtex-toc-open)
+map <leader>lT <plug>(vimtex-toc-toggle)
+map <leader>ly <plug>(vimtex-labels-open)
+map <leader>lY <plug>(vimtex-labels-toggle)
+map <leader>lq <plug>(vimtex-log)
+map <leader>lv <plug>(vimtex-view)
+map <leader>lr <plug>(vimtex-reverse-search)
+map <leader>ll <plug>(vimtex-compile)
+map <leader>lL <plug>(vimtex-compile-selected)
+map <leader>lk <plug>(vimtex-stop)
+map <leader>lK <plug>(vimtex-stop-all)
+map <leader>le <plug>(vimtex-errors)
+map <leader>lo <plug>(vimtex-compile-output)
+map <leader>lg <plug>(vimtex-status)
+map <leader>lG <plug>(vimtex-status-all)
+map <leader>lc <plug>(vimtex-clean)
+map <leader>lC <plug>(vimtex-clean-full)
+map <leader>lm <plug>(vimtex-imaps-list)
+map <leader>lx <plug>(vimtex-reload)
+map <leader>lX <plug>(vimtex-reload-state)
+map <leader>ls <plug>(vimtex-toggle-main)
+
+" Close viewers on quit
+function! ReCompile()
+    call vimtex#compiler#compile()
+    call b:vimtex.viewer.view('')
+endfunction
+autocmd FileWritePost,BufWritePost *.tex silent :call ReCompile()
 " }}}
 "------------------------------------------- end of configs --------------------------------------------
