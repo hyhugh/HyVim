@@ -47,10 +47,6 @@ set wildignore=*.swp,*.bak,*.pyc,*.class,.svn
 " disable mouse
 set mouse-=a
 
-" 修复ctrl+m 多光标操作选择的bug，但是改变了ctrl+v进行字符选中时将包含光标下的字符
-set selection=inclusive
-set selectmode=mouse,key
-
 " change the terminal's title
 set title
 
@@ -255,8 +251,8 @@ autocmd BufNewFile,BufRead *.py inoremap # X<c-h>#
 nnoremap [b :bprevious<cr>
 nnoremap ]b :bnext<cr>
 " arraw key switch tabs
-noremap <left> :tabnext<CR>
-noremap <right> :tabprev<CR>
+noremap <left> :tabprev<CR>
+noremap <right> :tabnext<CR>
 " tabs
 map <leader>th :tabfirst<cr>
 map <leader>tl :tablast<cr>
@@ -389,3 +385,5 @@ let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 hi! link SignColumn   LineNr
 hi! link ShowMarksHLl DiffAdd
 hi! link ShowMarksHLu DiffChange
+
+let g:python3_host_prog = '/usr/local/bin/python3'

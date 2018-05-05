@@ -253,7 +253,6 @@ let g:UltiSnipsExpandTrigger       = "<c-d>"
 let g:UltiSnipsJumpForwardTrigger  = "<c-j>"
 let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
 let g:UltiSnipsSnippetDirectories  = ['UltiSnips']
-let g:UltiSnipsListSnippets        = "<c-space>"
 let g:UltiSnipsSnippetsDir = '~/.vim/bundle/vim-snippets'
 
 " " ctrl+j/k choose
