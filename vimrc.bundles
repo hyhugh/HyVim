@@ -507,12 +507,5 @@ map <leader>lm <plug>(vimtex-imaps-list)
 map <leader>lx <plug>(vimtex-reload)
 map <leader>lX <plug>(vimtex-reload-state)
 map <leader>ls <plug>(vimtex-toggle-main)
-
-" Close viewers on quit
-function! ReCompile()
-    call vimtex#compiler#compile()
-    call b:vimtex.viewer.view('')
-endfunction
-autocmd FileWritePost,BufWritePost *.tex silent :call ReCompile()
 " }}}
 "------------------------------------------- end of configs --------------------------------------------
