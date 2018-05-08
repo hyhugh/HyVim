@@ -113,6 +113,9 @@ Plug 'kana/vim-textobj-entire'
 " indent object: i   dai yai cii
 Plug 'kana/vim-textobj-indent'
 
+" tmux suppoort
+Plug 'christoomey/vim-tmux-navigator'
+
 if count(g:bundle_groups, 'markdown')
     Plug 'plasticboy/vim-markdown', {'for': 'md'}
 endif
@@ -245,7 +248,7 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
 
 autocmd FileType java map <leader>jf :YcmCompleter FixIt<cr>
-autocmd FileType java map <leader>l :YcmCompleter Format<cr>
+autocmd FileType java map <leader>m :YcmCompleter Format<cr>
 autocmd FileType java map <leader>jo :YcmCompleter OrganizeImports<cr>
 autocmd FileType java map <leader>jr :YcmCompleter RefactorRename
 autocmd FileType java map <leader>jt :YcmCompleter GetType<cr>
