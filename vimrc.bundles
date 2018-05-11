@@ -116,6 +116,16 @@ Plug 'kana/vim-textobj-indent'
 " tmux suppoort
 Plug 'christoomey/vim-tmux-navigator'
 
+Plug 'ensime/ensime-vim'
+
+" haskell
+" Plug 'eagletmt/neco-ghc'
+Plug 'autozimu/LanguageClient-neovim', {
+            \ 'branch': 'next',
+            \ 'do': './install.sh'
+            \ }
+
+
 if count(g:bundle_groups, 'markdown')
     Plug 'plasticboy/vim-markdown', {'for': 'md'}
 endif
@@ -172,6 +182,7 @@ if has_key(g:plugs, 'ale')
                 \   'c': ['none'],
                 \   'cpp': ['none'],
                 \   'tex': ['none'],
+                \   'haskell': ['none'],
                 \}
 
     " E501 -> 120 chars
@@ -222,6 +233,7 @@ let g:ycm_semantic_triggers =  {
             \    'python': [ 're!\w{2}' ],
             \   'lua' : ['.', ':'],
             \   'erlang' : [':'],
+            \   'haskell' : ['.'],
             \ }
 
 " vertical split
@@ -247,11 +259,11 @@ let g:ycm_add_preview_to_completeopt = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
 
-autocmd FileType java map <leader>jf :YcmCompleter FixIt<cr>
+autocmd FileType java map <leader>lf :YcmCompleter FixIt<cr>
 autocmd FileType java map <leader>m :YcmCompleter Format<cr>
-autocmd FileType java map <leader>jo :YcmCompleter OrganizeImports<cr>
-autocmd FileType java map <leader>jr :YcmCompleter RefactorRename
-autocmd FileType java map <leader>jt :YcmCompleter GetType<cr>
+autocmd FileType java map <leader>lo :YcmCompleter OrganizeImports<cr>
+autocmd FileType java map <leader>lr :YcmCompleter RefactorRename
+autocmd FileType java map <leader>lt :YcmCompleter GetType<cr>
 " }}}
 
 
@@ -488,27 +500,46 @@ let g:vimtex_mappings_enabled = 0
 let g:vimtex_view_automatic = 1
 let g:vimtex_view_method = 'skim'
 
-map <leader>li <plug>(vimtex-info)
-map <leader>lI <plug>(vimtex-info-full) map <leader>lt <plug>(vimtex-toc-open)
-map <leader>lT <plug>(vimtex-toc-toggle)
-map <leader>ly <plug>(vimtex-labels-open)
-map <leader>lY <plug>(vimtex-labels-toggle)
-map <leader>lq <plug>(vimtex-log)
-map <leader>lv <plug>(vimtex-view)
-map <leader>lr <plug>(vimtex-reverse-search)
-map <leader>ll <plug>(vimtex-compile)
-map <leader>lL <plug>(vimtex-compile-selected)
-map <leader>lk <plug>(vimtex-stop)
-map <leader>lK <plug>(vimtex-stop-all)
-map <leader>le <plug>(vimtex-errors)
-map <leader>lo <plug>(vimtex-compile-output)
-map <leader>lg <plug>(vimtex-status)
-map <leader>lG <plug>(vimtex-status-all)
-map <leader>lc <plug>(vimtex-clean)
-map <leader>lC <plug>(vimtex-clean-full)
-map <leader>lm <plug>(vimtex-imaps-list)
-map <leader>lx <plug>(vimtex-reload)
-map <leader>lX <plug>(vimtex-reload-state)
-map <leader>ls <plug>(vimtex-toggle-main)
+autocmd FileType tex map <leader>li <plug>(vimtex-info)
+autocmd FileType tex map <leader>lI <plug>(vimtex-info-full) map <leader>lt <plug>(vimtex-toc-open)
+autocmd FileType tex map <leader>lT <plug>(vimtex-toc-toggle)
+autocmd FileType tex map <leader>ly <plug>(vimtex-labels-open)
+autocmd FileType tex map <leader>lY <plug>(vimtex-labels-toggle)
+autocmd FileType tex map <leader>lq <plug>(vimtex-log)
+autocmd FileType tex map <leader>lv <plug>(vimtex-view)
+autocmd FileType tex map <leader>lr <plug>(vimtex-reverse-search)
+autocmd FileType tex map <leader>ll <plug>(vimtex-compile)
+autocmd FileType tex map <leader>lL <plug>(vimtex-compile-selected)
+autocmd FileType tex map <leader>lk <plug>(vimtex-stop)
+autocmd FileType tex map <leader>lK <plug>(vimtex-stop-all)
+autocmd FileType tex map <leader>le <plug>(vimtex-errors)
+autocmd FileType tex map <leader>lo <plug>(vimtex-compile-output)
+autocmd FileType tex map <leader>lg <plug>(vimtex-status)
+autocmd FileType tex map <leader>lG <plug>(vimtex-status-all)
+autocmd FileType tex map <leader>lc <plug>(vimtex-clean)
+autocmd FileType tex map <leader>lC <plug>(vimtex-clean-full)
+autocmd FileType tex map <leader>lm <plug>(vimtex-imaps-list)
+autocmd FileType tex map <leader>lx <plug>(vimtex-reload)
+autocmd FileType tex map <leader>lX <plug>(vimtex-reload-state)
+autocmd FileType tex map <leader>ls <plug>(vimtex-toggle-main)
 " }}}
+"
+" neco-ghc{{{
+" Disable haskell-vim omnifunc
+" let g:haskellmode_completion_ghc = 0
+" autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+" let g:necoghc_use_stack = 1
+" }}}
+
+"haskell {{{
+let g:LanguageClient_serverCommands = {
+            \ 'haskell': ['hie', '--lsp'],
+            \ }
+
+autocmd FileType haskell map <leader>m :call LanguageClient_textDocument_formatting()<cr>
+autocmd FileType haskell map <leader>lh :call LanguageClient#textDocument_hover()<CR>
+autocmd FileType haskell map <leader>li :call LanguageClient#textDocument_implementation()<CR>
+autocmd FileType haskell map <leader>ld :call LanguageClient#textDocument_definition()<CR>
+autocmd FileType haskell map <leader>lr :call LanguageClient#textDocument_rename()<CR>
+"}}}
 "------------------------------------------- end of configs --------------------------------------------
