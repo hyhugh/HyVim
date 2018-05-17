@@ -247,10 +247,10 @@ let g:ycm_add_preview_to_completeopt = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 let g:ycm_autoclose_preview_window_after_completion = 1
 
-autocmd FileType java map <leader>lf :YcmCompleter FixIt<cr>
+autocmd FileType java map <leader>la :YcmCompleter FixIt<cr>
 autocmd FileType java map <leader>m :YcmCompleter Format<cr>
 autocmd FileType java map <leader>lo :YcmCompleter OrganizeImports<cr>
-autocmd FileType java map <leader>lr :YcmCompleter RefactorRename
+autocmd FileType java map <leader>lr :YcmCompleter RefactorRename 
 autocmd FileType java map <leader>lt :YcmCompleter GetType<cr>
 " }}}
 
