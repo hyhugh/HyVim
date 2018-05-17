@@ -127,8 +127,6 @@ set hidden
 
 " 相对行号: 行号变成相对，可以用 nj/nk 进行跳转
 set relativenumber number
-au FocusLost * :set norelativenumber number
-au FocusGained * :set relativenumber
 
 autocmd InsertEnter * :set norelativenumber number
 autocmd InsertLeave * :set relativenumber
@@ -328,7 +326,7 @@ inoremap <C-l> <Right>
 
 " 具体编辑文件类型的一般设置，比如不要 tab 等
 autocmd FileType python,java set tabstop=4 shiftwidth=4 expandtab ai
-autocmd FileType ruby,javascript,html,css,xml set tabstop=2 shiftwidth=2 softtabstop=2 expandtab ai
+autocmd FileType ruby,javascript,html,css,xml,haskell set tabstop=2 shiftwidth=2 softtabstop=2 expandtab ai
 autocmd BufRead,BufNewFile *.md,*.mkd,*.markdown set filetype=markdown.mkd
 autocmd BufRead,BufNewFile *.part set filetype=html
 au BufNewFile,BufRead *.s,*.S set filetype=mips

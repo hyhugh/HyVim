@@ -119,7 +119,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'ensime/ensime-vim'
 
 " haskell
-" Plug 'eagletmt/neco-ghc'
+Plug 'neovimhaskell/haskell-vim'
 Plug 'autozimu/LanguageClient-neovim', {
             \ 'branch': 'next',
             \ 'do': './install.sh'
@@ -175,7 +175,6 @@ if has_key(g:plugs, 'ale')
     " npm install -g eslint eslint-plugin-standard eslint-plugin-promise eslint-config-standard
     " npm install -g eslint-plugin-import eslint-plugin-node eslint-plugin-html babel-eslint
     let g:ale_linters = {
-                \   'python': ['flake8'],
                 \   'javascript': ['eslint'],
                 \   'jinja': ['tidy'],
                 \   'java': ['none'],
@@ -185,17 +184,7 @@ if has_key(g:plugs, 'ale')
                 \   'haskell': ['none'],
                 \}
 
-    " E501 -> 120 chars
     let g:ale_python_flake8_args="--ignore=E114,E116,E131,E722 --max-line-length=120"
-    " --ignore=E225,E124,E712,E116
-
-    let g:ale_sign_error = '>>'
-    let g:ale_sign_warning = '>'
-
-    let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
-    let g:ale_echo_msg_error_str = 'E'
-    let g:ale_echo_msg_warning_str = 'W'
-    let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
     nmap <silent> <Leader>ep <Plug>(ale_previous_wrap)
     nmap <silent> <Leader>en <Plug>(ale_next_wrap)
@@ -230,7 +219,6 @@ let g:ycm_semantic_triggers =  {
             \   'perl' : ['->'],
             \   'cs,java,javascript,typescript,d,python,perl6,scala,vb,elixir,go' : ['.'],
             \    'ruby' : ['.', '::'],
-            \    'python': [ 're!\w{2}' ],
             \   'lua' : ['.', ':'],
             \   'erlang' : [':'],
             \   'haskell' : ['.'],
@@ -524,22 +512,22 @@ autocmd FileType tex map <leader>lX <plug>(vimtex-reload-state)
 autocmd FileType tex map <leader>ls <plug>(vimtex-toggle-main)
 " }}}
 "
-" neco-ghc{{{
-" Disable haskell-vim omnifunc
-" let g:haskellmode_completion_ghc = 0
-" autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
-" let g:necoghc_use_stack = 1
-" }}}
-
 "haskell {{{
+let g:LanguageClient_changeThrottle = 0.5
+let g:LanguageClient_autoStart = 1
+let g:LanguageClient_loadSettings = 0
 let g:LanguageClient_serverCommands = {
-            \ 'haskell': ['hie', '--lsp'],
+            \ 'haskell': ['hie-8.2.2', '--lsp'],
             \ }
 
-autocmd FileType haskell map <leader>m :call LanguageClient_textDocument_formatting()<cr>
-autocmd FileType haskell map <leader>lh :call LanguageClient#textDocument_hover()<CR>
-autocmd FileType haskell map <leader>li :call LanguageClient#textDocument_implementation()<CR>
-autocmd FileType haskell map <leader>ld :call LanguageClient#textDocument_definition()<CR>
-autocmd FileType haskell map <leader>lr :call LanguageClient#textDocument_rename()<CR>
+autocmd FileType haskell map <silent> <leader>m :call LanguageClient#textDocument_formatting()<cr>
+autocmd FileType haskell map <silent> <leader>lh :call LanguageClient#textDocument_hover()<CR>
+autocmd FileType haskell map <silent> <leader>li :call LanguageClient#textDocument_implementation()<CR>
+autocmd FileType haskell map <silent> <leader>ld :call LanguageClient#textDocument_definition()<CR>
+autocmd FileType haskell map <silent> <leader>lr :call LanguageClient#textDocument_rename()<CR>
+autocmd FileType haskell map <silent> <leader>la :call LanguageClient#textDocument_codeAction()<CR>
+autocmd FileType haskell map <silent> <leader>ls :LanguageClientStart<CR>
+
+let g:haskell_classic_highlighting = 1
 "}}}
 "------------------------------------------- end of configs --------------------------------------------
