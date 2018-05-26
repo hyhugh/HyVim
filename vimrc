@@ -251,6 +251,8 @@ nnoremap ]b :bnext<cr>
 " arraw key switch tabs
 noremap <left> :tabprev<CR>
 noremap <right> :tabnext<CR>
+noremap <up> :bprevious<CR>
+noremap <down> :bnext<CR>
 " tabs
 map <leader>th :tabfirst<cr>
 map <leader>tl :tablast<cr>
