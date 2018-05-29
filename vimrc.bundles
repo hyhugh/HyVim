@@ -63,7 +63,8 @@ Plug 'adimit/prolog.vim'
 Plug 'tpope/vim-repeat' | Plug 'tpope/vim-surround'
 
 " trailingwhitespace
-Plug 'bronson/vim-trailing-whitespace'
+" Plug 'bronson/vim-trailing-whitespace'
+Plug 'ntpeters/vim-better-whitespace'
 
 " easymotion
 Plug 'Lokaltog/vim-easymotion'
@@ -309,7 +310,8 @@ let g:NERDAltDelims_python = 1
 " }}}
 
 " trailingwhitespace {{{
-map <leader><space> :FixWhitespace<cr>
+let g:better_whitespace_filetypes_blacklist=['ctrlsf', 'vim']
+map <leader>s :StripWhitespace<cr>
 " }}}
 " ################### 快速移动 ###################
 
@@ -424,7 +426,7 @@ let g:solarized_visibility="normal"
 
 " nerdtree nerdtreetabs {{{
 let NERDTreeHighlightCursorline=1
-let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$' ]
+let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$', '\.class$' ]
 "close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | end
 
@@ -560,6 +562,9 @@ let g:haskell_classic_highlighting = 1
     " let g:ctrlsf_winsize = '30%'
     let g:ctrlsf_auto_close = 0
     let g:ctrlsf_confirm_save = 0
+    let g:ctrlsf_ackprg = 'rg'
+    let g:ctrlsf_case_sensitive = 'smart'
+    let g:ctrlsf_ignore_dir = ['tags']
     " Note: cannot use <CR> or <C-m> for open
     " Use : <sapce> or <tab>
     let g:ctrlsf_mapping = {
