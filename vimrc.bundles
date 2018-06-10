@@ -96,7 +96,7 @@ Plug 'kien/rainbow_parentheses.vim'
 
 " solarized
 Plug 'icymind/NeoSolarized'
-Plug 'altercation/vim-colors-solarized'
+" Plug 'altercation/vim-colors-solarized'
 
 " nerdtree nerdtreetabs
 Plug 'scrooloose/nerdtree' | Plug 'jistr/vim-nerdtree-tabs'
@@ -134,6 +134,9 @@ Plug 'autozimu/LanguageClient-neovim', {
             \ 'branch': 'next',
             \ 'do': './install.sh'
             \ }
+
+
+Plug 'zhou13/vim-easyescape'
 
 
 if count(g:bundle_groups, 'markdown')
@@ -346,12 +349,13 @@ call expand_region#custom_text_objects({
 
 " multiplecursors {{{
 let g:multi_cursor_use_default_mapping=0
-" let g:multi_cursor_insert_maps = { 'k': 1 }
+let g:multi_cursor_insert_maps = {}
+
 " Default mapping
 let g:multi_cursor_next_key='<C-m>'
 let g:multi_cursor_prev_key='<C-p>'
 let g:multi_cursor_skip_key='<C-x>'
-let g:multi_cursor_quit_key='<Esc>'
+let g:multi_cursor_quit_key='<esc>'
 
 " Experimentally integrate YouCompleteMe with vim-multiple-cursors, otherwise
 " the numerous Cursor events cause great slowness
@@ -579,5 +583,10 @@ let g:haskell_classic_highlighting = 1
         \ "pquit" : "q",
         \ }
 " }}}
+
+"" vim easyescape {{{
+let g:easyescape_chars = { "k": 1, "j": 1 }
+let g:easyescape_timeout = 100
+"}}}
 
 "------------------------------------------- end of configs --------------------------------------------

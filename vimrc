@@ -301,7 +301,7 @@ map <Leader>sa ggVG
 nnoremap <leader>v V`}
 
 " kj to Esc
-inoremap kj <Esc>
+" inoremap kj <Esc>
 
 " Quickly close the current window
 nnoremap <leader>q :q<CR>
@@ -357,25 +357,7 @@ if has("autocmd")
     endif
 endif
 
-" GUI mode
-if has("gui_running")
-    set guifont=Iosevka:h17
-    set guioptions-=T
-    set guioptions+=e
-    set guioptions-=r
-    set guioptions-=L
-    set guitablabel=%M\ %t
-    set showtabline=1
-    set linespace=2
-    set cursorline
-    set cursorcolumn
-endif
-
-if has("gui_vimr")
-    set termguicolors
-endif
-
-colorscheme solarized
+colorscheme NeoSolarized
 set background=dark
 
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
@@ -387,3 +369,5 @@ hi! link ShowMarksHLl DiffAdd
 hi! link ShowMarksHLu DiffChange
 
 let g:python3_host_prog = '/usr/local/bin/python3'
+
+set completeopt=menu,menuone
