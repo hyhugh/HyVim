@@ -105,6 +105,9 @@ Plug 'kana/vim-textobj-indent'
 " tmux suppoort
 Plug 'christoomey/vim-tmux-navigator'
 
+" extra syntax
+Plug 'justinmk/vim-syntax-extra'
+
 
 " ctrlsf
 Plug 'dyng/ctrlsf.vim'

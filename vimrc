@@ -370,5 +370,7 @@ hi! link ShowMarksHLl DiffAdd
 hi! link ShowMarksHLu DiffChange
 
 let g:python3_host_prog = '/usr/local/bin/python3'
+let java_highlight_functions = 1
+let java_highlight_all = 1
 
 set completeopt=menu,menuone
