@@ -12,7 +12,7 @@ filetype off " required! turn off
 
 " inspired by spf13
 if !exists('g:bundle_groups')
-    let g:bundle_groups=['python', 'javascript', 'markdown', 'html', 'css', 'json']
+    let g:bundle_groups=['python', 'web-dev', 'markdown']
 endif
 
 " ----------------------------------------------------------------------------
@@ -22,24 +22,12 @@ endif
 
 call plug#begin('~/.vim/bundle')
 
-" Latex support
-Plug 'lervag/vimtex'
-
-" Go lang support
-Plug 'fatih/vim-go'
-
 " fuzzy search plugin
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
-" MIPS HIGHLIGHTING
-Plug 'harenome/vim-mipssyntax'
-
 " Autoformat
 Plug 'Chiel92/vim-autoformat'
-
-" syntastic
-" Plug 'w0rp/ale'
 
 "vim-snippets and ultisnips
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
@@ -117,27 +105,30 @@ Plug 'kana/vim-textobj-indent'
 " tmux suppoort
 Plug 'christoomey/vim-tmux-navigator'
 
-Plug 'ensime/ensime-vim'
 
 " ctrlsf
-" 类似sublimetext的搜索
-" In CtrlSF window:
-" 回车/o, 打开
-" t       在tab中打开(建议)
-" T - Lkie t but focus CtrlSF window instead of opened new tab.
-" q - Quit CtrlSF window.
 Plug 'dyng/ctrlsf.vim'
 
+" Go lang support
+Plug 'fatih/vim-go', { 'for': 'go' }
+
+Plug 'ensime/ensime-vim', { 'for': 'scala' }
+
+" Latex support
+Plug 'lervag/vimtex', { 'for': 'tex' }
+
+" MIPS HIGHLIGHTING
+Plug 'harenome/vim-mipssyntax', { 'for': 'mips' }
+
 " haskell
-Plug 'neovimhaskell/haskell-vim'
+Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
 Plug 'autozimu/LanguageClient-neovim', {
             \ 'branch': 'next',
-            \ 'do': './install.sh'
+            \ 'do': './install.sh',
+            \ 'for': 'haskell'
             \ }
 
-
 Plug 'zhou13/vim-easyescape'
-
 
 if count(g:bundle_groups, 'markdown')
     Plug 'plasticboy/vim-markdown', {'for': 'md'}
@@ -151,25 +142,10 @@ if count(g:bundle_groups, 'python')
     Plug 'Glench/Vim-Jinja2-Syntax'
 endif
 
-if count(g:bundle_groups, 'javascript')
-    " javascript
-    " 注意: syntax这个插件要放前面
-    Plug 'othree/yajs.vim' | Plug 'pangloss/vim-javascript'
-    " Plug 'jelera/vim-javascript-syntax' | Plug 'pangloss/vim-javascript'
-
-    " TODO: jquery? for, remove or keep
-    Plug 'othree/javascript-libraries-syntax.vim'
-    let g:used_javascript_libs = 'jquery,underscore,backbone'
-endif
-
-if count(g:bundle_groups, 'json')
-    " json
+if count(g:bundle_groups, 'web-dev')
+    Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
     Plug 'elzr/vim-json', {'for': 'json'}
-endif
-
-if count(g:bundle_groups, 'html')
-    " ###### emmet HTML complete #########
-    Plug 'mattn/emmet-vim'
+    Plug 'mattn/emmet-vim', { 'for':'html' }
 endif
 
 call plug#end()

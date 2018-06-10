@@ -358,6 +358,7 @@ if has("autocmd")
 endif
 
 colorscheme NeoSolarized
+set termguicolors
 set background=dark
 
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
