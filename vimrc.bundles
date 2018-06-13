@@ -12,11 +12,10 @@ filetype off " required! turn off
 
 " inspired by spf13
 if !exists('g:bundle_groups')
-    let g:bundle_groups=['python', 'web-dev', 'markdown']
+    let g:bundle_groups=['python', 'web-dev', 'markdown', 'go', 'latex', 'haskell']
 endif
 
 " ----------------------------------------------------------------------------
-" 使用 vim-plug 管理插件
 " vim plugin bundle control, command model
 " ----------------------------------------------------------------------------
 
@@ -28,6 +27,9 @@ Plug 'junegunn/fzf.vim'
 
 " Autoformat
 Plug 'Chiel92/vim-autoformat'
+
+" ale
+Plug 'w0rp/ale'
 
 "vim-snippets and ultisnips
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
@@ -43,9 +45,6 @@ Plug 'alvan/vim-closetag'
 
 " quick comment out
 Plug 'scrooloose/nerdcommenter'
-
-" prolog support
-Plug 'adimit/prolog.vim'
 
 " for repeat -> enhance surround.vim, . to repeat command
 Plug 'tpope/vim-repeat' | Plug 'tpope/vim-surround'
@@ -88,8 +87,10 @@ Plug 'icymind/NeoSolarized'
 
 " nerdtree nerdtreetabs
 Plug 'scrooloose/nerdtree' | Plug 'jistr/vim-nerdtree-tabs'
+
 " ctrlspace
 Plug 'vim-ctrlspace/vim-ctrlspace'
+
 " tagbar
 Plug 'majutsushi/tagbar'
 
@@ -108,30 +109,46 @@ Plug 'christoomey/vim-tmux-navigator'
 " extra syntax
 Plug 'justinmk/vim-syntax-extra'
 
-
 " ctrlsf
 Plug 'dyng/ctrlsf.vim'
 
-" Go lang support
-Plug 'fatih/vim-go', { 'for': 'go' }
-
-Plug 'ensime/ensime-vim', { 'for': 'scala' }
-
-" Latex support
-Plug 'lervag/vimtex', { 'for': 'tex' }
-
-" MIPS HIGHLIGHTING
-Plug 'harenome/vim-mipssyntax', { 'for': 'mips' }
-
-" haskell
-Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
+" language client
 Plug 'autozimu/LanguageClient-neovim', {
             \ 'branch': 'next',
             \ 'do': './install.sh',
-            \ 'for': 'haskell'
+            \ 'for': 'haskell',
             \ }
 
 Plug 'zhou13/vim-easyescape'
+
+" prolog support
+if count(g:bundle_groups, 'prolog')
+    Plug 'adimit/prolog.vim', { 'for': 'prolog' }
+endif
+
+" Go lang support
+if count(g:bundle_groups, 'go')
+    Plug 'fatih/vim-go', { 'for': 'go' }
+endif
+
+if count(g:bundle_groups, 'scala')
+    Plug 'ensime/ensime-vim', { 'for': 'scala' }
+endif
+
+" Latex support
+if count(g:bundle_groups, 'latex')
+    Plug 'lervag/vimtex', { 'for': 'tex' }
+endif
+
+" MIPS HIGHLIGHTING
+if count(g:bundle_groups, 'mips')
+    Plug 'harenome/vim-mipssyntax', { 'for': 'mips' }
+endif
+
+" haskell
+if count(g:bundle_groups, 'haskell')
+    Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
+endif
 
 if count(g:bundle_groups, 'markdown')
     Plug 'plasticboy/vim-markdown', {'for': 'md'}
@@ -140,8 +157,8 @@ endif
 if count(g:bundle_groups, 'python')
     " for python.vim syntax highlight
     " pythonsyntax
-    Plug 'hdima/python-syntax'
-    Plug 'hynek/vim-python-pep8-indent'
+    Plug 'hdima/python-syntax', {'for' : 'python'}
+    Plug 'hynek/vim-python-pep8-indent', {'for' : 'python'}
     Plug 'Glench/Vim-Jinja2-Syntax'
 endif
 
@@ -162,26 +179,20 @@ let g:formatters_jinja = ['htmlbeautify']
 " }}}
 
 " ale {{{
-if has_key(g:plugs, 'ale')
-    " pip install flake8
-    " npm install -g eslint eslint-plugin-standard eslint-plugin-promise eslint-config-standard
-    " npm install -g eslint-plugin-import eslint-plugin-node eslint-plugin-html babel-eslint
-    let g:ale_linters = {
-                \   'javascript': ['eslint'],
-                \   'jinja': ['tidy'],
-                \   'java': ['none'],
-                \   'c': ['none'],
-                \   'cpp': ['none'],
-                \   'tex': ['none'],
-                \   'haskell': ['none'],
-                \}
+ 
+" pip install flake8
+" npm install -g eslint eslint-plugin-standard eslint-plugin-promise eslint-config-standard
+" npm install -g eslint-plugin-import eslint-plugin-node eslint-plugin-html babel-eslint
+let g:ale_linters_explicit = 1
+let g:ale_linters = {
+            \   'python': ['flake8'],
+            \}
 
-    let g:ale_python_flake8_args="--ignore=E114,E116,E131,E722 --max-line-length=120"
+let g:ale_python_flake8_options="--ignore=E114,E116,E131,E722 --max-line-length=120"
 
-    nmap <silent> <Leader>ep <Plug>(ale_previous_wrap)
-    nmap <silent> <Leader>en <Plug>(ale_next_wrap)
-    nnoremap <silent> <Leader>ec :ALEToggle<CR>
-endif
+nmap <silent> <Leader>ep <Plug>(ale_previous_wrap)
+nmap <silent> <Leader>en <Plug>(ale_next_wrap)
+nnoremap <silent> <Leader>ec :ALEToggle<CR>
 
 " }}}
 
@@ -202,7 +213,7 @@ let g:ycm_complete_in_strings = 1
 let g:ycm_collect_identifiers_from_comments_and_strings = 0
 let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_seed_identifiers_with_syntax=1
-let g:ycm_show_diagnostics_ui = 0
+" let g:ycm_show_diagnostics_ui = 0
 let g:ycm_key_list_stop_completion = ['<C-c>']
 
 let g:ycm_semantic_triggers =  {
@@ -362,6 +373,7 @@ set undodir=~/.vim/undo
 " }}}
 
 " airline {{{
+let g:airline_exclude_preview = 1
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
@@ -444,8 +456,7 @@ command! -bang -nargs=* Rg
 
 " Vim Workspace Controller
 " ctrlspace {{{
-let g:airline_exclude_preview = 1
-let g:CtrlSpaceDefaultMappingKey = "<C-space>"
+" let g:CtrlSpaceDefaultMappingKey = "<C-space>"
 map <C-space> :CtrlSpace<CR>
 hi CtrlSpaceSelected guifg=#586e75 guibg=#eee8d5 guisp=#839496 gui=reverse,bold ctermfg=10 ctermbg=7 cterm=reverse,bold
 hi CtrlSpaceNormal   guifg=#839496 guibg=#021B25 guisp=#839496 gui=NONE ctermfg=12 ctermbg=0 cterm=NONE
@@ -539,6 +550,8 @@ let g:haskell_classic_highlighting = 1
 "}}}
 "
 "" ctrlsf {{{
+    " let g:ctrlsf_search_mode = 'async'
+    " let g:ctrlsf_debug_mode = 1 
     nmap \ <Plug>CtrlSFCwordPath<CR>
     nmap <leader>\ :CtrlSF 
     " let g:ctrlsf_position = 'below'
