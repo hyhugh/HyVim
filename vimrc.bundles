@@ -12,7 +12,7 @@ filetype off " required! turn off
 
 " inspired by spf13
 if !exists('g:bundle_groups')
-    let g:bundle_groups=['python', 'web-dev', 'markdown', 'go', 'latex', 'haskell']
+    let g:bundle_groups=['python', 'web-dev', 'markdown', 'go', 'latex', 'haskell', 'rust']
 endif
 
 " ----------------------------------------------------------------------------
@@ -133,6 +133,10 @@ endif
 
 if count(g:bundle_groups, 'scala')
     Plug 'ensime/ensime-vim', { 'for': 'scala' }
+endif
+
+if count(g:bundle_groups, 'rust')
+    Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 endif
 
 " Latex support
