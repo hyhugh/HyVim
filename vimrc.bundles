@@ -140,6 +140,10 @@ if count(g:bundle_groups, 'scala')
     Plug 'ensime/ensime-vim', { 'for': 'scala' }
 endif
 
+if count(g:bundle_groups, 'rust')
+    Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+endif
+
 " Latex support
 if count(g:bundle_groups, 'latex')
     Plug 'lervag/vimtex', { 'for': 'tex' }
