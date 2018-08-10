@@ -83,7 +83,7 @@ set cursorcolumn
 set cursorline
 
 set number
-set nowrap
+set wrap
 set showmatch
 set matchtime=2
 " Highlight search
@@ -253,6 +253,7 @@ noremap <left> :tabprev<CR>
 noremap <right> :tabnext<CR>
 noremap <up> :bprevious<CR>
 noremap <down> :bnext<CR>
+
 " tabs
 map <leader>th :tabfirst<cr>
 map <leader>tl :tablast<cr>
@@ -277,10 +278,6 @@ let g:last_active_tab = 1
 
 nnoremap <silent> <leader>tt :execute 'tabnext ' . g:last_active_tab<cr>
 autocmd TabLeave * let g:last_active_tab = tabpagenr()
-
-" 新建tab  Ctrl+t
-nnoremap <C-t>     :tabnew<CR>
-inoremap <C-t>     <Esc>:tabnew<CR>
 
 " => 选中及操作改键
 " 调整缩进后自动选中，方便再次操作
@@ -327,8 +324,8 @@ inoremap <C-l> <Right>
 "==========================================
 
 " 具体编辑文件类型的一般设置，比如不要 tab 等
-autocmd FileType python,java set tabstop=4 shiftwidth=4 expandtab ai
-autocmd FileType ruby,javascript,html,css,xml,haskell set tabstop=2 shiftwidth=2 softtabstop=2 expandtab ai
+autocmd FileType python,java,haskell set tabstop=4 shiftwidth=4 expandtab ai
+autocmd FileType ruby,javascript,html,css,xml set tabstop=2 shiftwidth=2 softtabstop=2 expandtab ai
 autocmd BufRead,BufNewFile *.md,*.mkd,*.markdown set filetype=markdown.mkd
 autocmd BufRead,BufNewFile *.part set filetype=html
 au BufNewFile,BufRead *.s,*.S set filetype=mips
@@ -365,7 +362,7 @@ hi! link SignColumn   LineNr
 hi! link ShowMarksHLl DiffAdd
 hi! link ShowMarksHLu DiffChange
 
-let g:python3_host_prog = '/usr/local/bin/python3'
+let g:python3_host_prog = 'python3'
 let java_highlight_functions = 1
 let java_highlight_all = 1
 
