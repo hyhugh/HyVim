@@ -121,6 +121,8 @@ Plug 'autozimu/LanguageClient-neovim', {
 
 Plug 'zhou13/vim-easyescape'
 
+Plug 'tikhomirov/vim-glsl'
+
 " prolog support
 if count(g:bundle_groups, 'prolog')
     Plug 'adimit/prolog.vim', { 'for': 'prolog' }
@@ -215,12 +217,9 @@ let g:ycm_key_list_select_completion = ['<tab>']
 let g:ycm_key_list_previous_completion=['<c-p>']
 let g:ycm_key_list_previous_completion = ['<UP>']
 let g:ycm_key_list_previous_completion = ['<s-tab>']
-let g:ycm_python_binary_path = 'python3'
-let g:ycm_server_python_interpreter = 'python3'
-let g:ycm_complete_in_comments = 1
-let g:ycm_complete_in_strings = 1
+let g:ycm_python_binary_path = '/usr/local/bin/python3'
+let g:ycm_server_python_interpreter = '/usr/local/bin/python3'
 let g:ycm_collect_identifiers_from_comments_and_strings = 0
-let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_seed_identifiers_with_syntax=1
 let g:ycm_show_diagnostics_ui = 0
 let g:ycm_key_list_stop_completion = ['<C-c>']
@@ -241,9 +240,7 @@ let g:ycm_goto_buffer_command = 'vertical-split'
 nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <leader>gd :YcmCompleter GoToDeclaration<CR>
 
-if !empty(glob("~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"))
-    let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
-endif
+let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
 
 let g:ycm_key_invoke_completion = '<C-Space>'
 
@@ -313,7 +310,7 @@ let g:NERDAltDelims_python = 1
 
 " trailingwhitespace {{{
 let g:better_whitespace_filetypes_blacklist=['ctrlsf', 'vim']
-map <leader>s :StripWhitespace<cr>
+map <leader><leader>s :StripWhitespace<cr>
 " }}}
 " ################### 快速移动 ###################
 

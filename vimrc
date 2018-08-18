@@ -45,7 +45,7 @@ set nobackup
 set noswapfile
 set wildignore=*.swp,*.bak,*.pyc,*.class,.svn
 " disable mouse
-set mouse-=a
+set mouse=n
 
 " change the terminal's title
 set title
@@ -211,8 +211,8 @@ map <leader>wh <C-W>h
 map <leader>wl <C-W>l
 
 " Go to home and end using capitalized directions
-noremap H ^
-noremap L $
+noremap H g^
+noremap L g$
 
 " Map ; to : and save a million keystrokes
 nnoremap ; :
@@ -351,7 +351,7 @@ autocmd Syntax * call matchadd('Todo',  '\W\zs\(TODO\|FIXME\|CHANGED\|DONE\|XXX\
 autocmd Syntax * call matchadd('Debug', '\W\zs\(NOTE\|INFO\|IDEA\|NOTICE\)')
 
 colorscheme NeoSolarized
-set termguicolors
+" set termguicolors
 set background=dark
 
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
