@@ -119,7 +119,7 @@ Plug 'autozimu/LanguageClient-neovim', {
             \ 'for': 'haskell',
             \ }
 
-Plug 'zhou13/vim-easyescape'
+Plug 'hy950831/vim-easyescape'
 
 Plug 'tikhomirov/vim-glsl'
 
