@@ -462,10 +462,11 @@ command! -bang -nargs=* Rg
 " ctrlspace {{{
 " let g:CtrlSpaceDefaultMappingKey = "<C-space>"
 map <C-space> :CtrlSpace<CR>
-hi CtrlSpaceSelected guifg=#586e75 guibg=#eee8d5 guisp=#839496 gui=reverse,bold ctermfg=10 ctermbg=7 cterm=reverse,bold
-hi CtrlSpaceNormal   guifg=#839496 guibg=#021B25 guisp=#839496 gui=NONE ctermfg=12 ctermbg=0 cterm=NONE
-hi CtrlSpaceSearch   guifg=#cb4b16 guibg=NONE gui=bold ctermfg=9 ctermbg=NONE term=bold cterm=bold
-hi CtrlSpaceStatus   guifg=#839496 guibg=#002b36 gui=reverse term=reverse cterm=reverse ctermfg=12 ctermbg=8
+hi link CtrlSpaceNormal   PMenu
+hi link CtrlSpaceSelected PMenuSel
+hi link CtrlSpaceSearch   Search
+hi link CtrlSpaceStatus   StatusLine
+
 " }}}
 
 " tagbar {{{
@@ -535,11 +536,11 @@ autocmd FileType tex map <leader>ls <plug>(vimtex-toggle-main)
 " }}}
 "
 "haskell {{{
-let g:LanguageClient_changeThrottle = 0.5
+let g:LanguageClient_changeThrottle = 0.02
 let g:LanguageClient_autoStart = 1
 let g:LanguageClient_loadSettings = 0
 let g:LanguageClient_serverCommands = {
-            \ 'haskell': ['hie-8.2.2', '--lsp'],
+            \ 'haskell': ['hie', '--lsp'],
             \ }
 
 autocmd FileType haskell map <silent> <leader>m :call LanguageClient#textDocument_formatting()<cr>
@@ -582,7 +583,7 @@ let g:haskell_classic_highlighting = 1
 
 "" vim easyescape {{{
 let g:easyescape_chars = { "k": 1, "j": 1 }
-let g:easyescape_timeout = 100
+let g:easyescape_timeout = 200
 "}}}
 
 "------------------------------------------- end of configs --------------------------------------------
