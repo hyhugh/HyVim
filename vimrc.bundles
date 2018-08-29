@@ -119,11 +119,18 @@ Plug 'autozimu/LanguageClient-neovim', {
             \ 'for': 'haskell',
             \ }
 
-Plug 'zhou13/vim-easyescape'
+Plug 'hy950831/vim-easyescape'
+
+Plug 'tikhomirov/vim-glsl'
 
 " prolog support
 if count(g:bundle_groups, 'prolog')
     Plug 'adimit/prolog.vim', { 'for': 'prolog' }
+endif
+
+" rust support
+if count(g:bundle_groups, 'rust')
+    Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 endif
 
 " Go lang support
@@ -151,7 +158,7 @@ endif
 
 " haskell
 if count(g:bundle_groups, 'haskell')
-    Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
+    " Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
 endif
 
 if count(g:bundle_groups, 'markdown')
@@ -208,14 +215,11 @@ let g:ycm_key_list_select_completion=['<c-n>']
 let g:ycm_key_list_select_completion = ['<DOWN>']
 let g:ycm_key_list_select_completion = ['<tab>']
 let g:ycm_key_list_previous_completion=['<c-p>']
-let g:ycm_key_list_previous_completion=['<c-k>']
 let g:ycm_key_list_previous_completion = ['<UP>']
-let g:ycm_python_binary_path = 'python3'
-let g:ycm_server_python_interpreter = 'python3'
-let g:ycm_complete_in_comments = 1
-let g:ycm_complete_in_strings = 1
+let g:ycm_key_list_previous_completion = ['<s-tab>']
+let g:ycm_python_binary_path = '/usr/local/bin/python3'
+let g:ycm_server_python_interpreter = '/usr/local/bin/python3'
 let g:ycm_collect_identifiers_from_comments_and_strings = 0
-let g:ycm_collect_identifiers_from_tags_files = 1
 let g:ycm_seed_identifiers_with_syntax=1
 let g:ycm_show_diagnostics_ui = 0
 let g:ycm_key_list_stop_completion = ['<C-c>']
@@ -236,9 +240,7 @@ let g:ycm_goto_buffer_command = 'vertical-split'
 nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <leader>gd :YcmCompleter GoToDeclaration<CR>
 
-if !empty(glob("~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"))
-    let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
-endif
+let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py"
 
 let g:ycm_key_invoke_completion = '<C-Space>'
 
@@ -252,7 +254,7 @@ let g:ycm_filetype_blacklist = {
 let g:ycm_use_ultisnips_completer = 1
 let g:ycm_add_preview_to_completeopt = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
-let g:ycm_autoclose_preview_window_after_completion = 1
+" let g:ycm_autoclose_preview_window_after_completion = 1
 
 autocmd FileType java map <leader>la :YcmCompleter FixIt<cr>
 autocmd FileType java map <leader>m :YcmCompleter Format<cr>
@@ -269,31 +271,31 @@ let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
 let g:UltiSnipsSnippetDirectories  = ['UltiSnips']
 let g:UltiSnipsSnippetsDir = '~/.vim/bundle/vim-snippets'
 
-" " ctrl+j/k choose
-func! g:JInYCM()
-    if pumvisible()
-        return "\<C-n>"
-    else
-        return "\<c-j>"
-    endif
-endfunction
+" " " ctrl+j/k choose
+" func! g:JInYCM()
+    " if pumvisible()
+        " return "\<C-n>"
+    " else
+        " return "\<c-j>"
+    " endif
+" endfunction
 
-func! g:KInYCM()
-    if pumvisible()
-        return "\<C-p>"
-    else
-        return "\<c-k>"
-    endif
-endfunction
+" func! g:KInYCM()
+    " if pumvisible()
+        " return "\<C-p>"
+    " else
+        " return "\<c-k>"
+    " endif
+" endfunction
 
-inoremap <c-j> <c-r>=g:JInYCM()<cr>
-au BufEnter,BufRead * exec "inoremap <silent> " . g:UltiSnipsJumpBackwordTrigger . " <C-R>=g:KInYCM()<cr>"
-let g:UltiSnipsJumpBackwordTrigger = "<c-k>"
+" inoremap <c-j> <c-r>=g:JInYCM()<cr>
+" au BufEnter,BufRead * exec "inoremap <silent> " . g:UltiSnipsJumpBackwordTrigger . " <C-R>=g:KInYCM()<cr>"
+" let g:UltiSnipsJumpBackwordTrigger = "<c-k>"
 " }}}
 
 " delimitMate {{{
-let delimitMate_autoclose = 1
-let delimitMate_jump_expansion= 1
+" let delimitMate_autoclose = 1
+" let delimitMate_jump_expansion= 1
 let delimitMate_expand_cr = 1
 " }}}
 
@@ -308,7 +310,7 @@ let g:NERDAltDelims_python = 1
 
 " trailingwhitespace {{{
 let g:better_whitespace_filetypes_blacklist=['ctrlsf', 'vim']
-map <leader>s :StripWhitespace<cr>
+map <leader><leader>s :StripWhitespace<cr>
 " }}}
 " ################### 快速移动 ###################
 
@@ -551,14 +553,16 @@ autocmd FileType haskell map <silent> <leader>lr :call LanguageClient#textDocume
 autocmd FileType haskell map <silent> <leader>la :call LanguageClient#textDocument_codeAction()<CR>
 autocmd FileType haskell map <silent> <leader>ls :LanguageClientStart<CR>
 
-let g:haskell_classic_highlighting = 1
+" let g:haskell_classic_highlighting = 1
 "}}}
 "
 "" ctrlsf {{{
-    " let g:ctrlsf_search_mode = 'async'
-    " let g:ctrlsf_debug_mode = 1 
+    let g:ctrlsf_search_mode = 'async'
     nmap \ <Plug>CtrlSFCwordPath<CR>
     nmap <leader>\ :CtrlSF 
+    let g:ctrlsf_auto_focus = {
+                \ "at" : "start",
+                \}
     " let g:ctrlsf_position = 'below'
     " let g:ctrlsf_winsize = '30%'
     let g:ctrlsf_auto_close = 0
@@ -583,7 +587,7 @@ let g:haskell_classic_highlighting = 1
 
 "" vim easyescape {{{
 let g:easyescape_chars = { "k": 1, "j": 1 }
-let g:easyescape_timeout = 200
+let g:easyescape_timeout = 300
 "}}}
 
 "------------------------------------------- end of configs --------------------------------------------
