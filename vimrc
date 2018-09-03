@@ -50,6 +50,9 @@ set mouse=n
 " change the terminal's title
 set title
 
+" open new split window below current window
+set splitbelow
+
 " disable sound
 set novisualbell
 set noerrorbells
@@ -311,6 +314,7 @@ nnoremap <leader>e :e<CR>
 " switch ' `, for the convenience of jumping to marks
 nnoremap ' `
 nnoremap ` '
+nnoremap <leader><leader>p :pc<cr>
 
 " remap U to <C-r> for easier redo
 nnoremap U <C-r>
@@ -324,8 +328,8 @@ inoremap <C-l> <Right>
 "==========================================
 
 " 具体编辑文件类型的一般设置，比如不要 tab 等
-autocmd FileType python,java,haskell set tabstop=4 shiftwidth=4 expandtab ai
-autocmd FileType ruby,javascript,html,css,xml set tabstop=2 shiftwidth=2 softtabstop=2 expandtab ai
+autocmd FileType python,java set tabstop=4 shiftwidth=4 expandtab ai
+autocmd FileType ruby,javascript,html,css,xml,haskell set tabstop=2 shiftwidth=2 softtabstop=2 expandtab ai
 autocmd BufRead,BufNewFile *.md,*.mkd,*.markdown set filetype=markdown.mkd
 autocmd BufRead,BufNewFile *.part set filetype=html
 au BufNewFile,BufRead *.s,*.S set filetype=mips
@@ -359,11 +363,30 @@ let &t_SR = "\<Esc>]50;CursorShape=2\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
 hi! link SignColumn   LineNr
-hi! link ShowMarksHLl DiffAdd
-hi! link ShowMarksHLu DiffChange
+" hi! link ShowMarksHLl DiffAdd
+" hi! link ShowMarksHLu DiffChange
+hi link ALEError Error
+" hi Warning term=underline cterm=underline ctermfg=Yellow gui=undercurl guisp=Gold
+hi link ALEWarning Warning
+hi link ALEInfo SpellCap
 
 let g:python3_host_prog = 'python3'
 let java_highlight_functions = 1
 let java_highlight_all = 1
 
 set completeopt=menu,menuone
+
+" GUI mode
+if has("gui_running")
+    set guifont=Iosevka:h17
+    set guioptions-=T
+    set guioptions+=e
+    set guioptions-=r
+    set guioptions-=L
+    set guitablabel=%M\ %t
+    set showtabline=1
+    set linespace=2
+    set cursorline
+    set cursorcolumn
+endif
+
