@@ -355,7 +355,7 @@ autocmd Syntax * call matchadd('Todo',  '\W\zs\(TODO\|FIXME\|CHANGED\|DONE\|XXX\
 autocmd Syntax * call matchadd('Debug', '\W\zs\(NOTE\|INFO\|IDEA\|NOTICE\)')
 
 colorscheme NeoSolarized
-" set termguicolors
+set termguicolors
 set background=dark
 
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
