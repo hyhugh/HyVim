@@ -38,7 +38,8 @@ Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 Plug 'Valloric/YouCompleteMe'
 
 " symbol autocompleting
-Plug 'Raimondi/delimitMate'
+" Plug 'Raimondi/delimitMate'
+Plug 'jiangmiao/auto-pairs'
 
 " tags autocompleting
 Plug 'alvan/vim-closetag'
@@ -160,7 +161,8 @@ endif
 
 " haskell
 if count(g:bundle_groups, 'haskell')
-    Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
+    " Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
+    Plug 'itchyny/vim-haskell-indent'
 endif
 
 if count(g:bundle_groups, 'markdown')
@@ -297,7 +299,7 @@ let g:UltiSnipsSnippetsDir = '~/.vim/bundle/vim-snippets'
 " delimitMate {{{
 " let delimitMate_autoclose = 1
 " let delimitMate_jump_expansion= 1
-let delimitMate_expand_cr = 1
+" let delimitMate_expand_cr = 1
 " }}}
 
 " closetag {{{
@@ -561,13 +563,13 @@ autocmd FileType haskell map <silent> <leader>le :call LanguageClient#explainErr
 autocmd FileType haskell set signcolumn=yes
 
 " let g:haskell_classic_highlighting = 1
-let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
-let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
-let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
-let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
-let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
-let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
-let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
+" let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
+" let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
+" let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
+" let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
+" let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
+" let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
+" let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
 "}}}
 "
 "" ctrlsf {{{
