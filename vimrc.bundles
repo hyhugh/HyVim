@@ -609,4 +609,8 @@ let g:easyescape_timeout = 300
 "" vim sneak {{{
 let g:sneak#label = 1
 "}}}
+
+"" vim escape {{{
+let g:AutoPairsShortcutFastWrap = "<C-e>"
+" }}}
 "------------------------------------------- end of configs --------------------------------------------
