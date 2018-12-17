@@ -39,7 +39,7 @@ Plug 'Valloric/YouCompleteMe'
 
 " symbol autocompleting
 " Plug 'Raimondi/delimitMate'
-Plug 'jiangmiao/auto-pairs'
+Plug 'hy950831/auto-pairs'
 
 " tags autocompleting
 Plug 'alvan/vim-closetag'
@@ -118,8 +118,7 @@ Plug 'dyng/ctrlsf.vim'
 " language client
 Plug 'autozimu/LanguageClient-neovim', {
             \ 'branch': 'next',
-            \ 'do': './install.sh',
-            \ 'for': 'haskell',
+            \ 'do': './install.sh'
             \ }
 
 Plug 'hy950831/vim-easyescape'
@@ -143,10 +142,6 @@ endif
 
 if count(g:bundle_groups, 'scala')
     Plug 'ensime/ensime-vim', { 'for': 'scala' }
-endif
-
-if count(g:bundle_groups, 'rust')
-    Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 endif
 
 " Latex support
@@ -234,6 +229,7 @@ let g:ycm_semantic_triggers =  {
             \   'cs,java,javascript,typescript,d,python,perl6,scala,vb,elixir,go' : ['.'],
             \    'ruby' : ['.', '::'],
             \   'lua' : ['.', ':'],
+            \   'rust' : ['.', '::', ':'],
             \   'erlang' : [':'],
             \   'haskell' : ['.'],
             \ }
@@ -271,6 +267,7 @@ autocmd FileType java map <leader>lt :YcmCompleter GetType<cr>
 let g:UltiSnipsExpandTrigger       = "<c-d>"
 let g:UltiSnipsJumpForwardTrigger  = "<c-j>"
 let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
+
 let g:UltiSnipsSnippetDirectories  = ['UltiSnips']
 let g:UltiSnipsSnippetsDir = '~/.vim/bundle/vim-snippets'
 
@@ -610,7 +607,19 @@ let g:easyescape_timeout = 300
 let g:sneak#label = 1
 "}}}
 
-"" vim escape {{{
+"" vim autopairs {{{
 let g:AutoPairsShortcutFastWrap = "<C-e>"
+let g:AutoPairsShortcutJump = '<C-l>'
+
+" let g:AutoPairs = {
+            " \'(' : ')',
+            " \'[' : ']',
+            " \'{' : '}',
+            " \"'" : "'",
+            " \'"' : '"',
+            " \'`' : '`',
+            " \'<' : '>',
+            " \}
+" inoremap <c-l> <c-o>:call AutoPairsJump()<cr>
 " }}}
 "------------------------------------------- end of configs --------------------------------------------
