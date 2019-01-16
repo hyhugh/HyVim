@@ -320,8 +320,8 @@ nnoremap <leader><leader>p :pc<cr>
 nnoremap U <C-r>
 
 " lazy boi doesn't want to switch modes
-inoremap <C-h> <Left>
-inoremap <C-l> <Right>
+" inoremap <C-h> <Left>
+" inoremap <C-l> <Right>
 
 "==========================================
 " FileType Settings
