@@ -229,7 +229,7 @@ let g:ycm_semantic_triggers =  {
             \   'cs,java,javascript,typescript,d,python,perl6,scala,vb,elixir,go' : ['.'],
             \    'ruby' : ['.', '::'],
             \   'lua' : ['.', ':'],
-            \   'rust' : ['.', '::', ':'],
+            \   'rust' : ['.', '::'],
             \   'erlang' : [':'],
             \   'haskell' : ['.'],
             \ }
@@ -547,17 +547,18 @@ let g:LanguageClient_autoStart = 0
 let g:LanguageClient_loadSettings = 0
 let g:LanguageClient_serverCommands = {
             \ 'haskell': ['hie-wrapper', '--lsp'],
+            \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
             \ }
 
-autocmd FileType haskell map <silent> <leader>m :call LanguageClient#textDocument_formatting()<cr>
-autocmd FileType haskell map <silent> <leader>lh :call LanguageClient#textDocument_hover()<CR>
-autocmd FileType haskell map <silent> <leader>li :call LanguageClient#textDocument_implementation()<CR>
-autocmd FileType haskell map <silent> <leader>ld :call LanguageClient#textDocument_definition()<CR>
-autocmd FileType haskell map <silent> <leader>lr :call LanguageClient#textDocument_rename()<CR>
-autocmd FileType haskell map <silent> <leader>la :call LanguageClient#textDocument_codeAction()<CR>
-autocmd FileType haskell map <silent> <leader>ls :LanguageClientStart<CR>
-autocmd FileType haskell map <silent> <leader>le :call LanguageClient#explainErrorAtPoint()<CR>
-autocmd FileType haskell set signcolumn=yes
+autocmd FileType haskell,rust map <silent> <leader>m :call LanguageClient#textDocument_formatting()<cr>
+autocmd FileType haskell,rust map <silent> <leader>lh :call LanguageClient#textDocument_hover()<CR>
+autocmd FileType haskell,rust map <silent> <leader>li :call LanguageClient#textDocument_implementation()<CR>
+autocmd FileType haskell,rust map <silent> <leader>ld :call LanguageClient#textDocument_definition()<CR>
+autocmd FileType haskell,rust map <silent> <leader>lr :call LanguageClient#textDocument_rename()<CR>
+autocmd FileType haskell,rust map <silent> <leader>la :call LanguageClient#textDocument_codeAction()<CR>
+autocmd FileType haskell,rust map <silent> <leader>ls :LanguageClientStart<CR>
+autocmd FileType haskell,rust map <silent> <leader>le :call LanguageClient#explainErrorAtPoint()<CR>
+autocmd FileType haskell,rust set signcolumn=yes
 
 " let g:haskell_classic_highlighting = 1
 " let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
@@ -610,6 +611,7 @@ let g:sneak#label = 1
 "" vim autopairs {{{
 let g:AutoPairsShortcutFastWrap = "<C-e>"
 let g:AutoPairsShortcutJump = '<C-l>'
+let g:AutoPairsShortcutJumpBack = '<C-h>'
 
 " let g:AutoPairs = {
             " \'(' : ')',
