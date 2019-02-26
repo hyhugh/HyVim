@@ -241,8 +241,8 @@ nnoremap <silent> g* g*zz
 noremap <silent><leader>/ :nohls<CR>
 
 " switch # *
-nnoremap # *
-nnoremap * #
+" nnoremap # *
+" nnoremap * #
 
 " for # indent, python文件中输入新行时#号注释不切回行首
 autocmd BufNewFile,BufRead *.py inoremap # X<c-h>#
@@ -320,8 +320,8 @@ nnoremap <leader><leader>p :pc<cr>
 nnoremap U <C-r>
 
 " lazy boi doesn't want to switch modes
-inoremap <C-h> <Left>
-inoremap <C-l> <Right>
+" inoremap <C-h> <Left>
+" inoremap <C-l> <Right>
 
 "==========================================
 " FileType Settings
@@ -333,6 +333,8 @@ autocmd FileType ruby,javascript,html,css,xml,haskell set tabstop=2 shiftwidth=2
 autocmd BufRead,BufNewFile *.md,*.mkd,*.markdown set filetype=markdown.mkd
 autocmd BufRead,BufNewFile *.part set filetype=html
 au BufNewFile,BufRead *.s,*.S set filetype=mips
+au BufNewFile,BufRead *.camkes set filetype=c
+
 
 " AutoSetFileHead
 autocmd BufNewFile *.sh,*.py exec ":call AutoSetFileHead()"
@@ -358,9 +360,9 @@ colorscheme NeoSolarized
 set termguicolors
 set background=dark
 
-let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-let &t_SR = "\<Esc>]50;CursorShape=2\x7"
-let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+let &t_SI = "\<Esc>[6 q"
+let &t_SR = "\<Esc>[4 q"
+let &t_EI = "\<Esc>[2 q"
 
 hi! link SignColumn   LineNr
 " hi! link ShowMarksHLl DiffAdd
@@ -370,9 +372,10 @@ hi link ALEError Error
 hi link ALEWarning Warning
 hi link ALEInfo SpellCap
 
-let g:python3_host_prog = 'python3'
+" let g:python3_host_prog = 'python3'
 let java_highlight_functions = 1
 let java_highlight_all = 1
+set nocompatible
 
 set completeopt=menu,menuone
 

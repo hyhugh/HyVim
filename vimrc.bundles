@@ -29,7 +29,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'Chiel92/vim-autoformat'
 
 " ale
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
 
 "vim-snippets and ultisnips
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
@@ -39,7 +39,8 @@ Plug 'Valloric/YouCompleteMe'
 
 " symbol autocompleting
 " Plug 'Raimondi/delimitMate'
-Plug 'jiangmiao/auto-pairs'
+" Plug 'jiangmiao/auto-pairs'
+Plug 'hy950831/auto-pairs'
 
 " tags autocompleting
 Plug 'alvan/vim-closetag'
@@ -86,6 +87,9 @@ Plug 'kien/rainbow_parentheses.vim'
 " Plug 'icymind/NeoSolarized'
 Plug 'altercation/vim-colors-solarized'
 Plug 'hy950831/NeoSolarized'
+
+" cmake syntax
+Plug 'pboettch/vim-cmake-syntax'
 
 
 " nerdtree nerdtreetabs
@@ -180,7 +184,7 @@ endif
 if count(g:bundle_groups, 'web-dev')
     Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
     Plug 'elzr/vim-json', {'for': 'json'}
-    Plug 'mattn/emmet-vim', { 'for':'html' }
+    Plug 'mattn/emmet-vim', { 'for': ['html', 'css']}
 endif
 
 call plug#end()
@@ -220,8 +224,8 @@ let g:ycm_key_list_select_completion = ['<tab>']
 let g:ycm_key_list_previous_completion=['<c-p>']
 let g:ycm_key_list_previous_completion = ['<UP>']
 let g:ycm_key_list_previous_completion = ['<s-tab>']
-let g:ycm_python_binary_path = '/usr/local/bin/python3'
-let g:ycm_server_python_interpreter = '/usr/local/bin/python3'
+" let g:ycm_python_binary_path = 'python3'
+" let g:ycm_server_python_interpreter = 'python3'
 let g:ycm_collect_identifiers_from_comments_and_strings = 0
 let g:ycm_seed_identifiers_with_syntax=1
 let g:ycm_show_diagnostics_ui = 0
@@ -239,7 +243,7 @@ let g:ycm_semantic_triggers =  {
             \ }
 
 " vertical split
-let g:ycm_goto_buffer_command = 'vertical-split'
+let g:ycm_goto_buffer_command = 'horizontal-split'
 nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <leader>gd :YcmCompleter GoToDeclaration<CR>
 
@@ -275,25 +279,25 @@ let g:UltiSnipsSnippetDirectories  = ['UltiSnips']
 let g:UltiSnipsSnippetsDir = '~/.vim/bundle/vim-snippets'
 
 " " " ctrl+j/k choose
-" func! g:JInYCM()
-    " if pumvisible()
-        " return "\<C-n>"
-    " else
-        " return "\<c-j>"
-    " endif
-" endfunction
+func! g:JInYCM()
+    if pumvisible()
+        return "\<C-n>"
+    else
+        return "\<c-j>"
+    endif
+endfunction
 
-" func! g:KInYCM()
-    " if pumvisible()
-        " return "\<C-p>"
-    " else
-        " return "\<c-k>"
-    " endif
-" endfunction
+func! g:KInYCM()
+    if pumvisible()
+        return "\<C-p>"
+    else
+        return "\<c-k>"
+    endif
+endfunction
 
-" inoremap <c-j> <c-r>=g:JInYCM()<cr>
-" au BufEnter,BufRead * exec "inoremap <silent> " . g:UltiSnipsJumpBackwordTrigger . " <C-R>=g:KInYCM()<cr>"
-" let g:UltiSnipsJumpBackwordTrigger = "<c-k>"
+inoremap <c-j> <c-r>=g:JInYCM()<cr>
+au BufEnter,BufRead * exec "inoremap <silent> " . g:UltiSnipsJumpBackwordTrigger . " <C-R>=g:KInYCM()<cr>"
+let g:UltiSnipsJumpBackwordTrigger = "<c-k>"
 " }}}
 
 " delimitMate {{{
@@ -308,7 +312,7 @@ let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
 
 " nerdcommenter {{{
 let g:NERDSpaceDelims=1
-let g:NERDAltDelims_python = 1
+" let g:NERDAltDelims_python = 1
 " }}}
 
 " trailingwhitespace {{{
@@ -430,7 +434,7 @@ let g:solarized_visibility="normal"
 
 " nerdtree nerdtreetabs {{{
 let NERDTreeHighlightCursorline=1
-let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$', '\.class$' ]
+" let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$', '\.class$' ]
 "close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | end
 
@@ -450,8 +454,12 @@ let g:nerdtree_tabs_open_on_gui_startup=0
 
 " FZF {{{
 map <leader>. :Tags<cr>
+map <leader>> :Tags <C-R><C-W><cr>
 map <leader>p :FZF<CR>
+map <leader>P :FZF <C-R><C-W><cr>
 map <leader>f :Rg<CR>
+map <leader>F :Rg <C-R><C-W><cr>
+
 let g:fzf_buffers_jump = 1
 let g:fzf_tags_command = 'ctags -R'
 
@@ -471,10 +479,12 @@ map <C-space> :CtrlSpace<CR>
 " hi CtrlSpaceNormal   guifg=#839496 guibg=#021B25 guisp=#839496 gui=NONE ctermfg=12 ctermbg=0 cterm=NONE
 " hi CtrlSpaceSearch   guifg=#cb4b16 guibg=NONE gui=bold ctermfg=9 ctermbg=NONE term=bold cterm=bold
 " hi CtrlSpaceStatus   guifg=#839496 guibg=#002b36 gui=reverse term=reverse cterm=reverse ctermfg=12 ctermbg=8
+let CtrlSpaceFileEngine = 'file_engine_linux_amd64'
 hi link CtrlSpaceNormal   PMenu
 hi link CtrlSpaceSelected PMenuSel
 hi link CtrlSpaceSearch   Search
 hi link CtrlSpaceStatus   StatusLine
+let g:CtrlSpaceProjectRootMarkers = ''
 " }}}
 
 " tagbar {{{
@@ -613,4 +623,10 @@ let g:sneak#label = 1
 "" vim escape {{{
 let g:AutoPairsShortcutFastWrap = "<C-e>"
 " }}}
-"------------------------------------------- end of configs --------------------------------------------
+
+"" vim autopairs {{{
+let g:AutoPairsShortcutFastWrap = "<C-e>"
+let g:AutoPairsShortcutJump = '<c-l>'
+let g:AutoPairsShortcutJumpBack = '<c-h>'
+" }}}
+""------------------------------------------- end of configs --------------------------------------------
