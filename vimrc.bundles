@@ -453,12 +453,14 @@ let g:nerdtree_tabs_open_on_gui_startup=0
 " }}}
 
 " FZF {{{
-map <leader>. :Tags<cr>
+map <leader>. :Tags <cr>
 map <leader>> :Tags <C-R><C-W><cr>
-map <leader>p :FZF<CR>
+map <leader>p :FZF <CR>
 map <leader>P :FZF <C-R><C-W><cr>
-map <leader>f :Rg<CR>
+map <leader>f :Rg <CR>
 map <leader>F :Rg <C-R><C-W><cr>
+map <leader>l :BLines <CR>
+map <leader>L :BLines <C-R><C-W><cr>
 
 let g:fzf_buffers_jump = 1
 let g:fzf_tags_command = 'ctags -R'
