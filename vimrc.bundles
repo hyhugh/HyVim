@@ -121,7 +121,7 @@ Plug 'autozimu/LanguageClient-neovim', {
             \ 'do': './install.sh'
             \ }
 
-Plug 'hy950831/vim-easyescape'
+Plug 'hyhugh/vim-easyescape-plus'
 
 Plug 'tikhomirov/vim-glsl'
 
@@ -606,7 +606,7 @@ autocmd FileType haskell,rust set signcolumn=yes
 " }}}
 
 "" vim easyescape {{{
-let g:easyescape_chars = { "k": 1, "j": 1 }
+let g:easyescape_string = "kj"
 let g:easyescape_timeout = 300
 "}}}
 

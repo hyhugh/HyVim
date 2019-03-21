@@ -390,3 +390,4 @@ if has("gui_running")
     set cursorcolumn
 endif
 
+let g:omni_sql_no_default_maps = 1
