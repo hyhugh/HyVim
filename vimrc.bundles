@@ -256,6 +256,7 @@ let g:ycm_autoclose_preview_window_after_insertion = 1
 " let g:ycm_autoclose_preview_window_after_completion = 1
 
 autocmd FileType java map <leader>la :YcmCompleter FixIt<cr>
+autocmd FileType java map <leader>ld :YcmCompleter GetDoc<cr>
 autocmd FileType java map <leader>m :YcmCompleter Format<cr>
 autocmd FileType java map <leader>lo :YcmCompleter OrganizeImports<cr>
 autocmd FileType java map <leader>lr :YcmCompleter RefactorRename 
@@ -447,13 +448,14 @@ let g:nerdtree_tabs_open_on_gui_startup=0
 " }}}
 
 " FZF {{{
-map <leader>. :Tags<cr>
-map <leader>p :FZF<CR>
-map <leader>f :Rg<CR>
-
-nnoremap <leader>P :call fzf#vim#files('.', {'options':'--query '.expand('<cword>')})<CR>
+nnoremap <leader>. :Tags<cr>
 nnoremap <leader>> :Tags <C-R><C-W><CR>
+nnoremap <leader>p :FZF<CR>
+nnoremap <leader>P :call fzf#vim#files('.', {'options':'--query '.expand('<cword>')})<CR>
+nnoremap <leader>f :Rg<CR>
 nnoremap <Leader>F :Rg <C-R><C-W><CR>
+nnoremap <leader>l :BLines <CR>
+nnoremap <leader>L :BLines <C-R><C-W><cr>
 
 let g:fzf_buffers_jump = 1
 " let g:fzf_tags_command = 'ctags -R'
