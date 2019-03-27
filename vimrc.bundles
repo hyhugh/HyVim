@@ -186,6 +186,7 @@ call plug#end()
 "Chiel92/vim-autoformat {{{
 noremap <Leader>m :Autoformat<CR>
 let g:formatters_jinja = ['htmlbeautify']
+let g:formatters_python = ['black']
 " }}}
 
 " ale {{{
@@ -428,7 +429,7 @@ let g:solarized_visibility="normal"
 
 " nerdtree nerdtreetabs {{{
 let NERDTreeHighlightCursorline=1
-let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$', '\.class$' ]
+let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$', '\.class$', '^__pycache__$' ]
 "close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | end
 
