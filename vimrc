@@ -44,7 +44,7 @@ set nobackup
 " disable swapfile
 set noswapfile
 set wildignore=*.swp,*.bak,*.pyc,*.class,.svn
-" disable mouse
+" enable mouse
 set mouse=n
 
 " change the terminal's title
