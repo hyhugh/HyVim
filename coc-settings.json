@@ -1,0 +1,9 @@
+{
+    "suggest.enablePreview": true,
+    "coc.preferences.previewAutoClose": true,
+    "coc.preferences.colorSupport": false,
+    "java.signatureHelp.enabled": true,
+    "signature.preferShownAbove": true,
+    "signature.hideOnTextChange": false,
+    "suggest.maxPreviewWidth": 60
+}

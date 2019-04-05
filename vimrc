@@ -38,9 +38,11 @@ filetype plugin indent on
 " autoread
 set autoread
 " i don't help uganda
-set shortmess=atI
+set shortmess+=c
+set updatetime=300
 " disable backup
 set nobackup
+set nowritebackup
 " disable swapfile
 set noswapfile
 set wildignore=*.swp,*.bak,*.pyc,*.class,.svn
@@ -83,7 +85,7 @@ set scrolloff=7
 " show current col
 set cursorcolumn
 " show current row
-set cursorline
+" set cursorline
 
 set number
 set wrap
@@ -329,7 +331,7 @@ nnoremap U <C-r>
 
 " 具体编辑文件类型的一般设置，比如不要 tab 等
 autocmd FileType python,java set tabstop=4 shiftwidth=4 expandtab ai
-autocmd FileType ruby,javascript,html,css,xml,haskell set tabstop=2 shiftwidth=2 softtabstop=2 expandtab ai
+autocmd FileType ruby,javascript,html,css,xml,haskell,vue set tabstop=2 shiftwidth=2 softtabstop=2 expandtab ai
 autocmd BufRead,BufNewFile *.md,*.mkd,*.markdown set filetype=markdown.mkd
 autocmd BufRead,BufNewFile *.part set filetype=html
 au BufNewFile,BufRead *.s,*.S set filetype=mips
@@ -386,7 +388,7 @@ if has("gui_running")
     set guitablabel=%M\ %t
     set showtabline=1
     set linespace=2
-    set cursorline
+    " set cursorline
     set cursorcolumn
 endif
 

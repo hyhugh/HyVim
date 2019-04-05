@@ -28,15 +28,20 @@ Plug 'junegunn/fzf.vim'
 " Autoformat
 Plug 'Chiel92/vim-autoformat'
 
-" ale
-Plug 'w0rp/ale'
-
 "vim-snippets and ultisnips
 Plug 'honza/vim-snippets'
 
 " semantic autocompleting
 " Plug 'Valloric/YouCompleteMe'
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}} 
+Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-java', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-vetur', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
+
+Plug 'posva/vim-vue'
 
 " symbol autocompleting
 " Plug 'Raimondi/delimitMate'
@@ -190,23 +195,6 @@ let g:formatters_jinja = ['htmlbeautify']
 let g:formatters_python = ['black']
 " }}}
 
-" ale {{{
-" pip install flake8
-" npm install -g eslint eslint-plugin-standard eslint-plugin-promise eslint-config-standard
-" npm install -g eslint-plugin-import eslint-plugin-node eslint-plugin-html babel-eslint
-let g:ale_linters_explicit = 1
-let g:ale_linters = {
-            \   'python': ['flake8'],
-            \}
-
-let g:ale_python_flake8_options="--ignore=E114,E116,E131,E722 --max-line-length=120"
-
-nmap <silent> <Leader>ep <Plug>(ale_previous_wrap)
-nmap <silent> <Leader>en <Plug>(ale_next_wrap)
-nnoremap <silent> <Leader>ec :ALEToggle<CR>
-
-" }}}
-
 " ################### AutoCompletion ###################
 " coc {{{
 " Use tab for trigger completion with characters ahead and navigate.
@@ -215,9 +203,16 @@ inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :
       \ coc#refresh()
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>" 
 inoremap <silent><expr> <c-space> coc#refresh()
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
 nmap <silent> ]c <Plug>(coc-diagnostic-next)
 nmap <silent> <leader>gd <Plug>(coc-definition)
@@ -225,6 +220,7 @@ nmap <silent> <leader>gy <Plug>(coc-type-definition)
 nmap <silent> <leader>gi <Plug>(coc-implementation)
 nmap <silent> <leader>gr <Plug>(coc-references)
 nnoremap <silent> K :call <SID>show_documentation()<CR>
+autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 function! s:show_documentation()
   if &filetype == 'vim'
     execute 'h '.expand('<cword>')
@@ -234,23 +230,12 @@ function! s:show_documentation()
 endfunction
 autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <leader>lr <Plug>(coc-rename)
-vmap <leader>m  <Plug>(coc-format-selected)
-nmap <leader>m  <Plug>(coc-format-selected)
+vmap <leader>m  <Plug>(coc-format-select)
+nmap <silent> <leader>m  <Plug>(coc-format)
 " Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
 vmap <leader>la  <Plug>(coc-codeaction-selected)
-nmap <leader>la  <Plug>(coc-codeaction-selected)
-nmap <leader>lla  <Plug>(coc-codeaction)
+nmap <leader>la  <Plug>(coc-codeaction)
 nmap <leader>lf  <Plug>(coc-fix-current)
-let g:lightline = {
-      \ 'colorscheme': 'wombat',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'cocstatus': 'coc#status'
-      \ },
-      \ }
 
 nnoremap <silent> <leader>cd  :<C-u>CocList diagnostics<cr>
 nnoremap <silent> <leader>ce  :<C-u>CocList extensions<cr>
@@ -269,6 +254,9 @@ vmap <C-j> <Plug>(coc-snippets-select)
 let g:coc_snippet_next = '<c-j>'
 " Use <C-k> for jump to previous placeholder, it's default of coc.nvim
 let g:coc_snippet_prev = '<c-k>'
+
+command! -nargs=0 Format :call CocAction('format')
+command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 
 " Use <C-j> for both expand and jump (make expand higher priority.)
 imap <C-j> <Plug>(coc-snippets-expand-jump)
@@ -359,6 +347,8 @@ let g:airline_exclude_preview = 1
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
+let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
+let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
 
 let g:airline_left_sep = '▶'
 let g:airline_left_alt_sep = '❯'
@@ -423,6 +413,7 @@ let g:nerdtree_tabs_open_on_gui_startup=0
 " }}}
 
 " FZF {{{
+au FileType fzf set nonu nornu
 nnoremap <leader>. :Tags<cr>
 nnoremap <leader>> :Tags <C-R><C-W><CR>
 nnoremap <leader>p :FZF<CR>
