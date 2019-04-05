@@ -32,10 +32,11 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'w0rp/ale'
 
 "vim-snippets and ultisnips
-Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+Plug 'honza/vim-snippets'
 
 " semantic autocompleting
-Plug 'Valloric/YouCompleteMe'
+" Plug 'Valloric/YouCompleteMe'
+Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}} 
 
 " symbol autocompleting
 " Plug 'Raimondi/delimitMate'
@@ -206,99 +207,72 @@ nnoremap <silent> <Leader>ec :ALEToggle<CR>
 
 " }}}
 
-" ################### 自动补全 ###################
+" ################### AutoCompletion ###################
+" coc {{{
+" Use tab for trigger completion with characters ahead and navigate.
+" Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>" 
+inoremap <silent><expr> <c-space> coc#refresh()
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+nmap <silent> [c <Plug>(coc-diagnostic-prev)
+nmap <silent> ]c <Plug>(coc-diagnostic-next)
+nmap <silent> <leader>gd <Plug>(coc-definition)
+nmap <silent> <leader>gy <Plug>(coc-type-definition)
+nmap <silent> <leader>gi <Plug>(coc-implementation)
+nmap <silent> <leader>gr <Plug>(coc-references)
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+function! s:show_documentation()
+  if &filetype == 'vim'
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
+autocmd CursorHold * silent call CocActionAsync('highlight')
+nmap <leader>lr <Plug>(coc-rename)
+vmap <leader>m  <Plug>(coc-format-selected)
+nmap <leader>m  <Plug>(coc-format-selected)
+" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
+vmap <leader>la  <Plug>(coc-codeaction-selected)
+nmap <leader>la  <Plug>(coc-codeaction-selected)
+nmap <leader>lla  <Plug>(coc-codeaction)
+nmap <leader>lf  <Plug>(coc-fix-current)
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'cocstatus', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'cocstatus': 'coc#status'
+      \ },
+      \ }
 
-" YouCompleteMe {{{
-"
-let g:ycm_key_list_select_completion=['<c-n>']
-let g:ycm_key_list_select_completion = ['<DOWN>']
-let g:ycm_key_list_select_completion = ['<tab>']
-let g:ycm_key_list_previous_completion=['<c-p>']
-let g:ycm_key_list_previous_completion = ['<UP>']
-let g:ycm_key_list_previous_completion = ['<s-tab>']
-let g:ycm_python_binary_path = '/usr/local/bin/python3'
-let g:ycm_server_python_interpreter = '/usr/local/bin/python3'
-let g:ycm_collect_identifiers_from_comments_and_strings = 0
-let g:ycm_seed_identifiers_with_syntax=1
-let g:ycm_show_diagnostics_ui = 0
-let g:ycm_key_list_stop_completion = ['<C-c>']
+nnoremap <silent> <leader>cd  :<C-u>CocList diagnostics<cr>
+nnoremap <silent> <leader>ce  :<C-u>CocList extensions<cr>
+nnoremap <silent> <leader>cc  :<C-u>CocList commands<cr>
+nnoremap <silent> <leader>co  :<C-u>CocList outline<cr>
+nnoremap <silent> <leader>cs  :<C-u>CocList -I symbols<cr>
+nnoremap <silent> <leader>cj  :<C-u>CocNext<CR>
+nnoremap <silent> <leader>ck  :<C-u>CocPrev<CR>
+nnoremap <silent> <leader>cp  :<C-u>CocListResume<CR>
 
-let g:ycm_semantic_triggers =  {
-            \   'c' : ['->', '.'],
-            \   'cpp,objcpp' : ['->', '.', '::'],
-            \   'perl' : ['->'],
-            \   'cs,java,javascript,typescript,d,python,perl6,scala,vb,elixir,go' : ['.'],
-            \    'ruby' : ['.', '::'],
-            \   'lua' : ['.', ':'],
-            \   'rust' : ['.', '::'],
-            \   'erlang' : [':'],
-            \   'haskell' : ['.'],
-            \ }
+imap <C-d> <Plug>(coc-snippets-expand)
 
-" vertical split
-let g:ycm_goto_buffer_command = 'vertical-split'
-nnoremap <leader>jd :YcmCompleter GoToDefinitionElseDeclaration<CR>
-nnoremap <leader>gd :YcmCompleter GoToDeclaration<CR>
+" Use <C-j> for select text for visual placeholder of snippet.
+vmap <C-j> <Plug>(coc-snippets-select)
+" Use <C-j> for jump to next placeholder, it's default of coc.nvim
+let g:coc_snippet_next = '<c-j>'
+" Use <C-k> for jump to previous placeholder, it's default of coc.nvim
+let g:coc_snippet_prev = '<c-k>'
 
-let g:ycm_global_ycm_extra_conf = "~/.vim/bundle/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py"
+" Use <C-j> for both expand and jump (make expand higher priority.)
+imap <C-j> <Plug>(coc-snippets-expand-jump)
 
-let g:ycm_key_invoke_completion = '<C-Space>'
-
-" black list
-let g:ycm_filetype_blacklist = {
-            \ 'tagbar' : 1,
-            \ 'gitcommit' : 1,
-            \ 'mips' : 1,
-            \}
-
-let g:ycm_use_ultisnips_completer = 1
-let g:ycm_add_preview_to_completeopt = 1
-let g:ycm_autoclose_preview_window_after_insertion = 1
-" let g:ycm_autoclose_preview_window_after_completion = 1
-
-autocmd FileType java map <leader>la :YcmCompleter FixIt<cr>
-autocmd FileType java map <leader>ld :YcmCompleter GetDoc<cr>
-autocmd FileType java map <leader>m :YcmCompleter Format<cr>
-autocmd FileType java map <leader>lo :YcmCompleter OrganizeImports<cr>
-autocmd FileType java map <leader>lr :YcmCompleter RefactorRename 
-autocmd FileType java map <leader>lt :YcmCompleter GetType<cr>
-" }}}
-
-
-" ultisnips {{{
-let g:UltiSnipsExpandTrigger       = "<c-d>"
-let g:UltiSnipsJumpForwardTrigger  = "<c-j>"
-let g:UltiSnipsJumpBackwardTrigger = "<c-k>"
-
-let g:UltiSnipsSnippetDirectories  = ['UltiSnips']
-let g:UltiSnipsSnippetsDir = '~/.vim/bundle/vim-snippets'
-
-" " " ctrl+j/k choose
-" func! g:JInYCM()
-    " if pumvisible()
-        " return "\<C-n>"
-    " else
-        " return "\<c-j>"
-    " endif
-" endfunction
-
-" func! g:KInYCM()
-    " if pumvisible()
-        " return "\<C-p>"
-    " else
-        " return "\<c-k>"
-    " endif
-" endfunction
-
-" inoremap <c-j> <c-r>=g:JInYCM()<cr>
-" au BufEnter,BufRead * exec "inoremap <silent> " . g:UltiSnipsJumpBackwordTrigger . " <C-R>=g:KInYCM()<cr>"
-" let g:UltiSnipsJumpBackwordTrigger = "<c-k>"
-" }}}
-
-" delimitMate {{{
-" let delimitMate_autoclose = 1
-" let delimitMate_jump_expansion= 1
-" let delimitMate_expand_cr = 1
 " }}}
 
 " closetag {{{
@@ -359,12 +333,12 @@ let g:multi_cursor_quit_key='<esc>'
 " the numerous Cursor events cause great slowness
 " (https://github.com/kristijanhusak/vim-multiple-cursors/issues/4)
 function Multiple_cursors_before()
-  let s:old_ycm_whitelist = g:ycm_filetype_whitelist
-  let g:ycm_filetype_whitelist = {}
+  " let s:old_ycm_whitelist = g:ycm_filetype_whitelist
+  " let g:ycm_filetype_whitelist = {}
 endfunction
 
 function Multiple_cursors_after()
-  let g:ycm_filetype_whitelist = s:old_ycm_whitelist
+  " let g:ycm_filetype_whitelist = s:old_ycm_whitelist
 endfunction
 " }}}
 
