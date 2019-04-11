@@ -342,19 +342,9 @@ function! AutoSetFileHead()
     if &filetype == 'sh'
         call setline(1, "\#!/bin/bash")
     endif
-
-    if &filetype == 'python'
-        call setline(1, "\#!/usr/bin/env python3")
-        call append(1, "\# encoding: utf-8")
-    endif
-
     normal G
     normal o
 endfunc
-
-" highlighting keywords
-" autocmd Syntax * call matchadd('Todo',  '\W\zs\(TODO\|FIXME\|CHANGED\|DONE\|XXX\|BUG\|HACK\)')
-" autocmd Syntax * call matchadd('Debug', '\W\zs\(NOTE\|INFO\|IDEA\|NOTICE\)')
 
 colorscheme NeoSolarized
 set termguicolors
@@ -377,19 +367,6 @@ let java_highlight_functions = 1
 let java_highlight_all = 1
 
 set completeopt=menu,menuone
-
-" GUI mode
-if has("gui_running")
-    set guifont=Iosevka:h17
-    set guioptions-=T
-    set guioptions+=e
-    set guioptions-=r
-    set guioptions-=L
-    set guitablabel=%M\ %t
-    set showtabline=1
-    set linespace=2
-    " set cursorline
-    set cursorcolumn
-endif
+set display-=msgsep
 
 let g:omni_sql_no_default_maps = 1

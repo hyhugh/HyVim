@@ -121,12 +121,6 @@ Plug 'justinmk/vim-syntax-extra'
 " ctrlsf
 Plug 'dyng/ctrlsf.vim'
 
-" language client
-Plug 'autozimu/LanguageClient-neovim', {
-            \ 'branch': 'next',
-            \ 'do': './install.sh'
-            \ }
-
 Plug 'hyhugh/vim-easyescape-plus'
 
 Plug 'tikhomirov/vim-glsl'
@@ -491,58 +485,7 @@ let g:vimtex_view_automatic = 1
 " let g:vimtex_disable_version_warning = 1
 let g:vimtex_compiler_latexmk = {'callback' : 0} 
 let g:vimtex_view_method = 'skim'
-
-autocmd FileType tex map <leader>li <plug>(vimtex-info)
-autocmd FileType tex map <leader>lI <plug>(vimtex-info-full) map <leader>lt <plug>(vimtex-toc-open)
-autocmd FileType tex map <leader>lT <plug>(vimtex-toc-toggle)
-autocmd FileType tex map <leader>ly <plug>(vimtex-labels-open)
-autocmd FileType tex map <leader>lY <plug>(vimtex-labels-toggle)
-autocmd FileType tex map <leader>lq <plug>(vimtex-log)
-autocmd FileType tex map <leader>lv <plug>(vimtex-view)
-autocmd FileType tex map <leader>lr <plug>(vimtex-reverse-search)
-autocmd FileType tex map <leader>ll <plug>(vimtex-compile)
-autocmd FileType tex map <leader>lL <plug>(vimtex-compile-selected)
-autocmd FileType tex map <leader>lk <plug>(vimtex-stop)
-autocmd FileType tex map <leader>lK <plug>(vimtex-stop-all)
-autocmd FileType tex map <leader>le <plug>(vimtex-errors)
-autocmd FileType tex map <leader>lo <plug>(vimtex-compile-output)
-autocmd FileType tex map <leader>lg <plug>(vimtex-status)
-autocmd FileType tex map <leader>lG <plug>(vimtex-status-all)
-autocmd FileType tex map <leader>lc <plug>(vimtex-clean)
-autocmd FileType tex map <leader>lC <plug>(vimtex-clean-full)
-autocmd FileType tex map <leader>lm <plug>(vimtex-imaps-list)
-autocmd FileType tex map <leader>lx <plug>(vimtex-reload)
-autocmd FileType tex map <leader>lX <plug>(vimtex-reload-state)
-autocmd FileType tex map <leader>ls <plug>(vimtex-toggle-main)
 " }}}
-"
-"haskell {{{
-let g:LanguageClient_autoStart = 0
-let g:LanguageClient_loadSettings = 0
-let g:LanguageClient_serverCommands = {
-            \ 'haskell': ['hie-wrapper', '--lsp'],
-            \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
-            \ }
-
-autocmd FileType haskell,rust map <silent> <leader>m :call LanguageClient#textDocument_formatting()<cr>
-autocmd FileType haskell,rust map <silent> <leader>lh :call LanguageClient#textDocument_hover()<CR>
-autocmd FileType haskell,rust map <silent> <leader>li :call LanguageClient#textDocument_implementation()<CR>
-autocmd FileType haskell,rust map <silent> <leader>ld :call LanguageClient#textDocument_definition()<CR>
-autocmd FileType haskell,rust map <silent> <leader>lr :call LanguageClient#textDocument_rename()<CR>
-autocmd FileType haskell,rust map <silent> <leader>la :call LanguageClient#textDocument_codeAction()<CR>
-autocmd FileType haskell,rust map <silent> <leader>ls :LanguageClientStart<CR>
-autocmd FileType haskell,rust map <silent> <leader>le :call LanguageClient#explainErrorAtPoint()<CR>
-autocmd FileType haskell,rust set signcolumn=yes
-
-" let g:haskell_classic_highlighting = 1
-" let g:haskell_enable_quantification = 1   " to enable highlighting of `forall`
-" let g:haskell_enable_recursivedo = 1      " to enable highlighting of `mdo` and `rec`
-" let g:haskell_enable_arrowsyntax = 1      " to enable highlighting of `proc`
-" let g:haskell_enable_pattern_synonyms = 1 " to enable highlighting of `pattern`
-" let g:haskell_enable_typeroles = 1        " to enable highlighting of type roles
-" let g:haskell_enable_static_pointers = 1  " to enable highlighting of `static`
-" let g:haskell_backpack = 1                " to enable highlighting of backpack keywords
-"}}}
 "
 "" ctrlsf {{{
     let g:ctrlsf_search_mode = 'async'
@@ -586,16 +529,4 @@ let g:sneak#label = 1
 let g:AutoPairsShortcutFastWrap = "<C-e>"
 let g:AutoPairsShortcutJump = '<C-l>'
 let g:AutoPairsShortcutJumpBack = '<C-h>'
-
-" let g:AutoPairs = {
-            " \'(' : ')',
-            " \'[' : ']',
-            " \'{' : '}',
-            " \"'" : "'",
-            " \'"' : '"',
-            " \'`' : '`',
-            " \'<' : '>',
-            " \}
-" inoremap <c-l> <c-o>:call AutoPairsJump()<cr>
-" }}}
 "------------------------------------------- end of configs --------------------------------------------
