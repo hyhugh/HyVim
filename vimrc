@@ -167,7 +167,7 @@ if has("autocmd")
 endif
 
 "==========================================
-" HotKey Settings
+" Shortcut Settings
 "==========================================
 
 " turn off arrow keys
@@ -335,7 +335,9 @@ autocmd FileType python,java set tabstop=4 shiftwidth=4 expandtab ai
 autocmd FileType ruby,javascript,html,css,xml,haskell,vue set tabstop=2 shiftwidth=2 softtabstop=2 expandtab ai
 autocmd BufRead,BufNewFile *.md,*.mkd,*.markdown set filetype=markdown.mkd
 autocmd BufRead,BufNewFile *.part set filetype=html
+
 au BufNewFile,BufRead *.s,*.S set filetype=mips
+au BufNewFile,BufRead *.j,*.J set filetype=jasmin
 
 " AutoSetFileHead
 autocmd BufNewFile *.sh,*.py exec ":call AutoSetFileHead()"

@@ -192,6 +192,7 @@ let g:formatters_python = ['black']
 " coc {{{
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+" autocmd FileType * let b:coc_root_patterns = ['.']
 autocmd FileType python let b:coc_root_patterns = ['.pyroot']
 autocmd FileType list set nonumber
 autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
@@ -233,6 +234,7 @@ vmap <leader>la  <Plug>(coc-codeaction-selected)
 nmap <leader>la  <Plug>(coc-codeaction)
 nmap <leader>lf  <Plug>(coc-fix-current)
 
+nnoremap <silent> <leader>ll  :<C-u>CocList<cr>
 nnoremap <silent> <leader>ld  :<C-u>CocList diagnostics<cr>
 nnoremap <silent> <leader>le  :<C-u>CocList extensions<cr>
 nnoremap <silent> <leader>lm  :<C-u>CocList commands<cr>
