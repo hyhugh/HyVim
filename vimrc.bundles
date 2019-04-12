@@ -389,6 +389,7 @@ let g:solarized_visibility="normal"
 
 " nerdtree nerdtreetabs {{{
 let NERDTreeHighlightCursorline=1
+let NERDTreeMinimalMenu=1
 let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$', '\.class$', '^__pycache__$' ]
 "close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | end
@@ -449,7 +450,7 @@ map <F9> :Vista coc<cr>
 let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
 let g:vista_default_executive = 'coc'
 let g:vista_sidebar_position = "vertical topleft"
-let g:vista_sidebar_width = 15
+let g:vista_sidebar_width = 30
 " }}
 
 " pythonsyntax {{{
