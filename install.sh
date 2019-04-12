@@ -82,18 +82,4 @@ function show_help
     fi
     export SHELL=$system_shell
 
-
-    echo "Step4: compile YouCompleteMe"
-    echo "It will take a long time, just be patient!"
-    echo "If error,you need to compile it yourself"
-    echo "cd $CURRENT_DIR/bundle/YouCompleteMe/ && python3 install.py --clang-completer"
-    cd $CURRENT_DIR/bundle/YouCompleteMe/
-    git submodule update --init --recursive
-    if [ `which clang` ]   # check system clang
-    then
-        python3 install.py --clang-completer --system-libclang --java-completer --go-completer  # use system clang
-    else
-        python3 install.py --clang-completer
-    fi
-
     echo "Install Done!"

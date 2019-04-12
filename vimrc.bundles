@@ -40,6 +40,7 @@ Plug 'neoclide/coc-vetur', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
+Plug 'marlonfan/coc-phpls', {'do': 'yarn install --frozen-lockfile'}
 
 Plug 'posva/vim-vue'
 
@@ -199,6 +200,8 @@ let g:formatters_python = ['black']
 " coc {{{
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
+autocmd FileType python let b:coc_root_patterns = ['.pyroot']
+
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<TAB>" :

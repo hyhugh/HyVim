@@ -76,6 +76,7 @@ set whichwrap+=<,>,h,l
 "==========================================
 
 " show current row and col num
+set display-=msgsep
 set ruler
 set showcmd
 set showmode
@@ -83,7 +84,7 @@ set showmode
 set scrolloff=7
 
 " show current col
-set cursorcolumn
+" set cursorcolumn
 " show current row
 " set cursorline
 

@@ -3,6 +3,7 @@
     "coc.preferences.previewAutoClose": true,
     "coc.preferences.colorSupport": false,
     "java.signatureHelp.enabled": true,
+    "python.jediEnabled": false,
     "signature.preferShownAbove": true,
     "signature.hideOnTextChange": false,
     "suggest.maxPreviewWidth": 60
