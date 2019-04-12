@@ -42,6 +42,7 @@ Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
 Plug 'marlonfan/coc-phpls', {'do': 'yarn install --frozen-lockfile'}
 
+" vue syntax highlighting
 Plug 'posva/vim-vue'
 
 " symbol autocompleting
@@ -58,7 +59,6 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-repeat' | Plug 'tpope/vim-surround'
 
 " trailingwhitespace
-" Plug 'bronson/vim-trailing-whitespace'
 Plug 'ntpeters/vim-better-whitespace'
 
 " easymotion
@@ -90,10 +90,8 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'kien/rainbow_parentheses.vim'
 
 " solarized
-" Plug 'icymind/NeoSolarized'
 Plug 'altercation/vim-colors-solarized'
 Plug 'hy950831/NeoSolarized'
-
 
 " nerdtree nerdtreetabs
 Plug 'scrooloose/nerdtree' | Plug 'jistr/vim-nerdtree-tabs'
@@ -101,8 +99,8 @@ Plug 'scrooloose/nerdtree' | Plug 'jistr/vim-nerdtree-tabs'
 " ctrlspace
 Plug 'vim-ctrlspace/vim-ctrlspace'
 
-" tagbar
-Plug 'majutsushi/tagbar'
+" vista tagbar
+Plug 'liuchengxu/vista.vim'
 
 " text object
 Plug 'kana/vim-textobj-user'
@@ -195,6 +193,8 @@ let g:formatters_python = ['black']
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 autocmd FileType python let b:coc_root_patterns = ['.pyroot']
+autocmd FileType list set nonumber
+autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 
 inoremap <silent><expr> <TAB>
       \ pumvisible() ? "\<C-n>" :
@@ -213,11 +213,10 @@ autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
 nmap <silent> ]c <Plug>(coc-diagnostic-next)
 nmap <silent> <leader>gd <Plug>(coc-definition)
-nmap <silent> <leader>gy <Plug>(coc-type-definition)
+nmap <silent> <leader>lt <Plug>(coc-type-definition)
 nmap <silent> <leader>gi <Plug>(coc-implementation)
 nmap <silent> <leader>gr <Plug>(coc-references)
 nnoremap <silent> K :call <SID>show_documentation()<CR>
-autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 function! s:show_documentation()
   if &filetype == 'vim'
     execute 'h '.expand('<cword>')
@@ -234,14 +233,14 @@ vmap <leader>la  <Plug>(coc-codeaction-selected)
 nmap <leader>la  <Plug>(coc-codeaction)
 nmap <leader>lf  <Plug>(coc-fix-current)
 
-nnoremap <silent> <leader>cd  :<C-u>CocList diagnostics<cr>
-nnoremap <silent> <leader>ce  :<C-u>CocList extensions<cr>
-nnoremap <silent> <leader>cc  :<C-u>CocList commands<cr>
-nnoremap <silent> <leader>co  :<C-u>CocList outline<cr>
-nnoremap <silent> <leader>cs  :<C-u>CocList -I symbols<cr>
-nnoremap <silent> <leader>cj  :<C-u>CocNext<CR>
-nnoremap <silent> <leader>ck  :<C-u>CocPrev<CR>
-nnoremap <silent> <leader>cp  :<C-u>CocListResume<CR>
+nnoremap <silent> <leader>ld  :<C-u>CocList diagnostics<cr>
+nnoremap <silent> <leader>le  :<C-u>CocList extensions<cr>
+nnoremap <silent> <leader>lm  :<C-u>CocList commands<cr>
+nnoremap <silent> <leader>lo  :<C-u>CocList outline<cr>
+nnoremap <silent> <leader>ls  :<C-u>CocList -I symbols<cr>
+nnoremap <silent> <leader>lj  :<C-u>CocNext<CR>
+nnoremap <silent> <leader>lk  :<C-u>CocPrev<CR>
+nnoremap <silent> <leader>lp  :<C-u>CocListResume<CR>
 
 imap <C-d> <Plug>(coc-snippets-expand)
 
@@ -445,20 +444,13 @@ hi link CtrlSpaceSearch   Search
 hi link CtrlSpaceStatus   StatusLine
 " }}}
 
-" tagbar {{{
-nmap <F9> :TagbarToggle<CR>
-let g:tagbar_autofocus = 1
-let g:tagbar_left = 1
-
-" quickrun {{{
-let g:quickrun_config = {
-            \   "_" : {
-            \       "outputter" : "message",
-            \   },
-            \}
-let g:quickrun_no_default_key_mappings = 1
-nmap <Leader>r <Plug>(quickrun)
-" }}}
+" vista tagbar {{{
+map <F9> :Vista coc<cr>
+let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
+let g:vista_default_executive = 'coc'
+let g:vista_sidebar_position = "vertical topleft"
+let g:vista_sidebar_width = 15
+" }}
 
 " pythonsyntax {{{
 let python_highlight_all = 1
@@ -485,7 +477,7 @@ let g:go_fmt_autosave = 0
 " vim latex{{{
 let g:vimtex_mappings_enabled = 0
 let g:vimtex_view_automatic = 1
-" let g:vimtex_disable_version_warning = 1
+let g:vimtex_disable_version_warning = 1
 let g:vimtex_compiler_latexmk = {'callback' : 0} 
 let g:vimtex_view_method = 'skim'
 " }}}
@@ -532,4 +524,6 @@ let g:sneak#label = 1
 let g:AutoPairsShortcutFastWrap = "<C-e>"
 let g:AutoPairsShortcutJump = '<C-l>'
 let g:AutoPairsShortcutJumpBack = '<C-h>'
+let g:AutoPairsMultilineClose = 0
+"}}}
 "------------------------------------------- end of configs --------------------------------------------

@@ -363,7 +363,7 @@ hi link ALEError Error
 hi link ALEWarning Warning
 hi link ALEInfo SpellCap
 
-let g:python3_host_prog = 'python3'
+let g:python3_host_prog = '/Users/hyman/.pyenv/versions/neovim/bin/python3.7'
 let java_highlight_functions = 1
 let java_highlight_all = 1
 
