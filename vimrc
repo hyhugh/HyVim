@@ -243,9 +243,8 @@ nnoremap <silent> g* g*zz
 " disable highlighting
 noremap <silent><leader>/ :nohls<CR>
 
-" switch # *
-nnoremap # *
-nnoremap * #
+nnoremap gd *``zz
+nnoremap * *``zz
 
 " for # indent, python文件中输入新行时#号注释不切回行首
 autocmd BufNewFile,BufRead *.py inoremap # X<c-h>#
@@ -333,6 +332,7 @@ nnoremap U <C-r>
 " 具体编辑文件类型的一般设置，比如不要 tab 等
 autocmd FileType python,java set tabstop=4 shiftwidth=4 expandtab ai
 autocmd FileType ruby,javascript,html,css,xml,haskell,vue set tabstop=2 shiftwidth=2 softtabstop=2 expandtab ai
+autocmd FileType vue syntax sync fromstart
 autocmd BufRead,BufNewFile *.md,*.mkd,*.markdown set filetype=markdown.mkd
 autocmd BufRead,BufNewFile *.part set filetype=html
 

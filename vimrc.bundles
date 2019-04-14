@@ -41,6 +41,7 @@ Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
 Plug 'marlonfan/coc-phpls', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-vimtex', {'do': 'yarn install --frozen-lockfile'}
 
 " vue syntax highlighting
 Plug 'posva/vim-vue'
@@ -174,7 +175,6 @@ endif
 if count(g:bundle_groups, 'web-dev')
     Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
     Plug 'elzr/vim-json', {'for': 'json'}
-    Plug 'mattn/emmet-vim', { 'for':['html', 'css'] }
 endif
 
 call plug#end()
@@ -326,12 +326,6 @@ endfunction
 function Multiple_cursors_after()
   " let g:ycm_filetype_whitelist = s:old_ycm_whitelist
 endfunction
-" }}}
-
-" emmet {{{
-let g:user_emmet_install_global = 0
-let g:user_emmet_leader_key='<c-m>'
-autocmd FileType html,css EmmetInstall
 " }}}
 
 " mundo {{{
