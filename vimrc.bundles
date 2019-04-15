@@ -198,13 +198,13 @@ autocmd FileType list set nonumber
 autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+            \ pumvisible() ? "\<C-n>" :
+            \ <SID>check_back_space() ? "\<TAB>" :
+            \ coc#refresh()
 
 function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
+    let col = col('.') - 1
+    return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>" 
@@ -219,11 +219,11 @@ nmap <silent> <leader>gi <Plug>(coc-implementation)
 nmap <silent> <leader>gr <Plug>(coc-references)
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 function! s:show_documentation()
-  if &filetype == 'vim'
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
+    if &filetype == 'vim'
+        execute 'h '.expand('<cword>')
+    else
+        call CocAction('doHover')
+    endif
 endfunction
 autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <leader>lr <Plug>(coc-rename)
@@ -319,12 +319,12 @@ let g:multi_cursor_quit_key='<esc>'
 " the numerous Cursor events cause great slowness
 " (https://github.com/kristijanhusak/vim-multiple-cursors/issues/4)
 function Multiple_cursors_before()
-  " let s:old_ycm_whitelist = g:ycm_filetype_whitelist
-  " let g:ycm_filetype_whitelist = {}
+    " let s:old_ycm_whitelist = g:ycm_filetype_whitelist
+    " let g:ycm_filetype_whitelist = {}
 endfunction
 
 function Multiple_cursors_after()
-  " let g:ycm_filetype_whitelist = s:old_ycm_whitelist
+    " let g:ycm_filetype_whitelist = s:old_ycm_whitelist
 endfunction
 " }}}
 
@@ -419,14 +419,6 @@ nnoremap <leader>L :BLines <C-R><C-W><cr>
 let g:fzf_buffers_jump = 1
 " let g:fzf_tags_command = 'ctags -R'
 
-" command! -bang -nargs=* Rg
-            " \ call fzf#vim#grep(
-            " \   'rg --column --line-number --no-heading --hidden --fixed-strings --follow --ignore-case --no-ignore --glob "!.git/*" --color=never '.shellescape(<q-args>), 1,
-            " \   <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:60%')
-            " \           : fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'right:50%:hidden', '?'),
-            " \   <bang>0)
-" }}}
-
 " Vim Workspace Controller
 " ctrlspace {{{
 " let g:CtrlSpaceDefaultMappingKey = "<C-space>"
@@ -480,32 +472,32 @@ let g:vimtex_view_method = 'skim'
 " }}}
 "
 "" ctrlsf {{{
-    let g:ctrlsf_search_mode = 'async'
-    nmap \ <Plug>CtrlSFCwordPath<CR>
-    nmap <leader>\ :CtrlSF 
-    let g:ctrlsf_auto_focus = {
-                \ "at" : "start",
-                \}
-    " let g:ctrlsf_position = 'below'
-    " let g:ctrlsf_winsize = '30%'
-    let g:ctrlsf_auto_close = 0
-    let g:ctrlsf_confirm_save = 0
-    let g:ctrlsf_ackprg = 'rg'
-    let g:ctrlsf_case_sensitive = 'smart'
-    let g:ctrlsf_ignore_dir = ['tags']
-    " Note: cannot use <CR> or <C-m> for open
-    " Use : <sapce> or <tab>
-    let g:ctrlsf_mapping = {
-        \ "open"  : "<Space>",
-        \ "openb" : "O",
-        \ "tab"   : "t",
-        \ "tabb"  : "T",
-        \ "prevw" : "p",
-        \ "quit"  : "q",
-        \ "next"  : "<C-J>",
-        \ "prev"  : "<C-K>",
-        \ "pquit" : "q",
-        \ }
+let g:ctrlsf_search_mode = 'async'
+nmap \ <Plug>CtrlSFCwordPath<CR>
+nmap <leader>\ :CtrlSF 
+let g:ctrlsf_auto_focus = {
+            \ "at" : "start",
+            \}
+" let g:ctrlsf_position = 'below'
+" let g:ctrlsf_winsize = '30%'
+let g:ctrlsf_auto_close = 0
+let g:ctrlsf_confirm_save = 0
+let g:ctrlsf_ackprg = 'rg'
+let g:ctrlsf_case_sensitive = 'smart'
+let g:ctrlsf_ignore_dir = ['tags']
+" Note: cannot use <CR> or <C-m> for open
+" Use : <sapce> or <tab>
+let g:ctrlsf_mapping = {
+            \ "open"  : "<Space>",
+            \ "openb" : "O",
+            \ "tab"   : "t",
+            \ "tabb"  : "T",
+            \ "prevw" : "p",
+            \ "quit"  : "q",
+            \ "next"  : "<C-J>",
+            \ "prev"  : "<C-K>",
+            \ "pquit" : "q",
+            \ }
 " }}}
 
 "" vim easyescape {{{
@@ -522,5 +514,8 @@ let g:AutoPairsShortcutFastWrap = "<C-e>"
 let g:AutoPairsShortcutJump = '<C-l>'
 let g:AutoPairsShortcutJumpBack = '<C-h>'
 let g:AutoPairsMultilineClose = 0
+"}}}
+
+" vim-quickrun {{{
 "}}}
 "------------------------------------------- end of configs --------------------------------------------

@@ -345,6 +345,9 @@ function! AutoSetFileHead()
     if &filetype == 'sh'
         call setline(1, "\#!/bin/bash")
     endif
+    if &filetype == 'python'
+        call setline(1, "\#!/usr/bin/env python3")
+    endif
     normal G
     normal o
 endfunc
