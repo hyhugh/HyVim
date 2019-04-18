@@ -42,6 +42,7 @@ Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
 Plug 'marlonfan/coc-phpls', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-vimtex', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-emmet', {'do': 'yarn install --frozen-lockfile'}
 
 " vue syntax highlighting
 Plug 'posva/vim-vue'
@@ -75,7 +76,7 @@ Plug 'kshenoy/vim-signature'
 Plug 'terryma/vim-expand-region'
 
 " multiplecursors
-Plug 'terryma/vim-multiple-cursors'
+Plug 'mg979/vim-visual-multi'
 
 " quickrun
 Plug 'thinca/vim-quickrun'
@@ -244,7 +245,9 @@ nnoremap <silent> <leader>lj  :<C-u>CocNext<CR>
 nnoremap <silent> <leader>lk  :<C-u>CocPrev<CR>
 nnoremap <silent> <leader>lp  :<C-u>CocListResume<CR>
 
-imap <C-d> <Plug>(coc-snippets-expand)
+imap <C-y> <Plug>(coc-snippets-expand)
+" use c-d to expand the snippets
+inoremap <silent><expr> <c-d> pumvisible() ? coc#_select_confirm() : "<C-y>"
 
 " Use <C-j> for select text for visual placeholder of snippet.
 vmap <C-j> <Plug>(coc-snippets-select)
@@ -306,14 +309,15 @@ call expand_region#custom_text_objects({
 " }}}
 
 " multiplecursors {{{
-let g:multi_cursor_use_default_mapping=0
-let g:multi_cursor_insert_maps = {}
+" let g:multi_cursor_use_default_mapping=0
+" let g:multi_cursor_insert_maps = {}
 
 " Default mapping
-let g:multi_cursor_next_key='<C-m>'
-let g:multi_cursor_prev_key='<C-p>'
-let g:multi_cursor_skip_key='<C-x>'
-let g:multi_cursor_quit_key='<esc>'
+" let g:multi_cursor_next_key='<C-m>'
+" let g:multi_cursor_prev_key='<C-p>'
+" let g:multi_cursor_select_all_key = '<A-n>'
+" let g:multi_cursor_skip_key='<C-x>'
+" let g:multi_cursor_quit_key='<esc>'
 
 " Experimentally integrate YouCompleteMe with vim-multiple-cursors, otherwise
 " the numerous Cursor events cause great slowness
