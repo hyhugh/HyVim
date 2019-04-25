@@ -352,9 +352,9 @@ function! AutoSetFileHead()
     normal o
 endfunc
 
-colorscheme NeoSolarized
-set termguicolors
-set background=dark
+"==========================================
+" Highlighting and CursorShape
+"==========================================
 
 let &t_SI = "\<Esc>]50;CursorShape=1\x7"
 let &t_SR = "\<Esc>]50;CursorShape=2\x7"
@@ -368,11 +368,14 @@ hi link ALEError Error
 hi link ALEWarning Warning
 hi link ALEInfo SpellCap
 
-let g:python3_host_prog = '/Users/hyman/.pyenv/versions/neovim/bin/python3.7'
 let java_highlight_functions = 1
 let java_highlight_all = 1
 
 set completeopt=menu,menuone
 set display-=msgsep
 
+" disable the annoying omni sql mapping
 let g:omni_sql_no_default_maps = 1
+
+" Neovim specific
+let g:python3_host_prog = '/Users/hyman/.pyenv/versions/neovim/bin/python3.7'

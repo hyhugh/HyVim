@@ -43,9 +43,11 @@ Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
 Plug 'marlonfan/coc-phpls', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-vimtex', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-emmet', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-yank', {'do': 'yarn install --frozen-lockfile'}
 
 " vue syntax highlighting
 Plug 'posva/vim-vue'
+Plug 'leafgarland/typescript-vim'
 
 " symbol autocompleting
 " Plug 'Raimondi/delimitMate'
@@ -182,6 +184,12 @@ call plug#end()
 
 
 " ################### Configurations ######################
+" 
+" NeoSolarized {{{
+colorscheme NeoSolarized
+set termguicolors
+set background=dark
+" }}}
 
 "Chiel92/vim-autoformat {{{
 noremap <Leader>m :Autoformat<CR>
@@ -226,7 +234,6 @@ function! s:show_documentation()
         call CocAction('doHover')
     endif
 endfunction
-autocmd CursorHold * silent call CocActionAsync('highlight')
 nmap <leader>lr <Plug>(coc-rename)
 vmap <leader>m  <Plug>(coc-format-select)
 nmap <silent> <leader>m  <Plug>(coc-format)
@@ -246,7 +253,10 @@ nnoremap <silent> <leader>lk  :<C-u>CocPrev<CR>
 nnoremap <silent> <leader>lp  :<C-u>CocListResume<CR>
 
 imap <C-y> <Plug>(coc-snippets-expand)
-" use c-d to expand the snippets
+
+" use c-d to expand the snippets and emmets
+" HACK: currently coc-emmets requires coc#_select_confirm to expand an emmet
+" snippet
 inoremap <silent><expr> <c-d> pumvisible() ? coc#_select_confirm() : "<C-y>"
 
 " Use <C-j> for select text for visual placeholder of snippet.
@@ -262,6 +272,8 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 " Use <C-j> for both expand and jump (make expand higher priority.)
 imap <C-j> <Plug>(coc-snippets-expand-jump)
 
+autocmd CursorHold * silent call CocActionAsync('highlight')
+highlight CocHighlightText ctermbg=13 guibg=#033a48
 " }}}
 
 " closetag {{{
@@ -509,10 +521,6 @@ let g:easyescape_string = "kj"
 let g:easyescape_timeout = 300
 "}}}
 
-"" vim sneak {{{
-let g:sneak#label = 1
-"}}}
-
 "" vim autopairs {{{
 let g:AutoPairsShortcutFastWrap = "<C-e>"
 let g:AutoPairsShortcutJump = '<C-l>'
@@ -522,4 +530,5 @@ let g:AutoPairsMultilineClose = 0
 
 " vim-quickrun {{{
 "}}}
+"
 "------------------------------------------- end of configs --------------------------------------------
