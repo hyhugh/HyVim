@@ -1,12 +1,18 @@
 {
-    "suggest.enablePreview": true,
-    "coc.preferences.previewAutoClose": true,
-    "coc.preferences.colorSupport": false,
-    "java.signatureHelp.enabled": true,
-    "python.jediEnabled": false,
-    "signature.preferShownAbove": true,
-    "signature.hideOnTextChange": false,
-    "snippets.ultisnips.enable": false,
-    "python.formatting.provider": "black",
-    "suggest.maxPreviewWidth": 60
+  "suggest.enablePreview": true,
+  "coc.preferences.previewAutoClose": true,
+  "coc.preferences.colorSupport": false,
+  "java.signatureHelp.enabled": true,
+  "python.jediEnabled": false,
+  "signature.preferShownAbove": true,
+  "signature.hideOnTextChange": false,
+  "snippets.ultisnips.enable": false,
+  "python.formatting.provider": "black",
+  "emmet.includeLanguages": {
+    "javascript": "javascriptreact",
+    "typescript": "typescriptreact",
+    "vue-html": "html",
+    "razor": "html"
+  },
+  "suggest.maxPreviewWidth": 60
 }
