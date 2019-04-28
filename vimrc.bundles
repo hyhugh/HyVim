@@ -1,19 +1,11 @@
 " ==========================================
-" bundle
+" bundle settings
 " ==========================================
 
 "------------------------------------------- begin of configs --------------------------------------------
-"
-" package dependence:  ctags, ag(he_silver_searcher)
-" python dependence:   pep8, pyflake
 
 set nocompatible
 filetype off " required! turn off
-
-" inspired by spf13
-if !exists('g:bundle_groups')
-    let g:bundle_groups=['python', 'web-dev', 'markdown', 'go', 'latex', 'haskell', 'rust']
-endif
 
 " ----------------------------------------------------------------------------
 " vim plugin bundle control, command model
@@ -32,8 +24,7 @@ Plug 'Chiel92/vim-autoformat'
 Plug 'honza/vim-snippets'
 
 " semantic autocompleting
-" Plug 'Valloric/YouCompleteMe'
-Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}} 
+Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
 Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-java', {'do': 'yarn install --frozen-lockfile'}
@@ -47,62 +38,43 @@ Plug 'neoclide/coc-emmet', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-yank', {'do': 'yarn install --frozen-lockfile'}
 
 " symbol autocompleting
-" Plug 'Raimondi/delimitMate'
-Plug 'hy950831/auto-pairs'
-
+Plug 'hyhugh/auto-pairs'
 " tags autocompleting
 Plug 'alvan/vim-closetag'
-
 " quick comment out
 Plug 'scrooloose/nerdcommenter'
-
 " for repeat -> enhance surround.vim, . to repeat command
 Plug 'tpope/vim-repeat' | Plug 'tpope/vim-surround'
-
 " trailingwhitespace
 Plug 'ntpeters/vim-better-whitespace'
-
 " easymotion
 Plug 'Lokaltog/vim-easymotion'
-
 " quickscope
 Plug 'unblevable/quick-scope'
-
 " signature
 Plug 'kshenoy/vim-signature'
-
 " quick selection and edit
 Plug 'terryma/vim-expand-region'
-
 " multiplecursors
 Plug 'mg979/vim-visual-multi'
-
 " quickrun
 Plug 'thinca/vim-quickrun'
-
 " mundo
 Plug 'simnalamburt/vim-mundo'
-
 " airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-
 " rainbow_parentheses
 Plug 'luochen1990/rainbow'
-
 " solarized
 Plug 'altercation/vim-colors-solarized'
-Plug 'hy950831/NeoSolarized'
-
+Plug 'hyhugh/NeoSolarized'
 " nerdtree nerdtreetabs
 Plug 'scrooloose/nerdtree' | Plug 'jistr/vim-nerdtree-tabs'
-
 " ctrlspace
 Plug 'vim-ctrlspace/vim-ctrlspace'
-
 " vista tagbar
 Plug 'liuchengxu/vista.vim'
-
 " text object
 Plug 'kana/vim-textobj-user'
 " line object : l   dal yal cil
@@ -115,77 +87,47 @@ Plug 'kana/vim-textobj-indent'
 " tmux suppoort
 Plug 'christoomey/vim-tmux-navigator'
 
-" extra syntax
+" extra syntax {{{
 Plug 'justinmk/vim-syntax-extra'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'posva/vim-vue'
 Plug 'leafgarland/typescript-vim'
+Plug 'pangloss/vim-javascript'
 Plug 'ianks/vim-tsx'
+Plug 'tikhomirov/vim-glsl'
+Plug 'hdima/python-syntax'
+Plug 'hynek/vim-python-pep8-indent'
+Plug 'Glench/Vim-Jinja2-Syntax'
+Plug 'elzr/vim-json'
+Plug 'harenome/vim-mipssyntax'
+Plug 'itchyny/vim-haskell-indent'
+" }}}
 
 " ctrlsf
 Plug 'dyng/ctrlsf.vim'
 
+" esay-easyescape
 Plug 'hyhugh/vim-easyescape-plus'
 
-Plug 'tikhomirov/vim-glsl'
-
 " prolog support
-if count(g:bundle_groups, 'prolog')
-    Plug 'adimit/prolog.vim', { 'for': 'prolog' }
-endif
+" Plug 'adimit/prolog.vim', { 'for': 'prolog' }
 
 " rust support
-if count(g:bundle_groups, 'rust')
-    Plug 'rust-lang/rust.vim', { 'for': 'rust' }
-endif
+Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 
 " Go lang support
-if count(g:bundle_groups, 'go')
-    Plug 'fatih/vim-go', { 'for': 'go' }
-endif
+Plug 'fatih/vim-go', { 'for': 'go' }
 
-if count(g:bundle_groups, 'scala')
-    Plug 'ensime/ensime-vim', { 'for': 'scala' }
-endif
-
-" Latex support
-if count(g:bundle_groups, 'latex')
-    Plug 'lervag/vimtex', { 'for': 'tex' }
-endif
-
-" MIPS HIGHLIGHTING
-if count(g:bundle_groups, 'mips')
-    Plug 'harenome/vim-mipssyntax', { 'for': 'mips' }
-endif
-
-" haskell
-if count(g:bundle_groups, 'haskell')
-    " Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
-    Plug 'itchyny/vim-haskell-indent'
-endif
-
-if count(g:bundle_groups, 'markdown')
-    Plug 'suan/vim-instant-markdown'
-endif
-
-if count(g:bundle_groups, 'python')
-    " for python.vim syntax highlight
-    " pythonsyntax
-    Plug 'hdima/python-syntax', {'for' : 'python'}
-    Plug 'hynek/vim-python-pep8-indent', {'for' : 'python'}
-    Plug 'Glench/Vim-Jinja2-Syntax'
-endif
-
-if count(g:bundle_groups, 'web-dev')
-    Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-    Plug 'elzr/vim-json', {'for': 'json'}
-endif
+" markdown support
+Plug 'suan/vim-instant-markdown', { 'for':['md', 'markdown'] }
+" latex support
+Plug 'lervag/vimtex'
 
 call plug#end()
 
 
 " ################### Configurations ######################
-" 
+"
 " NeoSolarized {{{
 colorscheme NeoSolarized
 set termguicolors
@@ -236,7 +178,7 @@ function! s:check_back_space() abort
     return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>" 
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 inoremap <silent><expr> <c-space> coc#refresh()
 " inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
@@ -369,26 +311,26 @@ let g:airline_symbols.branch = '⎇'
 let g:rainbow_active = 1
 
 let g:rainbow_conf = {
-            \	'guifgs': ['royalblue3', 'seagreen3', 'darkorchid3', 'firebrick3'],
-            \	'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
-            \	'operators': '_,_',
-            \	'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
-            \	'separately': {
-            \		'*': {},
-            \		'tex': {
-            \			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
-            \		},
-            \		'lisp': {
-            \			'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
-            \		},
-            \		'vim': {
-            \			'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
-            \		},
-            \		'html': {
-            \			'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
-            \		},
-            \		'css': 0,
-            \	}
+            \   'guifgs': ['royalblue3', 'seagreen3', 'darkorchid3', 'firebrick3'],
+            \   'ctermfgs': ['lightblue', 'lightyellow', 'lightcyan', 'lightmagenta'],
+            \   'operators': '_,_',
+            \   'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+            \   'separately': {
+            \       '*': {},
+            \       'tex': {
+            \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/'],
+            \       },
+            \       'lisp': {
+            \           'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'],
+            \       },
+            \       'vim': {
+            \           'parentheses': ['start=/(/ end=/)/', 'start=/\[/ end=/\]/', 'start=/{/ end=/}/ fold', 'start=/(/ end=/)/ containedin=vimFuncBody', 'start=/\[/ end=/\]/ containedin=vimFuncBody', 'start=/{/ end=/}/ fold containedin=vimFuncBody'],
+            \       },
+            \       'html': {
+            \           'parentheses': ['start=/\v\<((area|base|br|col|embed|hr|img|input|keygen|link|menuitem|meta|param|source|track|wbr)[ >])@!\z([-_:a-zA-Z0-9]+)(\s+[-_:a-zA-Z0-9]+(\=("[^"]*"|'."'".'[^'."'".']*'."'".'|[^ '."'".'"><=`]*))?)*\>/ end=#</\z1># fold'],
+            \       },
+            \       'css': 0,
+            \   }
             \}
 " }}}
 
@@ -477,14 +419,14 @@ let g:go_fmt_autosave = 0
 let g:vimtex_mappings_enabled = 0
 let g:vimtex_view_automatic = 1
 let g:vimtex_disable_version_warning = 1
-let g:vimtex_compiler_latexmk = {'callback' : 0} 
+let g:vimtex_compiler_latexmk = {'callback' : 0}
 let g:vimtex_view_method = 'skim'
 " }}}
 "
 "" ctrlsf {{{
 let g:ctrlsf_search_mode = 'async'
 nmap \ <Plug>CtrlSFCwordPath<CR>
-nmap <leader>\ :CtrlSF 
+nmap <leader>\ :CtrlSF
 let g:ctrlsf_auto_focus = {
             \ "at" : "start",
             \}
@@ -532,7 +474,5 @@ augroup VimCSS3Syntax
     autocmd FileType css setlocal iskeyword+=-
 augroup END
 "}}}
-"
-
 "
 "------------------------------------------- end of configs --------------------------------------------
