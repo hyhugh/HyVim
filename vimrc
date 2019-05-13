@@ -10,7 +10,7 @@ let g:mapleader = "\<space>"
 syntax on
 set ttyfast
 set lazyredraw
-set re=1
+" set re=0
 
 " install bundles
 if filereadable(expand("~/.vimrc.bundles"))
@@ -243,7 +243,7 @@ nnoremap <silent> g* g*zz
 " disable highlighting
 noremap <silent><leader>/ :nohls<CR>
 
-nnoremap gd *``zz
+" nnoremap gd *``zz
 nnoremap * *``zz
 
 " for # indent, python文件中输入新行时#号注释不切回行首
@@ -329,15 +329,16 @@ nnoremap U <C-r>
 " FileType Settings
 "==========================================
 
-" 具体编辑文件类型的一般设置，比如不要 tab 等
 autocmd FileType python,java set tabstop=4 shiftwidth=4 expandtab ai
-autocmd FileType ruby,javascript,typescript,html,css,xml,haskell,vue set tabstop=2 shiftwidth=2 softtabstop=2 expandtab ai
+autocmd FileType json,ruby,javascript,typescript,typescript.tsx,html,css,xml,haskell,vue set tabstop=2 shiftwidth=2 softtabstop=2 expandtab ai
 autocmd FileType vue syntax sync fromstart
 autocmd BufRead,BufNewFile *.md,*.mkd,*.markdown set filetype=markdown.mkd
 autocmd BufRead,BufNewFile *.part set filetype=html
 
 au BufNewFile,BufRead *.s,*.S set filetype=mips
 au BufNewFile,BufRead *.j,*.J set filetype=jasmin
+au BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.tsx
+autocmd FileType typescript.tsx syntax sync fromstart
 
 " AutoSetFileHead
 autocmd BufNewFile *.sh,*.py exec ":call AutoSetFileHead()"
@@ -361,10 +362,10 @@ let &t_SR = "\<Esc>]50;CursorShape=2\x7"
 let &t_EI = "\<Esc>]50;CursorShape=0\x7"
 
 hi! link SignColumn   LineNr
-" hi! link ShowMarksHLl DiffAdd
-" hi! link ShowMarksHLu DiffChange
+hi! link ShowMarksHLl DiffAdd
+hi! link ShowMarksHLu DiffChange
 hi link ALEError Error
-" hi Warning term=underline cterm=underline ctermfg=Yellow gui=undercurl guisp=Gold
+hi Warning term=underline cterm=underline ctermfg=Yellow gui=undercurl guisp=Gold
 hi link ALEWarning Warning
 hi link ALEInfo SpellCap
 
@@ -378,4 +379,4 @@ set display-=msgsep
 let g:omni_sql_no_default_maps = 1
 
 " Neovim specific
-let g:python3_host_prog = '/Users/hyman/.pyenv/versions/neovim/bin/python3.7'
+" let g:python3_host_prog = '/Users/hyman/.pyenv/versions/neovim/bin/python3.7'

@@ -1,6 +1,9 @@
 {
   "suggest.enablePreview": true,
   "coc.preferences.previewAutoClose": true,
+  "snippets.extends": {
+    "typescript.tsx": ["typescriptreact", "typescript", "javascript"],
+  },
   "coc.preferences.colorSupport": false,
   "java.signatureHelp.enabled": true,
   "python.jediEnabled": false,
@@ -16,3 +19,7 @@
   },
   "suggest.maxPreviewWidth": 60
 }
+//"java.codeGeneration.toString.template": "${object.className} [${member.name()}=${member.value}, ${otherMembers}]",
+//"java.codeGeneration.toString.codeStyle": "STRING_CONCATENATION",
+//"java.codeGeneration.toString.listArrayContents": true,
+//"java.codeGeneration.toString.limitElements": 0,

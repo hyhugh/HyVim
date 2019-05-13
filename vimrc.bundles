@@ -91,9 +91,8 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'justinmk/vim-syntax-extra'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'posva/vim-vue'
-Plug 'leafgarland/typescript-vim'
 Plug 'pangloss/vim-javascript'
-Plug 'ianks/vim-tsx'
+Plug 'HerringtonDarkholme/yats.vim'
 Plug 'tikhomirov/vim-glsl'
 Plug 'hdima/python-syntax'
 Plug 'hynek/vim-python-pep8-indent'
@@ -129,9 +128,13 @@ call plug#end()
 " ################### Configurations ######################
 "
 " NeoSolarized {{{
-colorscheme NeoSolarized
+" This is only necessary if you use "set termguicolors".
+" let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+" let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 set termguicolors
 set background=dark
+" set t_Co=256
+colorscheme NeoSolarized
 " default value is "normal", Setting this option to "high" or "low" does use the
 " same Solarized palette but simply shifts some values up or down in order to
 " expand or compress the tonal range displayed.
@@ -235,7 +238,7 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 imap <C-j> <Plug>(coc-snippets-expand-jump)
 
 autocmd CursorHold * silent call CocActionAsync('highlight')
-highlight CocHighlightText ctermbg=13 guibg=#033a48
+highlight CocHighlightText ctermbg=14 guibg=#033a48
 " }}}
 
 " closetag {{{
@@ -245,6 +248,7 @@ let g:closetag_filenames = '*.html,*.xhtml,*.phtml'
 " nerdcommenter {{{
 let g:NERDSpaceDelims=1
 let g:NERDAltDelims_python = 1
+let g:NERDCustomDelimiters = { 'typescript.tsx': { 'left': '{/*','right': '*/}' } }
 " }}}
 
 " trailingwhitespace {{{
@@ -474,5 +478,7 @@ augroup VimCSS3Syntax
     autocmd FileType css setlocal iskeyword+=-
 augroup END
 "}}}
-"
+" typescript {{{
+let g:vim_jsx_pretty_colorful_config = 1
+"}}}
 "------------------------------------------- end of configs --------------------------------------------
