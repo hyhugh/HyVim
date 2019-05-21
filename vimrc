@@ -81,9 +81,9 @@ set showmode
 set scrolloff=7
 
 " show current col
-set cursorcolumn
+" set cursorcolumn
 " show current row
-set cursorline
+" set cursorline
 
 set number
 set wrap
@@ -262,6 +262,7 @@ map <leader>th :tabfirst<cr>
 map <leader>tl :tablast<cr>
 map <leader>tj :tabnext<cr>
 map <leader>tk :tabprev<cr>
+map <leader>tu :tabnew#<cr>
 
 " switch to specific tab
 noremap <leader>1 1gt

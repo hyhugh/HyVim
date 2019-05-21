@@ -30,7 +30,7 @@ Plug 'Chiel92/vim-autoformat'
 
 " ale
 " Plug 'w0rp/ale'
-
+Plug 'suan/vim-instant-markdown', { 'for':['md', 'markdown'] }
 "vim-snippets and ultisnips
 Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 
@@ -447,7 +447,7 @@ nnoremap <silent> <leader>g :NERDTreeFind<cr>
 " nerdtreetabs {{{
 map <Leader>n <plug>NERDTreeTabsToggle<CR>
 " 关闭同步
-let g:nerdtree_tabs_synchronize_view=1
+" let g:nerdtree_tabs_synchronize_view=1
 let g:nerdtree_tabs_synchronize_focus=0
 " 
 let g:nerdtree_tabs_open_on_console_startup=0
