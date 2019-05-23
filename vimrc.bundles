@@ -32,7 +32,7 @@ Plug 'neoclide/coc-vetur', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
-Plug 'marlonfan/coc-phpls', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-rls', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-vimtex', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-emmet', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-yank', {'do': 'yarn install --frozen-lockfile'}
@@ -95,6 +95,8 @@ Plug 'pangloss/vim-javascript'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'tikhomirov/vim-glsl'
 Plug 'hdima/python-syntax'
+Plug 'rust-lang/rust.vim'
+Plug 'fatih/vim-go'
 Plug 'hynek/vim-python-pep8-indent'
 Plug 'Glench/Vim-Jinja2-Syntax'
 Plug 'elzr/vim-json'
@@ -107,16 +109,6 @@ Plug 'dyng/ctrlsf.vim'
 
 " esay-easyescape
 Plug 'hyhugh/vim-easyescape-plus'
-
-" prolog support
-" Plug 'adimit/prolog.vim', { 'for': 'prolog' }
-
-" rust support
-Plug 'rust-lang/rust.vim', { 'for': 'rust' }
-
-" Go lang support
-Plug 'fatih/vim-go', { 'for': 'go' }
-
 " markdown support
 Plug 'suan/vim-instant-markdown', { 'for':['md', 'markdown'] }
 " latex support
@@ -135,6 +127,7 @@ set termguicolors
 set background=dark
 " set t_Co=256
 colorscheme NeoSolarized
+" set pb=20
 " default value is "normal", Setting this option to "high" or "low" does use the
 " same Solarized palette but simply shifts some values up or down in order to
 " expand or compress the tonal range displayed.
@@ -300,8 +293,6 @@ let g:airline_exclude_preview = 1
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
-let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
-let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
 
 let g:airline_left_sep = '▶'
 let g:airline_left_alt_sep = '❯'
@@ -309,6 +300,9 @@ let g:airline_right_sep = '◀'
 let g:airline_right_alt_sep = '❮'
 let g:airline_symbols.linenr = '¶'
 let g:airline_symbols.branch = '⎇'
+
+let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
+let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
 " }}}
 
 " rainbow_parentheses {{{
