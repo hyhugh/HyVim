@@ -15,6 +15,8 @@
   "signature.hideOnTextChange": false,
   "snippets.ultisnips.enable": false,
   "python.formatting.provider": "black",
+  "rust.racer_completion": true,
+  "rust.all_targets": false,
   "emmet.includeLanguages": {
     "javascript": "javascriptreact",
     "typescript": "typescriptreact",
