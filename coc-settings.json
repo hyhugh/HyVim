@@ -2,7 +2,11 @@
   "suggest.enablePreview": true,
   "coc.preferences.previewAutoClose": true,
   "snippets.extends": {
-    "typescript.tsx": ["typescriptreact", "typescript", "javascript"],
+    "typescript.tsx": [
+      "typescriptreact",
+      "typescript",
+      "javascript"
+    ],
   },
   "coc.preferences.colorSupport": false,
   "java.signatureHelp.enabled": true,
@@ -17,9 +21,27 @@
     "vue-html": "html",
     "razor": "html"
   },
-  "suggest.maxPreviewWidth": 60
+  "suggest.maxPreviewWidth": 60,
+  "languageserver": {
+    "cquery": {
+      "command": "/home/yus/apps/cquery/build/cquery",
+      "args": [
+        "--log-file=/tmp/cq.log"
+      ],
+      "filetypes": [
+        "c",
+        "cpp"
+      ],
+      "rootPatterns": [
+        "compile_flags.txt",
+        "compile_commands.json",
+        ".vim/",
+        ".git/",
+        ".hg/"
+      ],
+      "initializationOptions": {
+        "cacheDirectory": "/tmp/cquery"
+      }
+    }
+  }
 }
-//"java.codeGeneration.toString.template": "${object.className} [${member.name()}=${member.value}, ${otherMembers}]",
-//"java.codeGeneration.toString.codeStyle": "STRING_CONCATENATION",
-//"java.codeGeneration.toString.listArrayContents": true,
-//"java.codeGeneration.toString.limitElements": 0,
