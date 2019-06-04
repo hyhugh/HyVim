@@ -1,13 +1,5 @@
 {
   "suggest.enablePreview": true,
-  "coc.preferences.previewAutoClose": true,
-  "snippets.extends": {
-    "typescript.tsx": [
-      "typescriptreact",
-      "typescript",
-      "javascript"
-    ],
-  },
   "coc.preferences.colorSupport": false,
   "java.signatureHelp.enabled": true,
   "python.jediEnabled": false,
@@ -23,17 +15,16 @@
     "vue-html": "html",
     "razor": "html"
   },
-  "suggest.maxPreviewWidth": 60,
+  "snippets.extends": {
+    "typescript.tsx": [
+      "typescriptreact",
+      "typescript",
+      "javascript"
+    ],
+  },
   "languageserver": {
-    "cquery": {
-      "command": "/home/yus/apps/cquery/build/cquery",
-      "args": [
-        "--log-file=/tmp/cq.log"
-      ],
-      "filetypes": [
-        "c",
-        "cpp"
-      ],
+    "clangd": {
+      "command": "clangd",
       "rootPatterns": [
         "compile_flags.txt",
         "compile_commands.json",
@@ -41,9 +32,13 @@
         ".git/",
         ".hg/"
       ],
-      "initializationOptions": {
-        "cacheDirectory": "/tmp/cquery"
-      }
+      "filetypes": [
+        "c",
+        "cpp",
+        "objc",
+        "objcpp"
+      ],
+      "trace.server": "verbose"
     }
   }
 }
