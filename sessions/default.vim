@@ -2,16 +2,16 @@ let SessionLoad = 1
 let s:so_save = &so | let s:siso_save = &siso | set so=0 siso=0
 let v:this_session=expand("<sfile>:p")
 silent only
-cd ~/HyVim/bundle/coc.nvim
+cd ~/HyVim
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
 badd +219 ~/.vimrc.bundles
-badd +0 CONTRIBUTING.md
+badd +1 bundle/coc.nvim/CONTRIBUTING.md
+badd +8 ~/HyVim
 argglobal
 silent! argdel *
-$argadd ~/.vimrc.bundles
 set splitbelow splitright
 set nosplitright
 wincmd t
@@ -21,15 +21,14 @@ set winminwidth=0
 set winwidth=1
 argglobal
 enew
-file NERD_tree_1
-setlocal fdm=manual
+setlocal fdm=indent
 setlocal fde=0
 setlocal fmr={{{,}}}
 setlocal fdi=#
 setlocal fdl=99
 setlocal fml=1
 setlocal fdn=20
-setlocal nofen
+setlocal fen
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
