@@ -199,7 +199,7 @@ nnoremap <silent> <leader>lb  :<C-u>CocList --normal buffers<cr>
 
 nnoremap <silent> <leader>ld  :<C-u>CocList --normal diagnostics<cr>
 nnoremap <silent> <leader>le  :<C-u>CocList --normal extensions<cr>
-nnoremap <silent> <leader>lm  :<C-u>CocList commands<cr>
+nnoremap <silent> <leader>la  :<C-u>CocList commands<cr>
 nnoremap <silent> <leader>lo  :<C-u>CocList --normal outline<cr>
 nnoremap <silent> <leader>ls  :<C-u>CocList -I symbols<cr>
 
@@ -355,8 +355,10 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 let g:NERDTreeMapOpenSplit = 's'
 let g:NERDTreeMapOpenVSplit = 'v'
 let g:NERDTreeWinPos = "right"
+
 nnoremap <silent> <leader>g :NERDTreeFind<cr>
 nnoremap <silent> <leader>n :NERDTreeFocus<cr>
+autocmd FileType nerdtree nnoremap <buffer> <leader>n <c-w><c-p>
 " }}}
 
 " nerdtreetabs {{{
@@ -380,7 +382,7 @@ nnoremap <leader>l :BLines <CR>
 nnoremap <leader>L :BLines <C-R><C-W><cr>
 
 let g:fzf_buffers_jump = 1
-" let g:fzf_tags_command = 'ctags -R'
+let g:fzf_tags_command = 'ctags -R'
 " }}}
 
 " pythonsyntax {{{
@@ -421,7 +423,7 @@ nmap <leader>\ :CtrlSF
 let g:ctrlsf_auto_focus = {
             \ "at" : "start",
             \}
-" let g:ctrlsf_position = 'below'
+let g:ctrlsf_position = 'below'
 " let g:ctrlsf_winsize = '30%'
 let g:ctrlsf_auto_close = 0
 let g:ctrlsf_confirm_save = 0
