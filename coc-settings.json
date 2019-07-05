@@ -15,6 +15,11 @@
     "vue-html": "html",
     "razor": "html"
   },
+  "coc.preferences.currentFunctionSymbolAutoUpdate": true,
+  "git.addGlameToBufferVar": true,
+  "git.addGlameToVirtualText": true,
+  "coc.source.issues.enable": false,
+  "git.virtualTextPrefix": "     ----- ",
   "snippets.extends": {
     "typescript.tsx": [
       "typescriptreact",
@@ -24,7 +29,7 @@
   },
   "languageserver": {
     "clangd": {
-      "command": "clangd",
+      "command": "clangd-9",
       "rootPatterns": [
         "compile_flags.txt",
         "compile_commands.json",

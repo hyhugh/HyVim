@@ -36,6 +36,9 @@ Plug 'neoclide/coc-rls', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-vimtex', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-emmet', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-yank', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-git', {'do': 'yarn install --frozen-lockfile'}
+Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
 
 " symbol autocompleting
 Plug 'hyhugh/auto-pairs'
@@ -62,8 +65,10 @@ Plug 'thinca/vim-quickrun'
 " mundo
 Plug 'simnalamburt/vim-mundo'
 " airline
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
+Plug 'itchyny/lightline.vim'
+" 
 " rainbow_parentheses
 Plug 'luochen1990/rainbow'
 " solarized
@@ -71,10 +76,11 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'hyhugh/NeoSolarized'
 " nerdtree nerdtreetabs
 Plug 'scrooloose/nerdtree' | Plug 'jistr/vim-nerdtree-tabs'
+" Plug 'justinmk/vim-dirvish'
 " ctrlspace
 Plug 'vim-ctrlspace/vim-ctrlspace'
 " vista tagbar
-Plug 'liuchengxu/vista.vim'
+" Plug 'liuchengxu/vista.vim'
 " text object
 Plug 'kana/vim-textobj-user'
 " line object : l   dal yal cil
@@ -127,7 +133,8 @@ set termguicolors
 set background=dark
 " set t_Co=256
 colorscheme NeoSolarized
-" set pb=20
+set pb=25
+set winbl=25
 " default value is "normal", Setting this option to "high" or "low" does use the
 " same Solarized palette but simply shifts some values up or down in order to
 " expand or compress the tonal range displayed.
@@ -177,12 +184,11 @@ endfunction
 
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 inoremap <silent><expr> <c-space> coc#refresh()
-" inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
 nmap <silent> ]c <Plug>(coc-diagnostic-next)
 nmap <silent> <leader>gd <Plug>(coc-definition)
-nmap <silent> <leader>lt <Plug>(coc-type-definition)
+nmap <silent> <leader>gt <Plug>(coc-type-definition)
 nmap <silent> <leader>gi <Plug>(coc-implementation)
 nmap <silent> <leader>gr <Plug>(coc-references)
 nnoremap <silent> K :call <SID>show_documentation()<CR>
@@ -193,20 +199,26 @@ function! s:show_documentation()
         call CocAction('doHover')
     endif
 endfunction
-nmap <leader>lr <Plug>(coc-rename)
+nmap <leader>jr <Plug>(coc-rename)
 vmap <leader>m  <Plug>(coc-format-select)
 nmap <silent> <leader>m  <Plug>(coc-format)
-" Remap for do codeAction of selected region, ex: `<leader>aap` for current paragraph
-vmap <leader>la  <Plug>(coc-codeaction-selected)
-nmap <leader>la  <Plug>(coc-codeaction)
-nmap <leader>lf  <Plug>(coc-fix-current)
+
+vmap <leader>ja  <Plug>(coc-codeaction-selected)
+nmap <leader>ja  <Plug>(coc-codeaction)
+nmap <leader>jf  <Plug>(coc-fix-current)
 
 nnoremap <silent> <leader>ll  :<C-u>CocList<cr>
-nnoremap <silent> <leader>ld  :<C-u>CocList diagnostics<cr>
-nnoremap <silent> <leader>le  :<C-u>CocList extensions<cr>
+nnoremap <silent> <leader>lc  :<C-u>CocList --normal commits<cr>
+nnoremap <silent> <leader>lg  :<C-u>CocList --normal gstatus<cr>
+nnoremap <silent> <leader>lm  :<C-u>CocList --normal mru<cr>
+nnoremap <silent> <leader>lb  :<C-u>CocList --normal buffers<cr>
+
+nnoremap <silent> <leader>ld  :<C-u>CocList --normal diagnostics<cr>
+nnoremap <silent> <leader>le  :<C-u>CocList --normal extensions<cr>
 nnoremap <silent> <leader>lm  :<C-u>CocList commands<cr>
-nnoremap <silent> <leader>lo  :<C-u>CocList outline<cr>
+nnoremap <silent> <leader>lo  :<C-u>CocList --normal outline<cr>
 nnoremap <silent> <leader>ls  :<C-u>CocList -I symbols<cr>
+
 nnoremap <silent> <leader>lj  :<C-u>CocNext<CR>
 nnoremap <silent> <leader>lk  :<C-u>CocPrev<CR>
 nnoremap <silent> <leader>lp  :<C-u>CocListResume<CR>
@@ -233,6 +245,14 @@ imap <C-j> <Plug>(coc-snippets-expand-jump)
 
 autocmd CursorHold * silent call CocActionAsync('highlight')
 highlight CocHighlightText ctermbg=14 guibg=#033a48
+
+" navigate chunks of current buffer
+nmap [g <Plug>(coc-git-prevchunk)
+nmap ]g <Plug>(coc-git-nextchunk)
+" show chunk diff at current position
+nmap <leader>gi <Plug>(coc-git-chunkinfo)
+" show commit contains current position
+nmap <leader>gc <Plug>(coc-git-commit)
 " }}}
 
 " closetag {{{
@@ -302,8 +322,30 @@ let g:airline_right_alt_sep = '❮'
 let g:airline_symbols.linenr = '¶'
 let g:airline_symbols.branch = '⎇'
 
-let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
-let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
+function! CocCurrentFunction()
+    return get(b:, 'coc_current_function', '')
+endfunction
+
+" lightline
+let g:lightline = {
+  \ 'colorscheme': 'solarized',
+  \ 'active': {
+  \   'left': [
+  \     [ 'mode', 'paste' ],
+  \     [ 'currentfunction', 'git', 'diagnostic', 'cocstatus', 'filename', 'method', 'modified' ]
+  \   ],
+  \   'right':[
+  \     [ 'filetype', 'fileencoding', 'lineinfo', 'percent' ],
+  \   ],
+  \ },
+  \ 'component_function': {
+  \   'cocstatus': 'coc#status',
+  \   'currentfunction': 'CocCurrentFunction'
+  \ }
+\ }
+
+" let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
+" let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
 " }}}
 
 " rainbow_parentheses {{{
@@ -337,7 +379,9 @@ let g:rainbow_conf = {
 " nerdtree nerdtreetabs {{{
 let NERDTreeHighlightCursorline=1
 let NERDTreeMinimalMenu=1
+let NERDTreeHijackNetrw=1
 let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$', '\.class$', '^__pycache__$' ]
+
 "close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | end
 
@@ -345,10 +389,11 @@ let g:NERDTreeMapOpenSplit = 's'
 let g:NERDTreeMapOpenVSplit = 'v'
 let g:NERDTreeWinPos = "right"
 nnoremap <silent> <leader>g :NERDTreeFind<cr>
+nnoremap <silent> <leader>n :NERDTreeFocus<cr>
 " }}}
 
 " nerdtreetabs {{{
-map <Leader>n <plug>NERDTreeTabsToggle<CR>
+map <F9> <plug>NERDTreeTabsToggle<CR>
 " 关闭同步
 " let g:nerdtree_tabs_synchronize_view=0
 " let g:nerdtree_tabs_synchronize_focus=0
@@ -372,8 +417,8 @@ let g:fzf_buffers_jump = 1
 
 " Vim Workspace Controller
 " ctrlspace {{{
-" let g:CtrlSpaceDefaultMappingKey = "<C-space>"
-map <C-space> :CtrlSpace<CR>
+let g:CtrlSpaceDefaultMappingKey = "<C-space> "
+" map <C-space> :CtrlSpace<CR>
 " hi CtrlSpaceSelected guifg=#586e75 guibg=#eee8d5 guisp=#839496 gui=reverse,bold ctermfg=10 ctermbg=7 cterm=reverse,bold
 " hi CtrlSpaceNormal   guifg=#839496 guibg=#021B25 guisp=#839496 gui=NONE ctermfg=12 ctermbg=0 cterm=NONE
 " hi CtrlSpaceSearch   guifg=#cb4b16 guibg=NONE gui=bold ctermfg=9 ctermbg=NONE term=bold cterm=bold
@@ -385,7 +430,7 @@ hi link CtrlSpaceStatus   StatusLine
 " }}}
 
 " vista tagbar {{{
-map <F9> :Vista coc<cr>
+" map <F9> :Vista coc<cr>
 let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
 let g:vista_default_executive = 'coc'
 let g:vista_sidebar_position = "vertical topleft"
