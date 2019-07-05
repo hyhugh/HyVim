@@ -17,9 +17,6 @@ call plug#begin('~/.vim/bundle')
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
-" Autoformat
-Plug 'Chiel92/vim-autoformat'
-
 "vim-snippets and ultisnips
 Plug 'honza/vim-snippets'
 
@@ -64,9 +61,7 @@ Plug 'mg979/vim-visual-multi'
 Plug 'thinca/vim-quickrun'
 " mundo
 Plug 'simnalamburt/vim-mundo'
-" airline
-" Plug 'vim-airline/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
+" lightline
 Plug 'itchyny/lightline.vim'
 " 
 " rainbow_parentheses
@@ -76,11 +71,6 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'hyhugh/NeoSolarized'
 " nerdtree nerdtreetabs
 Plug 'scrooloose/nerdtree' | Plug 'jistr/vim-nerdtree-tabs'
-" Plug 'justinmk/vim-dirvish'
-" ctrlspace
-Plug 'vim-ctrlspace/vim-ctrlspace'
-" vista tagbar
-" Plug 'liuchengxu/vista.vim'
 " text object
 Plug 'kana/vim-textobj-user'
 " line object : l   dal yal cil
@@ -154,12 +144,6 @@ let g:neosolarized_vertSplitBgTrans = 1
 let g:neosolarized_bold = 1
 let g:neosolarized_underline = 1
 let g:neosolarized_italic = 1
-" }}}
-
-"Chiel92/vim-autoformat {{{
-noremap <Leader>m :Autoformat<CR>
-let g:formatters_jinja = ['htmlbeautify']
-let g:formatters_python = ['black']
 " }}}
 
 " ################### AutoCompletion ###################
@@ -300,28 +284,14 @@ call expand_region#custom_text_objects({
             \ })
 " }}}
 
-" multiplecursors {{{
-"}}}
-
 " mundo {{{
 noremap <leader>h :MundoToggle<CR>
 set undofile
 set undodir=~/.vim/undo
 " }}}
 
-" airline {{{
-let g:airline_exclude_preview = 1
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
-
-let g:airline_left_sep = '▶'
-let g:airline_left_alt_sep = '❯'
-let g:airline_right_sep = '◀'
-let g:airline_right_alt_sep = '❮'
-let g:airline_symbols.linenr = '¶'
-let g:airline_symbols.branch = '⎇'
-
+" lightline {{{
+ 
 function! CocCurrentFunction()
     return get(b:, 'coc_current_function', '')
 endfunction
@@ -343,9 +313,6 @@ let g:lightline = {
   \   'currentfunction': 'CocCurrentFunction'
   \ }
 \ }
-
-" let g:airline_section_error = '%{airline#util#wrap(airline#extensions#coc#get_error(),0)}'
-" let g:airline_section_warning = '%{airline#util#wrap(airline#extensions#coc#get_warning(),0)}'
 " }}}
 
 " rainbow_parentheses {{{
@@ -414,28 +381,7 @@ nnoremap <leader>L :BLines <C-R><C-W><cr>
 
 let g:fzf_buffers_jump = 1
 " let g:fzf_tags_command = 'ctags -R'
-
-" Vim Workspace Controller
-" ctrlspace {{{
-let g:CtrlSpaceDefaultMappingKey = "<C-space> "
-" map <C-space> :CtrlSpace<CR>
-" hi CtrlSpaceSelected guifg=#586e75 guibg=#eee8d5 guisp=#839496 gui=reverse,bold ctermfg=10 ctermbg=7 cterm=reverse,bold
-" hi CtrlSpaceNormal   guifg=#839496 guibg=#021B25 guisp=#839496 gui=NONE ctermfg=12 ctermbg=0 cterm=NONE
-" hi CtrlSpaceSearch   guifg=#cb4b16 guibg=NONE gui=bold ctermfg=9 ctermbg=NONE term=bold cterm=bold
-" hi CtrlSpaceStatus   guifg=#839496 guibg=#002b36 gui=reverse term=reverse cterm=reverse ctermfg=12 ctermbg=8
-hi link CtrlSpaceNormal   PMenu
-hi link CtrlSpaceSelected PMenuSel
-hi link CtrlSpaceSearch   Search
-hi link CtrlSpaceStatus   StatusLine
 " }}}
-
-" vista tagbar {{{
-" map <F9> :Vista coc<cr>
-let g:vista_icon_indent = ["╰─▸ ", "├─▸ "]
-let g:vista_default_executive = 'coc'
-let g:vista_sidebar_position = "vertical topleft"
-let g:vista_sidebar_width = 30
-" }}
 
 " pythonsyntax {{{
 let python_highlight_all = 1

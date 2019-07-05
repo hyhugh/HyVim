@@ -6,3 +6,5 @@ configs
 myconfig.sh
 init.vim
 undo
+sessions
+.netrwhist
