@@ -19,6 +19,7 @@
   "git.addGlameToBufferVar": true,
   "git.addGlameToVirtualText": true,
   "coc.source.issues.enable": false,
+  "list.maxHeight": 20,
   "git.virtualTextPrefix": "     ----- ",
   "snippets.extends": {
     "typescript.tsx": [

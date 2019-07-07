@@ -195,13 +195,15 @@ nnoremap <silent> <leader>ll  :<C-u>CocList<cr>
 nnoremap <silent> <leader>lc  :<C-u>CocList --normal commits<cr>
 nnoremap <silent> <leader>lg  :<C-u>CocList --normal gstatus<cr>
 nnoremap <silent> <leader>lm  :<C-u>CocList --normal mru<cr>
-nnoremap <silent> <leader>lb  :<C-u>CocList --normal buffers<cr>
+nnoremap <silent> <c-space>  :<C-u>CocList --normal buffers<cr>
+nnoremap <silent> <leader>ln  :<C-u>CocList --normal branches<cr>
 
 nnoremap <silent> <leader>ld  :<C-u>CocList --normal diagnostics<cr>
 nnoremap <silent> <leader>le  :<C-u>CocList --normal extensions<cr>
 nnoremap <silent> <leader>la  :<C-u>CocList commands<cr>
 nnoremap <silent> <leader>lo  :<C-u>CocList --normal outline<cr>
 nnoremap <silent> <leader>ls  :<C-u>CocList -I symbols<cr>
+nnoremap <silent> <leader>p :<C-u>CocList files<cr>
 
 nnoremap <silent> <leader>lj  :<C-u>CocNext<CR>
 nnoremap <silent> <leader>lk  :<C-u>CocPrev<CR>
@@ -234,7 +236,7 @@ highlight CocHighlightText ctermbg=14 guibg=#033a48
 nmap [g <Plug>(coc-git-prevchunk)
 nmap ]g <Plug>(coc-git-nextchunk)
 " show chunk diff at current position
-nmap <leader>gi <Plug>(coc-git-chunkinfo)
+nmap <leader>gs <Plug>(coc-git-chunkinfo)
 " show commit contains current position
 nmap <leader>gc <Plug>(coc-git-commit)
 " }}}
@@ -310,7 +312,7 @@ let g:lightline = {
   \ },
   \ 'component_function': {
   \   'cocstatus': 'coc#status',
-  \   'currentfunction': 'CocCurrentFunction'
+  \   'currentfunction': 'CocCurrentFunction',
   \ }
 \ }
 " }}}
@@ -374,12 +376,10 @@ let g:nerdtree_tabs_open_on_gui_startup=0
 au FileType fzf set nonu nornu
 nnoremap <leader>. :Tags<cr>
 nnoremap <leader>> :Tags <C-R><C-W><CR>
-nnoremap <leader>p :FZF<CR>
-nnoremap <leader>P :call fzf#vim#files('.', {'options':'--query '.expand('<cword>')})<CR>
 nnoremap <leader>f :Rg<CR>
 nnoremap <Leader>F :Rg <C-R><C-W><CR>
-nnoremap <leader>l :BLines <CR>
-nnoremap <leader>L :BLines <C-R><C-W><cr>
+nnoremap <leader>b :BLines <CR>
+nnoremap <leader>B :BLines <C-R><C-W><cr>
 
 let g:fzf_buffers_jump = 1
 let g:fzf_tags_command = 'ctags -R'
