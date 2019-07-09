@@ -17,7 +17,19 @@
   },
   "coc.preferences.currentFunctionSymbolAutoUpdate": true,
   "git.addGlameToBufferVar": true,
-  "git.addGlameToVirtualText": true,
+  "git.addGlameToVirtualText": false,
+  "list.normalMappings": {
+    "t": "action:tabe",
+    "v": "action:vsplit",
+    "s": "action:split",
+    "d": "action:delete"
+  },
+  "list.insertMappings": {
+    "<C-t>": "action:tabe",
+    "<C-v>": "action:vsplit",
+    "<C-x>": "action:split",
+    "<C-w>": "command:wincmd k"
+  },
   "coc.source.issues.enable": false,
   "list.maxHeight": 20,
   "git.virtualTextPrefix": "     ----- ",
