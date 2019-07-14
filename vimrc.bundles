@@ -313,7 +313,7 @@ let g:lightline = {
   \     [ 'currentfunction', 'git', 'diagnostic', 'cocstatus', 'filename', 'method', 'modified' ]
   \   ],
   \   'right':[
-  \     [ 'filetype', 'fileencoding', 'lineinfo', 'percent' ],
+  \     [ 'filetype', 'lineinfo', 'percent' ],
   \     [ 'blame' ],
   \   ],
   \ },
