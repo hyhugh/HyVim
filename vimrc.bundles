@@ -122,8 +122,8 @@ set termguicolors
 set background=dark
 " set t_Co=256
 colorscheme NeoSolarized
-set pb=25
-set winbl=25
+set pb=34
+set winbl=34
 " default value is "normal", Setting this option to "high" or "low" does use the
 " same Solarized palette but simply shifts some values up or down in order to
 " expand or compress the tonal range displayed.
@@ -297,6 +297,12 @@ function! CocCurrentFunction()
     return get(b:, 'coc_current_function', '')
 endfunction
 
+function! LightlineGitBlame() abort
+  let blame = get(b:, 'coc_git_blame', '')
+  " return blame
+  return winwidth(0) > 120 ? blame : ''
+endfunction
+
 " lightline
 let g:lightline = {
   \ 'colorscheme': 'solarized',
@@ -306,12 +312,14 @@ let g:lightline = {
   \     [ 'currentfunction', 'git', 'diagnostic', 'cocstatus', 'filename', 'method', 'modified' ]
   \   ],
   \   'right':[
-  \     [ 'filetype', 'fileencoding', 'lineinfo', 'percent' ],
+  \     [ 'filetype', 'lineinfo', 'percent' ],
+  \     [ 'blame' ],
   \   ],
   \ },
   \ 'component_function': {
   \   'cocstatus': 'coc#status',
   \   'currentfunction': 'CocCurrentFunction',
+  \   'blame': 'LightlineGitBlame',
   \ }
 \ }
 " }}}
