@@ -28,9 +28,11 @@
       "javascript"
     ],
   },
+  "latex.forwardSearch.executable": "open -a Skim",
+  "latex.build.onSave": true,
   "languageserver": {
     "clangd": {
-      "command": "clangd-9",
+      "command": "clangd",
       "rootPatterns": [
         "compile_flags.txt",
         "compile_commands.json",
