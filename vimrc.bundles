@@ -430,7 +430,7 @@ nmap <leader>\ :CtrlSF
 let g:ctrlsf_auto_focus = {
             \ "at" : "start",
             \}
-let g:ctrlsf_position = 'below'
+let g:ctrlsf_position = 'bottom'
 " let g:ctrlsf_winsize = '30%'
 let g:ctrlsf_auto_close = 0
 let g:ctrlsf_confirm_save = 0
