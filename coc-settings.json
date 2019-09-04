@@ -42,6 +42,7 @@
   },
   "latex.forwardSearch.executable": "open -a Skim",
   "latex.build.onSave": true,
+  "yank.enableCompletion": false,
   "languageserver": {
     "clangd": {
       "command": "clangd",
