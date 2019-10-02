@@ -202,7 +202,6 @@ nnoremap <silent> <leader>le  :<C-u>CocList --normal extensions<cr>
 nnoremap <silent> <leader>la  :<C-u>CocList commands<cr>
 nnoremap <silent> <leader>lo  :<C-u>CocList --normal outline<cr>
 nnoremap <silent> <leader>ls  :<C-u>CocList -I symbols<cr>
-nnoremap <silent> <leader>p :<C-u>CocList files<cr>
 
 nnoremap <silent> <leader>lj  :<C-u>CocNext<CR>
 nnoremap <silent> <leader>lk  :<C-u>CocPrev<CR>
@@ -387,6 +386,7 @@ nnoremap <leader>f :Rg<CR>
 nnoremap <Leader>F :Rg <C-R><C-W><CR>
 nnoremap <leader>b :BLines <CR>
 nnoremap <leader>B :BLines <C-R><C-W><cr>
+nnoremap <leader>p :Files <CR>
 
 let g:fzf_buffers_jump = 1
 let g:fzf_tags_command = 'ctags -R'
