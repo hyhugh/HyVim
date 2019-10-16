@@ -16,8 +16,8 @@
     "razor": "html"
   },
   "coc.preferences.currentFunctionSymbolAutoUpdate": true,
-  "git.addGlameToBufferVar": true,
-  "git.addGlameToVirtualText": false,
+  "git.addGBlameToBufferVar": true,
+  "git.addGBlameToVirtualText": false,
   "list.normalMappings": {
     "t": "action:tabe",
     "v": "action:vsplit",
