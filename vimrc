@@ -329,7 +329,7 @@ nnoremap U <C-r>
 " FileType Settings
 "==========================================
 
-autocmd FileType c,cpp,python,java set tabstop=4 shiftwidth=4 expandtab ai
+autocmd FileType c,python,java,cpp set tabstop=4 shiftwidth=4 expandtab ai
 autocmd FileType json,ruby,javascript,typescript,typescript.tsx,html,css,xml,haskell,vue set tabstop=2 shiftwidth=2 softtabstop=2 expandtab ai
 autocmd FileType vue syntax sync fromstart
 autocmd BufRead,BufNewFile *.md,*.mkd,*.markdown set filetype=markdown.mkd
@@ -339,6 +339,7 @@ au BufNewFile,BufRead *.s,*.S set filetype=mips
 au BufNewFile,BufRead *.j,*.J set filetype=jasmin
 au BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.tsx
 autocmd FileType typescript.tsx syntax sync fromstart
+au BufNewFile,BufRead *.tex set filetype=tex
 
 " AutoSetFileHead
 autocmd BufNewFile *.sh,*.py exec ":call AutoSetFileHead()"

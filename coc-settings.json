@@ -5,7 +5,7 @@
   "python.jediEnabled": false,
   "signature.preferShownAbove": true,
   "signature.hideOnTextChange": false,
-  "snippets.ultisnips.enable": false,
+  "snippets.ultisnips.enable": true,
   "python.formatting.provider": "black",
   "rust.racer_completion": true,
   "rust.all_targets": false,
@@ -16,6 +16,7 @@
     "razor": "html"
   },
   "coc.preferences.currentFunctionSymbolAutoUpdate": true,
+  "coc.preferences.jumpCommand": "edit",
   "git.addGBlameToBufferVar": true,
   "git.addGBlameToVirtualText": false,
   "list.normalMappings": {
@@ -40,8 +41,6 @@
       "javascript"
     ],
   },
-  "latex.forwardSearch.executable": "open -a Skim",
-  "latex.build.onSave": true,
   "yank.enableCompletion": false,
   "languageserver": {
     "clangd": {
@@ -60,5 +59,6 @@
         "objcpp"
       ],
     }
-  }
+  },
+  "java.errors.incompleteClasspath.severity": "ignore"
 }
