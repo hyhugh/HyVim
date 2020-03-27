@@ -19,6 +19,7 @@ Plug 'junegunn/fzf.vim'
 
 "vim-snippets and ultisnips
 Plug 'honza/vim-snippets'
+Plug 'junegunn/vim-easy-align'
 
 " semantic autocompleting
 Plug 'neoclide/coc.nvim', {'do': { -> coc#util#install()}}
@@ -480,4 +481,10 @@ augroup END
 " typescript {{{
 let g:vim_jsx_pretty_colorful_config = 1
 "}}}
+" easy-align {{{
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+" }}}
 "------------------------------------------- end of configs --------------------------------------------
