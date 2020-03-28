@@ -335,7 +335,6 @@ autocmd FileType vue syntax sync fromstart
 autocmd BufRead,BufNewFile *.md,*.mkd,*.markdown set filetype=markdown.mkd
 autocmd BufRead,BufNewFile *.part set filetype=html
 
-au BufNewFile,BufRead *.s,*.S set filetype=mips
 au BufNewFile,BufRead *.j,*.J set filetype=jasmin
 au BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.tsx
 autocmd FileType typescript.tsx syntax sync fromstart
