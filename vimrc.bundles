@@ -359,7 +359,7 @@ let g:rainbow_conf = {
 let NERDTreeHighlightCursorline=1
 let NERDTreeMinimalMenu=1
 let NERDTreeHijackNetrw=1
-let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.obj$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$', '\.class$', '^__pycache__$' ]
+let NERDTreeIgnore=[ '\.pyc$', '\.pyo$', '\.o$', '\.so$', '\.egg$', '^\.git$', '^\.svn$', '^\.hg$', '\.class$', '^__pycache__$' ]
 
 "close vim if the only window left open is a NERDTree
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | end
