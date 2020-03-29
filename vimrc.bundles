@@ -198,7 +198,7 @@ nnoremap <silent> <leader>ll  :<C-u>CocList<cr>
 nnoremap <silent> <leader>lc  :<C-u>CocList --normal commits<cr>
 nnoremap <silent> <leader>lg  :<C-u>CocList --normal gstatus<cr>
 nnoremap <silent> <leader>lm  :<C-u>CocList --normal mru<cr>
-nnoremap <silent> <c-space>  :<C-u>CocList --normal buffers<cr>
+nnoremap <silent> <c-space>  :<C-u>CocList --normal mru<cr>
 nnoremap <silent> <leader>ln  :<C-u>CocList --normal branches<cr>
 
 nnoremap <silent> <leader>ld  :<C-u>CocList --normal diagnostics<cr>
