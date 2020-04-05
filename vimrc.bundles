@@ -101,6 +101,7 @@ Plug 'elzr/vim-json'
 Plug 'harenome/vim-mipssyntax'
 Plug 'itchyny/vim-haskell-indent'
 Plug 'vim-erlang/vim-erlang-runtime'
+Plug 'ARM9/arm-syntax-vim'
 " }}}
 
 " ctrlsf
