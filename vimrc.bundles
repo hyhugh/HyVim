@@ -66,7 +66,6 @@ Plug 'thinca/vim-quickrun'
 Plug 'simnalamburt/vim-mundo'
 " lightline
 Plug 'itchyny/lightline.vim'
-" 
 " rainbow_parentheses
 Plug 'luochen1990/rainbow'
 " solarized
@@ -82,7 +81,6 @@ Plug 'kana/vim-textobj-line'
 Plug 'kana/vim-textobj-entire'
 " indent object: i   dai yai cii
 Plug 'kana/vim-textobj-indent'
-
 " tmux suppoort
 Plug 'christoomey/vim-tmux-navigator'
 
@@ -470,19 +468,17 @@ let g:AutoPairsShortcutJumpBack = '<C-h>'
 let g:AutoPairsMultilineClose = 0
 "}}}
 
-" vim-quickrun {{{
-"}}}
-"
-"
 " vim-css3-syntax {{{
 augroup VimCSS3Syntax
     autocmd!
     autocmd FileType css setlocal iskeyword+=-
 augroup END
 "}}}
+
 " typescript {{{
 let g:vim_jsx_pretty_colorful_config = 1
 "}}}
+
 " easy-align {{{
 " Start interactive EasyAlign in visual mode (e.g. vipga)
 xmap ga <Plug>(EasyAlign)
