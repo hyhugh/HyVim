@@ -342,13 +342,21 @@ autocmd FileType typescript.tsx syntax sync fromstart
 au BufNewFile,BufRead *.tex set filetype=tex
 
 " AutoSetFileHead
-autocmd BufNewFile *.sh,*.py exec ":call AutoSetFileHead()"
+autocmd BufNewFile *.sh,*.py,*.java exec ":call AutoSetFileHead()"
 function! AutoSetFileHead()
     if &filetype == 'sh'
         call setline(1, "\#!/bin/bash")
     endif
     if &filetype == 'python'
         call setline(1, "\#!/usr/bin/env python3")
+    endif
+    if &filetype == 'java'
+        call setline(1,"/**")
+        call setline(2," * ". expand('%:t:r'))
+        call setline(3," */")
+        call setline(4,"public class " . expand('%:t:r'). " {" ) 
+        call setline(5,"")
+        call setline(6,"}")
     endif
     normal G
     normal o
@@ -372,6 +380,9 @@ hi link ALEInfo SpellCap
 
 let java_highlight_functions = 1
 let java_highlight_all = 1
+" let java_highlight_debug=1
+let java_highlight_java_io=1
+let java_highlight_java_lang_ids=1
 
 set completeopt=menu,menuone
 set display-=msgsep
