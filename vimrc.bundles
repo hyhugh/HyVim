@@ -41,6 +41,8 @@ Plug 'neoclide/coc-vimtex', {'do': 'yarn install --frozen-lockfile'}
 Plug 'voldikss/coc-cmake', {'do': 'yarn install --frozen-lockfile'}
 Plug 'hyhugh/coc-erlang_ls', {'do': 'yarn install --frozen-lockfile'}
 
+Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-c'}
+
 " symbol autocompleting
 Plug 'hyhugh/auto-pairs'
 " tags autocompleting
@@ -375,7 +377,7 @@ autocmd FileType nerdtree nnoremap <buffer> <leader>n <c-w><c-p>
 " }}}
 
 " nerdtreetabs {{{
-map <F9> <plug>NERDTreeTabsToggle<CR>
+map <c-F9> <plug>NERDTreeTabsToggle<CR>
 " 关闭同步
 " let g:nerdtree_tabs_synchronize_view=0
 " let g:nerdtree_tabs_synchronize_focus=0
@@ -487,11 +489,13 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 " }}}
 " quickrun {{{
- 
 let g:quickrun_config = {}
 let g:quickrun_config.cpp = {
     \   'command': 'c++',
     \   'exec': ['%c %o %s --std=c++17 -o %s:p:r', '%s:p:r %a', 'rm -f %s:p:r'],
     \ }
+" }}}
+" vimspector {{{
+let g:vimspector_enable_mappings = 'HUMAN'
 " }}}
 "------------------------------------------- end of configs --------------------------------------------
