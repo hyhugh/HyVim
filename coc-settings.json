@@ -17,6 +17,7 @@
   },
   "coc.preferences.currentFunctionSymbolAutoUpdate": true,
   "coc.preferences.jumpCommand": "edit",
+  "snippets.userSnippetsDirectory": "~/HyVim/ultisnips",
   "git.addGBlameToBufferVar": true,
   "git.addGBlameToVirtualText": false,
   "list.normalMappings": {
