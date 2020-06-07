@@ -1,3 +1,3 @@
 # HyVim
 
-based on k-vim
+was based on k-vim
