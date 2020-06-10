@@ -196,13 +196,13 @@ function! HideNumber()
     endif
     set number?
 endfunc
-nnoremap <c-F2> :call HideNumber()<CR>
+nnoremap <leader><F2> :call HideNumber()<CR>
 " F4 line wrapping on/off
-nnoremap <c-F4> :set wrap! wrap?<CR>
+nnoremap <leader><F4> :set wrap! wrap?<CR>
 " F6 syntax highlighting on/off
-nnoremap <c-F6> :exec exists('syntax_on') ? 'syn off' : 'syn on'<CR>
+nnoremap <leader><F6> :exec exists('syntax_on') ? 'syn off' : 'syn on'<CR>
 
-set pastetoggle=<c-F5>            "    when in insert mode, press <F5> to go to
+set pastetoggle=<leader><F5>            "    when in insert mode, press <F5> to go to
 "    paste mode, where you can paste mass data
 "    that won't be autoindented
 
