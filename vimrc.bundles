@@ -23,6 +23,8 @@ Plug 'junegunn/vim-easy-align'
 
 " semantic autocompleting
 Plug 'neoclide/coc.nvim', {'branch':'release'}
+Plug 'jackguo380/vim-lsp-cxx-highlight'
+
 " Plug 'neoclide/coc.nvim', {'branch': 'tags/v0.0.78'}
 Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
@@ -40,6 +42,7 @@ Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
 Plug 'neoclide/coc-vimtex', {'do': 'yarn install --frozen-lockfile'}
 Plug 'voldikss/coc-cmake', {'do': 'yarn install --frozen-lockfile'}
 Plug 'hyhugh/coc-erlang_ls', {'do': 'yarn install --frozen-lockfile'}
+Plug 'clangd/coc-clangd', {'do': 'yarn install --frozen-lockfile'}
 
 Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-c'}
 
@@ -502,5 +505,3 @@ map <leader>dw :VimspectorWatch
 map <leader>dr :VimspectorReset
 " }}}
 "------------------------------------------- end of configs --------------------------------------------
-
-

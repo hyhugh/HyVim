@@ -43,23 +43,6 @@
     ],
   },
   "yank.enableCompletion": false,
-  "languageserver": {
-    "clangd": {
-      "command": "clangd",
-      "rootPatterns": [
-        "compile_flags.txt",
-        "compile_commands.json",
-        ".vim/",
-        ".git/",
-        ".hg/"
-      ],
-      "filetypes": [
-        "c",
-        "cpp",
-        "objc",
-        "objcpp"
-      ],
-    }
-  },
+  "clangd.semanticHighlighting": true,
   "java.errors.incompleteClasspath.severity": "ignore"
 }
