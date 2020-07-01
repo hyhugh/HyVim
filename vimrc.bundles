@@ -14,7 +14,7 @@ filetype off " required! turn off
 call plug#begin('~/.vim/bundle')
 
 " fuzzy search plugin
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 
 "vim-snippets and ultisnips
