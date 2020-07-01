@@ -91,7 +91,7 @@ Plug 'kana/vim-textobj-indent'
 Plug 'christoomey/vim-tmux-navigator'
 
 " extra syntax {{{
-Plug 'justinmk/vim-syntax-extra'
+" Plug 'justinmk/vim-syntax-extra'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'posva/vim-vue'
 Plug 'pangloss/vim-javascript'
