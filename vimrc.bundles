@@ -132,8 +132,11 @@ set termguicolors
 set background=dark
 " set t_Co=256
 colorscheme NeoSolarized
-set pb=34
-set winbl=34
+
+if has('nvim')
+    set pb=34
+    set winbl=34
+endif
 " default value is "normal", Setting this option to "high" or "low" does use the
 " same Solarized palette but simply shifts some values up or down in order to
 " expand or compress the tonal range displayed.
