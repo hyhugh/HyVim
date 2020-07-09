@@ -78,7 +78,10 @@ Plug 'luochen1990/rainbow'
 Plug 'altercation/vim-colors-solarized'
 Plug 'hyhugh/NeoSolarized'
 " nerdtree nerdtreetabs
-Plug 'scrooloose/nerdtree' | Plug 'jistr/vim-nerdtree-tabs'
+Plug 'scrooloose/nerdtree' | Plug 'jistr/vim-nerdtree-tabs' 
+" async open file suppoort
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
+Plug 'hyhugh/nerdtree-async-xdg-open.vim' 
 " text object
 Plug 'kana/vim-textobj-user'
 " line object : l   dal yal cil
