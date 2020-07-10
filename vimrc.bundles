@@ -157,7 +157,6 @@ let g:coc_global_extensions = [
             \'coc-emmet',
             \'coc-yank',
             \'coc-lists',
-            \'coc-git',
             \'coc-json',
             \'coc-vimtex',
             \'coc-cmake',
@@ -439,7 +438,14 @@ let g:vimtex_mappings_enabled = 0
 let g:vimtex_view_automatic = 1
 let g:vimtex_disable_version_warning = 1
 let g:vimtex_compiler_latexmk = {'callback' : 0}
-let g:vimtex_view_method = 'skim'
+
+if has('unix')
+    let g:vimtex_view_general_viewer = 'okular'
+    let g:vimtex_view_general_options = '--noraise --unique file:@pdf\#src:@line@tex'
+else
+    let g:vimtex_view_general_viewer = 'skim'
+endif
+
 " }}}
 "
 "" ctrlsf {{{
