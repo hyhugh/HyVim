@@ -25,27 +25,6 @@ Plug 'junegunn/vim-easy-align'
 Plug 'neoclide/coc.nvim', {'branch':'release'}
 Plug 'jackguo380/vim-lsp-cxx-highlight'
 
-" Plug 'neoclide/coc.nvim', {'branch': 'tags/v0.0.78'}
-Plug 'neoclide/coc-tsserver', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-css', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-java', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-vetur', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-snippets', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-highlight', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-python', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-rls', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-emmet', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-yank', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-lists', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-git', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-json', {'do': 'yarn install --frozen-lockfile'}
-Plug 'neoclide/coc-vimtex', {'do': 'yarn install --frozen-lockfile'}
-Plug 'voldikss/coc-cmake', {'do': 'yarn install --frozen-lockfile'}
-Plug 'hyhugh/coc-erlang_ls', {'do': 'yarn install --frozen-lockfile'}
-Plug 'clangd/coc-clangd', {'do': 'yarn install --frozen-lockfile'}
-
-Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-c'}
-
 " symbol autocompleting
 Plug 'hyhugh/auto-pairs'
 " tags autocompleting
@@ -163,6 +142,27 @@ let g:neosolarized_italic = 1
 
 " ################### AutoCompletion ###################
 " coc {{{
+let g:coc_global_extensions = [
+            \'coc-tsserver',
+            \'coc-css',
+            \'coc-java',
+            \'coc-vetur',
+            \'coc-snippets',
+            \'coc-highlight',
+            \'coc-python',
+            \'coc-rls',
+            \'coc-emmet',
+            \'coc-yank',
+            \'coc-lists',
+            \'coc-git',
+            \'coc-json',
+            \'coc-vimtex',
+            \'coc-cmake',
+            \'coc-erlang_ls',
+            \'coc-clangd',
+            \'coc-erlang_ls',
+            \'coc-clangd',
+            \]
 " Use tab for trigger completion with characters ahead and navigate.
 " Use command ':verbose imap <tab>' to make sure tab is not mapped by other plugin.
 " autocmd FileType * let b:coc_root_patterns = ['.']

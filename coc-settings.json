@@ -20,6 +20,7 @@
   "snippets.userSnippetsDirectory": "~/HyVim/ultisnips",
   "git.addGBlameToBufferVar": true,
   "git.addGBlameToVirtualText": false,
+  "git.virtualTextPrefix": "     ----- ",
   "list.normalMappings": {
     "t": "action:tabe",
     "v": "action:vsplit",
@@ -34,7 +35,6 @@
   },
   "coc.source.issues.enable": false,
   "list.maxHeight": 20,
-  "git.virtualTextPrefix": "     ----- ",
   "snippets.extends": {
     "typescript.tsx": [
       "typescriptreact",
