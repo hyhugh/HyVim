@@ -519,5 +519,11 @@ let g:vimspector_base_dir=expand( '$HOME/HyVim/vimspector-config' )
 let g:vimspector_enable_mappings = 'HUMAN'
 map <leader>dw :VimspectorWatch 
 map <leader>dr :VimspectorReset
+augroup WrapLineInVimspector
+    autocmd!
+    autocmd BufRead,BufEnter vimspector.Variables  setlocal wrap
+    autocmd BufRead,BufEnter vimspector.Watches  setlocal wrap
+    autocmd BufRead,BufEnter vimspector.StackTrace  setlocal wrap
+augroup END
 " }}}
 "------------------------------------------- end of configs --------------------------------------------

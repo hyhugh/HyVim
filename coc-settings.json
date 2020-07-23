@@ -20,6 +20,8 @@
   "snippets.userSnippetsDirectory": "~/HyVim/ultisnips",
   "git.addGBlameToBufferVar": true,
   "git.addGBlameToVirtualText": false,
+  "git.signOffset": 1,
+  "git.realtimeGutters": true,
   "git.virtualTextPrefix": "     ----- ",
   "list.normalMappings": {
     "t": "action:tabe",
