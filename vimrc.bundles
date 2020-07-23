@@ -35,7 +35,8 @@ Plug 'alvan/vim-closetag'
 " quick comment out
 Plug 'scrooloose/nerdcommenter'
 " for repeat -> enhance surround.vim, . to repeat command
-Plug 'tpope/vim-repeat' | Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-surround'
 " trailingwhitespace
 Plug 'ntpeters/vim-better-whitespace'
 " easymotion
@@ -244,7 +245,7 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 imap <C-j> <Plug>(coc-snippets-expand-jump)
 
 autocmd CursorHold * silent call CocActionAsync('highlight')
-autocmd CursorHold * CocCommand git.refresh
+" autocmd CursorHold * silent CocCommand git.refresh
 highlight CocHighlightText ctermbg=14 guibg=#033a48
 
 " navigate chunks of current buffer
