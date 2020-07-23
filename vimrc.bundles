@@ -24,7 +24,7 @@ Plug 'junegunn/vim-easy-align'
 " semantic autocompleting
 Plug 'neoclide/coc.nvim', {'branch':'release'}
 
-Plug 'puremourning/vimspector', {'do': './install_gadget.py --enable-c'}
+Plug 'puremourning/vimspector', {'do': './install_gadget.py --basedir $HOME/HyVim/vimspector-config --enable-c --update-gadget-config'}
 
 Plug 'jackguo380/vim-lsp-cxx-highlight'
 
@@ -515,6 +515,7 @@ let g:quickrun_config.cpp = {
 " }}}
 " 
 " vimspector {{{
+let g:vimspector_base_dir=expand( '$HOME/HyVim/vimspector-config' )
 let g:vimspector_enable_mappings = 'HUMAN'
 map <leader>dw :VimspectorWatch 
 map <leader>dr :VimspectorReset
