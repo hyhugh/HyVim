@@ -245,7 +245,8 @@ command! -nargs=? Fold :call     CocAction('fold', <f-args>)
 imap <C-j> <Plug>(coc-snippets-expand-jump)
 
 autocmd CursorHold * silent call CocActionAsync('highlight')
-" autocmd CursorHold * silent CocCommand git.refresh
+" HACK: add an argument to avoid overwrite command history
+autocmd CursorHold * silent CocCommand git.refresh "void"
 highlight CocHighlightText ctermbg=14 guibg=#033a48
 
 " navigate chunks of current buffer
