@@ -106,7 +106,10 @@ Plug 'dyng/ctrlsf.vim'
 " esay-easyescape
 Plug 'hyhugh/vim-easyescape-plus'
 " markdown support
-" Plug 'suan/vim-instant-markdown', { 'for':['md', 'markdown'] }
+" If you don't have nodejs and yarn
+" use pre build, add 'vim-plug' to the filetype list so vim-plug can update this plugin
+" see: https://github.com/iamcco/markdown-preview.nvim/issues/50
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
 " latex support
 Plug 'lervag/vimtex'
 
@@ -532,4 +535,8 @@ augroup WrapLineInVimspector
     autocmd BufRead,BufEnter vimspector.StackTrace  setlocal wrap
 augroup END
 " }}}
+
+" markdown {
+let g:mkdp_auto_close = 0
+" }
 "------------------------------------------- end of configs --------------------------------------------
