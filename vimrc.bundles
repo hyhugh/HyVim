@@ -24,9 +24,14 @@ Plug 'junegunn/vim-easy-align'
 " semantic autocompleting
 Plug 'neoclide/coc.nvim', {'branch':'release'}
 
+" debug support
 Plug 'puremourning/vimspector', {'do': './install_gadget.py --basedir $HOME/HyVim/vimspector-config --enable-c --update-gadget-config'}
 
+" c/cpp semantic highlighting
 Plug 'jackguo380/vim-lsp-cxx-highlight'
+
+" LSP symbol navigator
+Plug 'liuchengxu/vista.vim'
 
 " symbol autocompleting
 Plug 'hyhugh/auto-pairs'

@@ -230,8 +230,8 @@ cnoremap <C-a> <Home>
 cnoremap <C-e> <End>
 
 " searching related
-nnoremap / /\v
-vnoremap / /\v
+" nnoremap / /\v
+" vnoremap / /\v
 
 " Keep search pattern at the center of the screen.
 nnoremap <silent> n nzz
