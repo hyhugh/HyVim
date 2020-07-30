@@ -42,8 +42,22 @@
       "typescriptreact",
       "typescript",
       "javascript"
-    ],
+    ]
   },
+  "latex.build.onSave": true,
+  "latex.lint.onSave": true,
+  "latex.forwardSearch.executable": "okular",
+  "latex.forwardSearch.args": [
+    "--unique",
+    "file:%p#src:%l%f"
+  ],
+  "latex.rootDirectory": ".",
+  "latex.build.args": [
+    "-pdf",
+    "-interaction=nonstopmode",
+    "-synctex=1",
+    "-shell-escape"
+  ],
   "yank.enableCompletion": false,
   "clangd.semanticHighlighting": true,
   "java.errors.incompleteClasspath.severity": "ignore"
