@@ -98,6 +98,7 @@ Plug 'harenome/vim-mipssyntax'
 Plug 'itchyny/vim-haskell-indent'
 Plug 'vim-erlang/vim-erlang-runtime'
 Plug 'ARM9/arm-syntax-vim'
+Plug 'jaxbot/semantic-highlight.vim', {'for' : 'java'}
 " }}}
 
 " ctrlsf
@@ -518,6 +519,10 @@ nmap ga <Plug>(EasyAlign)
 " }}}
 " quickrun {{{
 let g:quickrun_config = {}
+let g:quickrun_config['_'] = {
+            \'runner': 'vimproc',
+            \}
+
 let g:quickrun_config.cpp = {
     \   'command': 'c++',
     \   'exec': ['%c %o %s --std=c++17 -o %s:p:r', '%s:p:r %a', 'rm -f %s:p:r'],
