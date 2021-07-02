@@ -1,12 +1,11 @@
 {
   "suggest.enablePreview": true,
   "coc.preferences.colorSupport": false,
-  "java.signatureHelp.enabled": true,
-  "python.jediEnabled": false,
+  "python.formatting.provider": "black",
   "signature.preferShownAbove": true,
+  "python.formatting.blackPath": "/usr/local/bin/black",
   "signature.hideOnTextChange": false,
   "snippets.ultisnips.enable": true,
-  "python.formatting.provider": "black",
   "rust.racer_completion": true,
   "rust.all_targets": false,
   "emmet.includeLanguages": {
@@ -36,7 +35,6 @@
     "<C-w>": "command:wincmd k"
   },
   "coc.source.issues.enable": false,
-  "list.maxHeight": 20,
   "snippets.extends": {
     "typescript.tsx": [
       "typescriptreact",
@@ -44,21 +42,18 @@
       "javascript"
     ]
   },
-  "latex.build.onSave": true,
-  "latex.lint.onSave": true,
-  "latex.forwardSearch.executable": "okular",
-  "latex.forwardSearch.args": [
-    "--unique",
-    "file:%p#src:%l%f"
-  ],
-  "latex.rootDirectory": ".",
-  "latex.build.args": [
-    "-pdf",
-    "-interaction=nonstopmode",
-    "-synctex=1",
-    "-shell-escape"
-  ],
+  "languageserver": {
+    "java": {
+      "command": "~/packages/java-language-server/dist/lang_server_mac.sh",
+      "rootPatterns": [
+        "BUILD"
+      ],
+      "trace.server": "verbose",
+      "filetypes": [
+        "java1"
+      ]
+    }
+  },
   "yank.enableCompletion": false,
-  "clangd.semanticHighlighting": true,
-  "java.errors.incompleteClasspath.severity": "ignore"
+  "clangd.semanticHighlighting": true
 }

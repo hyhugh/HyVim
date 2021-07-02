@@ -8,5 +8,4 @@ init.vim
 undo
 sessions
 .netrwhist
-vimspector-config/gadgets/linux/download
-vimspector-config/gadgets/linux/vscode-cpptools
+vimspector-config/gadgets/*

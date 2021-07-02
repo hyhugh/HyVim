@@ -98,12 +98,18 @@ Plug 'harenome/vim-mipssyntax'
 Plug 'itchyny/vim-haskell-indent'
 Plug 'vim-erlang/vim-erlang-runtime'
 Plug 'ARM9/arm-syntax-vim'
-Plug 'jaxbot/semantic-highlight.vim', {'for' : 'java'}
+" Plug 'jaxbot/semantic-highlight.vim', {'for' : 'java'}
 " }}}
 
 " ctrlsf
 Plug 'dyng/ctrlsf.vim'
 
+"bazel support
+Plug 'google/vim-maktaba'
+Plug 'bazelbuild/vim-bazel'
+Plug 'sotte/presenting.vim'
+
+Plug 'hashivim/vim-terraform'
 " esay-easyescape
 Plug 'hyhugh/vim-easyescape-plus'
 " markdown support
@@ -158,17 +164,17 @@ let g:neosolarized_italic = 1
 let g:coc_global_extensions = [
             \'coc-tsserver',
             \'coc-css',
-            \'coc-java',
             \'coc-git',
             \'coc-vetur',
             \'coc-snippets',
             \'coc-highlight',
-            \'coc-python',
+            \'coc-pyright',
             \'coc-rls',
             \'coc-emmet',
             \'coc-yank',
             \'coc-lists',
             \'coc-json',
+            \'coc-java',
             \'coc-vimtex',
             \'coc-cmake',
             \'coc-erlang_ls',
@@ -376,6 +382,7 @@ let g:rainbow_conf = {
             \       },
             \       'css': 0,
             \       'cmake': 0,
+            \       'terraform': 0,
             \   }
             \}
 " }}}

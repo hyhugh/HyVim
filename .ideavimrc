@@ -1,0 +1,73 @@
+let mapleader = " "
+" Plugins {{{
+set surround
+set commentary
+set highlighteyank
+set multiple-cursors
+set highlightedyank
+set scrolloff=7
+set scroll=50
+"}}}
+
+" Mappings {{{
+map H ^
+map L $
+map ; :
+
+map <leader>q :q<cr>
+map <leader>Q :action CloseEditorsGroup<cr>
+map <leader>w :w<cr>
+
+imap kj <esc>
+map zv zo
+
+map <c-h> <c-w>h
+map <c-l> <c-w>l
+map <c-j> <c-w>j
+map <c-k> <c-w>k
+map <left> :tabprev<cr>
+map <right> :tabnext<cr>
+map <leader>/ :nohls<cr>
+map U <C-r>
+
+vnoremap <leader>y "+y
+vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
+
+" Try my best to fit my muscle memory
+
+map <leader>gi :action GotoImplementation<cr>
+map <leader>gd gd
+map <leader>gg :action SelectIn<cr>
+map <leader>gr :action FindUsages<cr>
+map <leader>p :action GotoFile<cr>
+map <leader>f :action FindInPath<cr>
+map <leader>. :action GotoSymbol<cr>
+map ]c :action GotoNextError<cr>
+map [c :action GotoPreviousError<cr>
+map gh :action ShowErrorDescription<cr>
+map <leader>ja :action ShowIntentionActions<cr>
+map <leader>jr :action Refactorings.QuickListPopupAction<cr>
+map <leader>m :action ReformatCode<cr>
+map <leader>n :action ActivateProjectToolWindow<cr>
+map <leader>t :action ActivateTerminalToolWindow<cr>
+
+" Keep search pattern at the center of the screen.
+nnoremap <silent> n nzz
+nnoremap <silent> N Nzz
+nnoremap * *``zz
+nnoremap <silent> # #zz
+nnoremap <silent> g* g*zz
+nnoremap <silent> <c-o> <c-o>zz
+nnoremap <silent> <c-i> <c-i>zz
+nnoremap <C-o> :action Back<CR>
+nnoremap <C-i> :action Forward<CR>
+"}}}
+
+" Vim settings {{{
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+set relativenumber
+set nu
+"}}}

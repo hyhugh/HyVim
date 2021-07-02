@@ -46,8 +46,7 @@ set nowritebackup
 " disable swapfile
 set noswapfile
 set wildignore=*.swp,*.bak,*.pyc,*.class,.svn
-" disable mouse
-set mouse=n
+set mouse=nv
 
 " change the terminal's title
 set title
@@ -95,25 +94,12 @@ set matchtime=2
 " Highlight search
 set hlsearch
 set incsearch
+set inccommand=nosplit
 set ignorecase
 set smartcase
 
 " fold code
 set foldenable
-set foldmethod=indent
-set foldlevel=99
-
-let g:FoldMethod = 0
-map <leader>zz :call ToggleFold()<cr>
-fun! ToggleFold()
-    if g:FoldMethod == 0
-        exe "normal! zM"
-        let g:FoldMethod = 1
-    else
-        exe "normal! zR"
-        let g:FoldMethod = 0
-    endif
-endfun
 
 " Smart indent
 set smartindent
@@ -324,6 +310,7 @@ nnoremap U <C-r>
 " lazy boi doesn't want to switch modes
 " inoremap <C-h> <Left>
 " inoremap <C-l> <Right>
+vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 
 "==========================================
 " FileType Settings
