@@ -6,8 +6,6 @@
   "python.formatting.blackPath": "/usr/local/bin/black",
   "signature.hideOnTextChange": false,
   "snippets.ultisnips.enable": true,
-  "rust.racer_completion": true,
-  "rust.all_targets": false,
   "emmet.includeLanguages": {
     "javascript": "javascriptreact",
     "typescript": "typescriptreact",
@@ -15,6 +13,9 @@
     "razor": "html"
   },
   "coc.preferences.currentFunctionSymbolAutoUpdate": true,
+  "highlight.document.enable": false,
+  "highlight.colors.enable": false,
+  "highlight.colorNames.enable": false,
   "coc.preferences.jumpCommand": "edit",
   "snippets.userSnippetsDirectory": "~/HyVim/ultisnips",
   "git.addGBlameToBufferVar": true,
@@ -55,5 +56,10 @@
     }
   },
   "yank.enableCompletion": false,
+  "tsserver.maxTsServerMemory": 8192,
+  "tsserver.log": "verbose",
+  "tsserver.tsdk": "node_modules/typescript/lib",
+  "tsserver.trace.server": "verbose",
+  "python.pythonPath": "python3",
   "clangd.semanticHighlighting": true
 }

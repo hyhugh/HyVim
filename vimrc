@@ -46,7 +46,7 @@ set nowritebackup
 " disable swapfile
 set noswapfile
 set wildignore=*.swp,*.bak,*.pyc,*.class,.svn
-set mouse=nv
+set mouse=nvi
 
 " change the terminal's title
 set title
@@ -323,9 +323,9 @@ autocmd BufRead,BufNewFile *.md,*.mkd,*.markdown set filetype=markdown.mkd
 autocmd BufRead,BufNewFile *.part set filetype=html
 
 au BufNewFile,BufRead *.j,*.J set filetype=jasmin
-au BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.tsx
+" au BufNewFile,BufRead *.tsx,*.jsx set filetype=typescript.tsx
 au BufNewFile,BufRead *.camkes set filetype=camkes
-autocmd FileType typescript.tsx syntax sync fromstart
+" autocmd FileType typescript.tsx syntax sync fromstart
 au BufNewFile,BufRead *.tex set filetype=tex
 
 " AutoSetFileHead

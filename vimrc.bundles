@@ -20,6 +20,9 @@ Plug 'junegunn/fzf.vim'
 "vim-snippets and ultisnips
 Plug 'honza/vim-snippets'
 Plug 'junegunn/vim-easy-align'
+Plug 'antoinemadec/coc-fzf'
+
+Plug 'mattn/emmet-vim'
 
 " semantic autocompleting
 Plug 'neoclide/coc.nvim', {'branch':'release'}
@@ -64,7 +67,8 @@ Plug 'itchyny/lightline.vim'
 Plug 'luochen1990/rainbow'
 " solarized
 Plug 'altercation/vim-colors-solarized'
-Plug 'hyhugh/NeoSolarized'
+Plug 'overcache/NeoSolarized'
+Plug 'morhetz/gruvbox'
 " nerdtree nerdtreetabs
 Plug 'scrooloose/nerdtree' | Plug 'jistr/vim-nerdtree-tabs' 
 " async open file suppoort
@@ -84,21 +88,8 @@ Plug 'christoomey/vim-tmux-navigator'
 " extra syntax {{{
 " Plug 'justinmk/vim-syntax-extra'
 Plug 'hail2u/vim-css3-syntax'
-Plug 'posva/vim-vue'
-Plug 'pangloss/vim-javascript'
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'tikhomirov/vim-glsl'
-Plug 'hdima/python-syntax'
-Plug 'rust-lang/rust.vim'
-Plug 'fatih/vim-go'
-Plug 'hynek/vim-python-pep8-indent'
-Plug 'Glench/Vim-Jinja2-Syntax'
-Plug 'elzr/vim-json'
 Plug 'harenome/vim-mipssyntax'
-Plug 'itchyny/vim-haskell-indent'
-Plug 'vim-erlang/vim-erlang-runtime'
 Plug 'ARM9/arm-syntax-vim'
-" Plug 'jaxbot/semantic-highlight.vim', {'for' : 'java'}
 " }}}
 
 " ctrlsf
@@ -109,7 +100,6 @@ Plug 'google/vim-maktaba'
 Plug 'bazelbuild/vim-bazel'
 Plug 'sotte/presenting.vim'
 
-Plug 'hashivim/vim-terraform'
 " esay-easyescape
 Plug 'hyhugh/vim-easyescape-plus'
 " markdown support
@@ -119,6 +109,7 @@ Plug 'hyhugh/vim-easyescape-plus'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
 " latex support
 Plug 'lervag/vimtex'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 call plug#end()
 
@@ -132,11 +123,12 @@ call plug#end()
 set termguicolors
 set background=dark
 " set t_Co=256
-colorscheme NeoSolarized
+" colorscheme NeoSolarized
+colorscheme gruvbox
 
 if has('nvim')
-    set pb=34
-    set winbl=34
+    " set pb=34
+    " set winbl=34
 endif
 " default value is "normal", Setting this option to "high" or "low" does use the
 " same Solarized palette but simply shifts some values up or down in order to
@@ -162,22 +154,13 @@ let g:neosolarized_italic = 1
 " ################### AutoCompletion ###################
 " coc {{{
 let g:coc_global_extensions = [
-            \'coc-tsserver',
-            \'coc-css',
             \'coc-git',
-            \'coc-vetur',
             \'coc-snippets',
             \'coc-highlight',
-            \'coc-pyright',
-            \'coc-rls',
             \'coc-emmet',
             \'coc-yank',
             \'coc-lists',
             \'coc-json',
-            \'coc-java',
-            \'coc-vimtex',
-            \'coc-cmake',
-            \'coc-erlang_ls',
             \'coc-clangd',
             \]
 " Use tab for trigger completion with characters ahead and navigate.
@@ -223,18 +206,18 @@ vmap <leader>ja  <Plug>(coc-codeaction-selected)
 nmap <leader>ja  <Plug>(coc-codeaction)
 nmap <leader>jf  <Plug>(coc-fix-current)
 
-nnoremap <silent> <leader>ll  :<C-u>CocList<cr>
-nnoremap <silent> <leader>lc  :<C-u>CocList --normal commits<cr>
-nnoremap <silent> <leader>lg  :<C-u>CocList --normal gstatus<cr>
-nnoremap <silent> <leader>lm  :<C-u>CocList --normal mru<cr>
+nnoremap <silent> <leader>ll  :<C-u>CocFzfList<cr>
+nnoremap <silent> <leader>lc  :<C-u>CocFzfList commits<cr>
+nnoremap <silent> <leader>lg  :<C-u>CocFzfList gstatus<cr>
 nnoremap <silent> <c-space>  :<C-u>CocList --normal mru<cr>
-nnoremap <silent> <leader>ln  :<C-u>CocList --normal branches<cr>
+nnoremap <silent> <leader>ln  :<C-u>CocFzfList branches<cr>
 
-nnoremap <silent> <leader>ld  :<C-u>CocList --normal diagnostics<cr>
-nnoremap <silent> <leader>le  :<C-u>CocList --normal extensions<cr>
-nnoremap <silent> <leader>la  :<C-u>CocList commands<cr>
-nnoremap <silent> <leader>lo  :<C-u>CocList --normal outline<cr>
-nnoremap <silent> <leader>ls  :<C-u>CocList -I symbols<cr>
+nnoremap <silent> <leader>ld  :<C-u>CocFzfList diagnostics<cr>
+nnoremap <silent> <leader>le  :<C-u>CocFzfList extensions<cr>
+nnoremap <silent> <leader>la  :<C-u>CocFzfList commands<cr>
+nnoremap <silent> <leader>lo  :<C-u>CocFzfList outline<cr>
+nnoremap <silent> <leader>ls  :<C-u>CocFzfList symbols<cr>
+nnoremap <silent> <leader>lz  :<C-u>CocFzfListResume<cr>
 
 nnoremap <silent> <leader>lj  :<C-u>CocNext<CR>
 nnoremap <silent> <leader>lk  :<C-u>CocPrev<CR>
@@ -339,7 +322,7 @@ endfunction
 
 " lightline
 let g:lightline = {
-  \ 'colorscheme': 'solarized',
+  \ 'colorscheme': 'gruvbox',
   \ 'active': {
   \   'left': [
   \     [ 'mode', 'paste' ],
@@ -418,14 +401,27 @@ let g:nerdtree_tabs_open_on_gui_startup=0
 au FileType fzf set nonu nornu
 nnoremap <leader>. :Tags<cr>
 nnoremap <leader>> :Tags <C-R><C-W><CR>
-nnoremap <leader>f :Rg<CR>
-nnoremap <Leader>F :Rg <C-R><C-W><CR>
+nnoremap <leader>f :RG<CR>
+nnoremap <Leader>F :RG <C-R><C-W><CR>
 nnoremap <leader>b :BLines <CR>
 nnoremap <leader>B :BLines <C-R><C-W><cr>
 nnoremap <leader>p :Files <CR>
 
+function! RipgrepFzf(query, fullscreen)
+  let command_fmt = 'rg --column --line-number --no-heading --color=always --smart-case %s || true'
+  let initial_command = printf(command_fmt, shellescape(a:query))
+  let reload_command = printf(command_fmt, '{q}')
+  let options = {'options': ['--phony', '--query', a:query, '--bind', 'change:reload:'.reload_command]}
+  let options = fzf#vim#with_preview(options, 'up:40%', 'ctrl-/')
+  call fzf#vim#grep(initial_command, 1, options, a:fullscreen)
+endfunction
+
+command! -nargs=* -bang RG call RipgrepFzf(<q-args>, <bang>0)
+
 let g:fzf_buffers_jump = 1
 let g:fzf_tags_command = 'ctags -R'
+
+let g:fzf_preview_window = ['up:40%', 'ctrl-/']
 " }}}
 
 " pythonsyntax {{{
@@ -553,4 +549,26 @@ augroup END
 " markdown {
 let g:mkdp_auto_close = 0
 " }
+"
+" treesitter {{{
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = { "javascript", "typescript", "java", "rust", "python" }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+    disable = {},  -- list of language that will be disabled
+    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
+    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
+    -- Using this option may slow down your editor, and you may see some duplicate highlights.
+    -- Instead of true it can also be a list of languages
+    additional_vim_regex_highlighting = false,
+  },
+}
+EOF
+" }}}
+" emmet {{{
+autocmd FileType html,css,typescriptreact EmmetInstall
+" }}}
+" 
+
 "------------------------------------------- end of configs --------------------------------------------
