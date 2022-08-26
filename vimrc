@@ -316,8 +316,9 @@ vnoremap // y/\V<C-R>=escape(@",'/\')<CR><CR>
 " FileType Settings
 "==========================================
 
-autocmd FileType c,python,cs,java,cpp set tabstop=4 shiftwidth=4 expandtab ai
-autocmd FileType json,ruby,javascript,typescript,typescript.tsx,html,css,xml,haskell,vue set tabstop=2 shiftwidth=2 softtabstop=2 expandtab ai
+autocmd FileType c,python,cs,java set tabstop=4 shiftwidth=4 expandtab ai
+autocmd FileType cpp set tabstop=2 shiftwidth=2 expandtab ai
+autocmd FileType json,ruby,javascript,typescript,typescript.tsx,typescriptreact,javascriptreact,html,css,xml,haskell,vue set tabstop=2 shiftwidth=2 softtabstop=2 expandtab ai
 autocmd FileType vue syntax sync fromstart
 autocmd BufRead,BufNewFile *.md,*.mkd,*.markdown set filetype=markdown.mkd
 autocmd BufRead,BufNewFile *.part set filetype=html

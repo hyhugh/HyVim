@@ -3,7 +3,9 @@
   "coc.preferences.colorSupport": false,
   "python.formatting.provider": "black",
   "signature.preferShownAbove": true,
-  "python.formatting.blackPath": "/usr/local/bin/black",
+  "python.formatting.blackPath": "black",
+  "pyright.disableDiagnostics": false,
+  "suggest.noselect": true,
   "signature.hideOnTextChange": false,
   "snippets.ultisnips.enable": true,
   "emmet.includeLanguages": {

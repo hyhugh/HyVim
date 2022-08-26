@@ -27,9 +27,6 @@ Plug 'mattn/emmet-vim'
 " semantic autocompleting
 Plug 'neoclide/coc.nvim', {'branch':'release'}
 
-" debug support
-Plug 'puremourning/vimspector', {'do': './install_gadget.py --basedir $HOME/HyVim/vimspector-config --enable-c --update-gadget-config'}
-
 " LSP symbol navigator
 Plug 'liuchengxu/vista.vim'
 
@@ -87,6 +84,7 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'hail2u/vim-css3-syntax'
 Plug 'harenome/vim-mipssyntax'
 Plug 'ARM9/arm-syntax-vim'
+Plug 'udalov/kotlin-vim'
 " }}}
 
 " ctrlsf
@@ -102,7 +100,8 @@ Plug 'hyhugh/vim-easyescape-plus'
 " If you don't have nodejs and yarn
 " use pre build, add 'vim-plug' to the filetype list so vim-plug can update this plugin
 " see: https://github.com/iamcco/markdown-preview.nvim/issues/50
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }}
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install'  }
+
 " latex support
 Plug 'lervag/vimtex'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
@@ -167,19 +166,20 @@ autocmd FileType python let b:coc_root_patterns = ['.pyroot']
 autocmd FileType list set nonumber
 autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 
-inoremap <silent><expr> <TAB>
-            \ pumvisible() ? "\<C-n>" :
-            \ <SID>check_back_space() ? "\<TAB>" :
-            \ coc#refresh()
-
 function! s:check_back_space() abort
     let col = col('.') - 1
-    return !col || getline('.')[col - 1]  =~# '\s'
+    return !col || getline('.')[col - 1]  =~ '\s'
 endfunction
 
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" Insert <tab> when previous text is space, refresh completion if not.
+inoremap <silent><expr> <TAB>
+	\ coc#pum#visible() ? coc#pum#next(1):
+	\ <SID>check_back_space() ? "\<Tab>" :
+	\ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
 inoremap <silent><expr> <c-space> coc#refresh()
-autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+autocmd! CompleteDone * if coc#pum#visible() == 0 | pclose | endif
 nmap <silent> [c <Plug>(coc-diagnostic-prev)
 nmap <silent> ]c <Plug>(coc-diagnostic-next)
 nmap <silent> <leader>gd <Plug>(coc-definition)
@@ -224,7 +224,7 @@ imap <C-y> <Plug>(coc-snippets-expand)
 " use c-d to expand the snippets and emmets
 " HACK: currently coc-emmets requires coc#_select_confirm to expand an emmet
 " snippet
-inoremap <silent><expr> <c-d> pumvisible() ? coc#_select_confirm() : "<C-y>"
+inoremap <silent><expr> <c-d> coc#pum#visible() ? coc#_select_confirm() : "<C-y>"
 
 " Use <C-j> for select text for visual placeholder of snippet.
 vmap <C-j> <Plug>(coc-snippets-select)
@@ -527,20 +527,9 @@ let g:quickrun_config.cpp = {
     \   'command': 'c++',
     \   'exec': ['%c %o %s --std=c++17 -o %s:p:r', '%s:p:r %a', 'rm -f %s:p:r'],
     \ }
+map <leader>r :QuickRun<cr>
 " }}}
 " 
-" vimspector {{{
-let g:vimspector_base_dir=expand( '$HOME/HyVim/vimspector-config' )
-let g:vimspector_enable_mappings = 'HUMAN'
-map <leader>dw :VimspectorWatch 
-map <leader>dr :VimspectorReset
-augroup WrapLineInVimspector
-    autocmd!
-    autocmd BufRead,BufEnter vimspector.Variables  setlocal wrap
-    autocmd BufRead,BufEnter vimspector.Watches  setlocal wrap
-    autocmd BufRead,BufEnter vimspector.StackTrace  setlocal wrap
-augroup END
-" }}}
 
 " markdown {
 let g:mkdp_auto_close = 0
@@ -549,7 +538,7 @@ let g:mkdp_auto_close = 0
 " treesitter {{{
 lua <<EOF
 require'nvim-treesitter.configs'.setup {
-  ensure_installed = { "javascript", "typescript", "java", "rust", "python", "cpp" }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  ensure_installed = { "javascript", "typescript", "java", "rust", "python", "cpp", "kotlin" }, -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   highlight = {
     enable = true,              -- false will disable the whole extension
     disable = {},  -- list of language that will be disabled
