@@ -53,8 +53,8 @@ function show_help
     echo "Step1: backing up current vim config"
     today=`date +%Y%m%d`
     if $FOR_VIM; then
-        for i in $HOME/.vim $HOME/.vimrc $HOME/.gvimrc $HOME/.vimrc.bundles; do [ -e $i ] && [ ! -L $i ] && mv $i $i.$today; done
-        for i in $HOME/.vim $HOME/.vimrc $HOME/.gvimrc $HOME/.vimrc.bundles; do [ -L $i ] && unlink $i ; done
+        for i in $HOME/.vim $HOME/.vimrc $HOME/.gvimrc $HOME/.plugins.vim; do [ -e $i ] && [ ! -L $i ] && mv $i $i.$today; done
+        for i in $HOME/.vim $HOME/.vimrc $HOME/.gvimrc $HOME/.plugins.vim; do [ -L $i ] && unlink $i ; done
     fi
     if $FOR_NEOVIM; then
         for i in $HOME/.config/nvim $HOME/.config/nvim/init.vim; do [ -e $i ] && [ ! -L $i ] && mv $i $i.$today; done
@@ -64,7 +64,7 @@ function show_help
     echo "Step2: setting up symlinks"
     if $FOR_VIM; then
         lnif $CURRENT_DIR/vimrc $HOME/.vimrc
-        lnif $CURRENT_DIR/vimrc.bundles $HOME/.vimrc.bundles
+        lnif $CURRENT_DIR/plugins.vim $HOME/.plugins.vim
         lnif "$CURRENT_DIR/" "$HOME/.vim"
     fi
     if $FOR_NEOVIM; then
@@ -76,9 +76,9 @@ function show_help
     system_shell=$SHELL
     export SHELL="/bin/sh"
     if $FOR_VIM; then
-        vim -u $HOME/.vimrc.bundles +PlugInstall! +PlugClean! +qall
+        vim -u $HOME/.plugins.vim +PlugInstall! +PlugClean! +qall
     else
-        nvim -u $HOME/.vimrc.bundles +PlugInstall! +PlugClean! +qall
+        nvim -u $HOME/.plugins.vim +PlugInstall! +PlugClean! +qall
     fi
     export SHELL=$system_shell
 

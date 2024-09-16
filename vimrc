@@ -13,10 +13,10 @@ set lazyredraw
 " set re=0
 
 " install bundles
-if filereadable(expand("~/.vimrc.bundles"))
-    source ~/.vimrc.bundles
-elseif filereadable(expand("~/.config/nvim/vimrc.bundles")) " neovim
-    source ~/.config/nvim/vimrc.bundles
+if filereadable(expand("~/.plugins.vim"))
+    source ~/.plugins.vim
+elseif filereadable(expand("~/.config/nvim/plugins.vim")) " neovim
+    source ~/.config/nvim/plugins.vim
 endif
 
 lua require "config"
