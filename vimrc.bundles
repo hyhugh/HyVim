@@ -21,7 +21,6 @@ Plug 'junegunn/fzf.vim'
 Plug 'honza/vim-snippets'
 
 " semantic autocompleting
-" Plug 'neoclide/coc.nvim', {'branch':'release'}
 "{{{
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/cmp-nvim-lsp'
