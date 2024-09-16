@@ -19,6 +19,8 @@ elseif filereadable(expand("~/.config/nvim/vimrc.bundles")) " neovim
     source ~/.config/nvim/vimrc.bundles
 endif
 
+lua require "config"
+
 " ensure ftdetect et al work by including this after the bundle stuff
 filetype plugin indent on
 
@@ -381,3 +383,5 @@ let g:omni_sql_no_default_maps = 1
 " Neovim specific
 " let g:python3_host_prog = '/Users/hyman/.pyenv/versions/neovim/bin/python3.7'
 " let g:netrw_nogx = 1
+"
+set showtabline=2

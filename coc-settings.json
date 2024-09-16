@@ -1,6 +1,7 @@
 {
-  "suggest.enablePreview": true,
-  "coc.preferences.colorSupport": false,
+  "suggest.enablePreselect": false,
+  "diagnostic.virtualText": true,
+  "diagnostic.virtualTextCurrentLineOnly": false,
   "python.formatting.provider": "black",
   "signature.preferShownAbove": true,
   "python.formatting.blackPath": "black",
@@ -22,7 +23,6 @@
   "snippets.userSnippetsDirectory": "~/HyVim/ultisnips",
   "git.addGBlameToBufferVar": true,
   "git.addGBlameToVirtualText": false,
-  "git.signOffset": 1,
   "git.realtimeGutters": true,
   "git.virtualTextPrefix": "     ----- ",
   "list.normalMappings": {
@@ -63,5 +63,5 @@
   "tsserver.tsdk": "node_modules/typescript/lib",
   "tsserver.trace.server": "verbose",
   "python.pythonPath": "python3",
-  "clangd.semanticHighlighting": true
+  "snippets.ultisnips.pythonPrompt": false
 }
