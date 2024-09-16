@@ -62,8 +62,7 @@ set noerrorbells
 set t_vb=
 set tm=500
 
-" Remember info about open buffers on close
-set viminfo^=%
+set shada=!,'100,<50,s100,h,%
 
 " For regular expressions turn magic on
 set magic

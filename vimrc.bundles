@@ -19,6 +19,7 @@ Plug 'junegunn/fzf.vim'
 
 "vim-snippets and ultisnips
 Plug 'honza/vim-snippets'
+Plug 'nvim-lua/plenary.nvim'
 
 " semantic autocompleting
 "{{{
@@ -31,10 +32,6 @@ Plug 'hrsh7th/nvim-cmp'
 Plug 'onsails/lspkind.nvim'
 "}}}
 "
-" solarized
-Plug 'altercation/vim-colors-solarized'
-Plug 'overcache/NeoSolarized'
-
 " symbol autocompleting
 Plug 'hyhugh/auto-pairs'
 " quick comment out
@@ -57,24 +54,25 @@ Plug 'mg979/vim-visual-multi'
 " lightline
 Plug 'itchyny/lightline.vim'
 Plug 'mengelbrecht/lightline-bufferline'
-" rainbow_parentheses
-Plug 'luochen1990/rainbow'
 Plug 'morhetz/gruvbox'
 " nerdtree 
 Plug 'scrooloose/nerdtree'
 " text object
 Plug 'kana/vim-textobj-user'
-" line object : l   dal yal cil
 Plug 'kana/vim-textobj-line'
-" entire object : e   dae yae cie
 Plug 'kana/vim-textobj-entire'
-" indent object: i   dai yai cii
 Plug 'kana/vim-textobj-indent'
 " tmux suppoort
 Plug 'christoomey/vim-tmux-navigator'
 " buffer delete support
 Plug 'moll/vim-bbye'
 " indent line
+
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+Plug 'rcarriga/nvim-notify'
+Plug 'stevearc/dressing.nvim'
+
 
 " extra syntax {{{
 Plug 'hail2u/vim-css3-syntax'
@@ -99,12 +97,13 @@ Plug 'lervag/vimtex'
 " nvim
 Plug 'stevearc/dressing.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'nvim-lua/plenary.nvim'
 Plug 'akinsho/flutter-tools.nvim'
 
 call plug#end()
 
 colorscheme gruvbox
+set termguicolors
+set background=dark
 
 " ################### AutoCompletion ###################
 "  {{{
